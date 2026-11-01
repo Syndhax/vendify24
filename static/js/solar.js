@@ -148,9 +148,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ===================================================
-    // TAP TO REVEAL ORIGINAL IMAGE COLOR
+    // MOUSE HOVER & TOUCH TO REVEAL ORIGINAL IMAGE COLOR
     // ===================================================
     planets.forEach((planet) => {
+        // Immediately reveal real color the instant mouse touches the image
+        planet.addEventListener('mouseenter', () => {
+            planets.forEach(p => { if (p !== planet) p.classList.remove('show-color'); });
+            planet.classList.add('show-color');
+        });
+
+        planet.addEventListener('mouseleave', () => {
+            planet.classList.remove('show-color');
+        });
+
+        // Click / tap support for mobile and trackpads
         planet.addEventListener('click', (e) => {
             // If the user was dragging the orbit, do not trigger color reveal
             if (dragDistance > 6) return;

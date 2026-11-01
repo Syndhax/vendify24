@@ -70,12 +70,13 @@
         0 0 0 2px #000000;
 }
 
-/* Planet Images: Default Grayscale Monochrome, Smoothly Reveals Original Color on Tap */
+/* Planet Images: Default Grayscale, Immediately Reveals Real Color on Mouse Hover or Touch */
 .planet-item img {
     filter: grayscale(100%) contrast(105%);
-    transition: filter 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition: filter 0.3s ease, transform 0.5s ease;
 }
 
+.planet-item:hover,
 .planet-item.show-color {
     border-color: #000000 !important;
     box-shadow: 
@@ -83,6 +84,7 @@
         0 0 0 2px #000000 !important;
 }
 
+.planet-item:hover img,
 .planet-item.show-color img {
     filter: grayscale(0%) contrast(100%) !important;
 }
