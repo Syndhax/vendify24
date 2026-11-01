@@ -21,8 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function openHeader() {
         if (!mainHeader) return;
-        mainHeader.classList.remove('-translate-y-full');
-        mainHeader.classList.add('translate-y-0');
+        mainHeader.classList.remove('translate-x-full');
+        mainHeader.classList.add('translate-x-0');
         if (headerOverlay) {
             headerOverlay.classList.remove('opacity-0', 'pointer-events-none');
             headerOverlay.classList.add('opacity-100', 'pointer-events-auto');
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
             headerToggleIcon.classList.add('fa-xmark');
         }
         if (headerToggleBtn) {
-            headerToggleBtn.setAttribute('title', 'Close Navigation Menu');
+            headerToggleBtn.setAttribute('title', 'Close Navigation Sidebar');
             headerToggleBtn.classList.remove('bg-white', 'text-black');
             headerToggleBtn.classList.add('bg-black', 'text-white');
         }
@@ -40,8 +40,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function closeHeader() {
         if (!mainHeader) return;
-        mainHeader.classList.remove('translate-y-0');
-        mainHeader.classList.add('-translate-y-full');
+        mainHeader.classList.remove('translate-x-0');
+        mainHeader.classList.add('translate-x-full');
         if (headerOverlay) {
             headerOverlay.classList.remove('opacity-100', 'pointer-events-auto');
             headerOverlay.classList.add('opacity-0', 'pointer-events-none');
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
             headerToggleIcon.classList.add('fa-bars');
         }
         if (headerToggleBtn) {
-            headerToggleBtn.setAttribute('title', 'Open Navigation Menu');
+            headerToggleBtn.setAttribute('title', 'Open Navigation Sidebar');
             headerToggleBtn.classList.remove('bg-black', 'text-white');
             headerToggleBtn.classList.add('bg-white', 'text-black');
         }
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function toggleHeader() {
         if (!mainHeader) return;
-        const isOpen = mainHeader.classList.contains('translate-y-0');
+        const isOpen = mainHeader.classList.contains('translate-x-0');
         if (isOpen) {
             closeHeader();
         } else {

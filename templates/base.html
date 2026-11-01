@@ -31,71 +31,94 @@
 <body class="bg-white text-black font-sans min-h-screen flex flex-col selection:bg-black selection:text-white" style="background-color: #ffffff !important;">
 
     <!-- Floating Header Menu Toggle Button (Top Right) -->
-    <button id="headerToggleBtn" aria-label="Toggle Navigation Header" title="Open Navigation Menu"
+    <button id="headerToggleBtn" aria-label="Toggle Navigation Sidebar" title="Open Navigation Sidebar"
             class="fixed top-4 right-4 sm:top-5 sm:right-6 z-50 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white hover:bg-black/5 text-black border border-black/20 shadow-xl flex items-center justify-center transition-all duration-200 active:scale-95 focus:outline-none cursor-pointer">
         <i id="headerToggleIcon" class="fa-solid fa-bars text-base transition-transform duration-200"></i>
     </button>
 
-    <!-- Header Backdrop Overlay -->
+    <!-- Sidebar Backdrop Overlay -->
     <div id="headerOverlay" class="fixed inset-0 bg-black/30 backdrop-blur-sm z-30 opacity-0 pointer-events-none transition-opacity duration-300"></div>
 
-    <!-- Slide-Down Header (Hidden Until Top-Right Icon Is Clicked) -->
-    <header id="mainHeader" class="fixed top-0 inset-x-0 z-40 transform -translate-y-full transition-transform duration-300 ease-in-out bg-white/95 backdrop-blur-xl border-b border-black/15 shadow-2xl">
-        <!-- Top Announcement Bar (Monochrome Black & White) -->
-        <div class="bg-black text-white text-xs sm:text-sm font-semibold py-2 px-4 text-center flex items-center justify-center gap-2 border-b border-black">
-            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-white/10 text-white border border-white/20">
-                ⚡ 24H DELIVERY
-            </span>
-            <span class="text-white/90">Submit your business info & get your custom website in 24 hours! From <strong class="text-white font-extrabold underline">$2/mo</strong>.</span>
-        </div>
-
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <!-- Brand Logo -->
-            <a href="{{ url_for('index') }}" class="nav-close-link flex items-center gap-3 group">
-                <div class="w-11 h-11 rounded-2xl overflow-hidden shadow-md group-hover:scale-105 transition-transform duration-200 border border-black/20">
-                    <img src="{{ url_for('static', filename='images/logo-icon.svg') }}" alt="Vendify24 Logo" class="w-full h-full object-cover">
-                </div>
-                <div>
-                    <span class="text-xl sm:text-2xl font-extrabold tracking-tight text-black flex items-center gap-0.5 font-['Plus_Jakarta_Sans']">
-                        Vendify<span class="font-black">24</span>
-                    </span>
-                    <p class="text-[10px] text-black/60 tracking-wider uppercase font-semibold">24H Website Builder</p>
-                </div>
-            </a>
-
-            <!-- Desktop Nav Links -->
-            <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-black/80">
-                <a href="{{ url_for('index') }}#plans" class="nav-close-link hover:text-black hover:underline transition-colors">Pricing Plans</a>
-                <a href="{{ url_for('index') }}#how-it-works" class="nav-close-link hover:text-black hover:underline transition-colors">How It Works</a>
-                <a href="{{ url_for('index') }}#demo" class="nav-close-link hover:text-black hover:underline transition-colors">Live Demo</a>
-                <a href="{{ url_for('track') }}" class="nav-close-link hover:text-black hover:underline transition-colors flex items-center gap-1.5">
-                    <i class="fa-solid fa-clock-rotate-left text-xs text-black"></i> Track Website
-                </a>
-            </nav>
-
-            <!-- Action CTAs (Padding right leaves room for the fixed toggle button) -->
-            <div class="flex items-center gap-3 pr-14 sm:pr-16">
-                <a href="{{ url_for('track') }}" class="nav-close-link hidden sm:inline-flex items-center gap-2 px-3.5 py-2 text-xs font-semibold text-black bg-white hover:bg-black/5 border border-black/20 rounded-xl transition shadow-sm">
-                    <i class="fa-solid fa-hourglass-half text-black"></i> Track Status
-                </a>
-                <a href="{{ url_for('order') }}" class="nav-close-link inline-flex items-center gap-2 px-5 py-2.5 text-xs sm:text-sm font-bold text-white bg-black hover:bg-neutral-800 rounded-xl shadow-md border border-black transition-all">
-                    <i class="fa-solid fa-rocket text-white"></i>
-                    <span>Create Website</span>
-                </a>
-                <a href="{{ url_for('admin_dashboard') }}" title="Platform Admin" class="nav-close-link p-2.5 text-black hover:bg-black/5 rounded-xl border border-black/20 transition shadow-sm">
-                    <i class="fa-solid fa-shield-halved text-sm text-black"></i>
+    <!-- Right-Side Navigation Sidebar Drawer (Slides Out From The Right) -->
+    <aside id="mainHeader" class="fixed top-0 right-0 h-full w-[310px] sm:w-[360px] z-40 transform translate-x-full transition-transform duration-300 ease-in-out bg-white border-l border-black/15 shadow-2xl flex flex-col justify-between overflow-y-auto">
+        
+        <!-- Sidebar Top: Brand & Close Space -->
+        <div>
+            <div class="p-6 border-b border-black/10 flex items-center justify-between pr-14">
+                <a href="{{ url_for('index') }}" class="nav-close-link flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-xl overflow-hidden shadow-sm group-hover:scale-105 transition-transform duration-200 border border-black/20">
+                        <img src="{{ url_for('static', filename='images/logo-icon.svg') }}" alt="Vendify24 Logo" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <span class="text-xl font-extrabold tracking-tight text-black flex items-center gap-0.5 font-['Plus_Jakarta_Sans']">
+                            Vendify<span class="font-black">24</span>
+                        </span>
+                        <p class="text-[10px] text-black/60 tracking-wider uppercase font-semibold">24H Website Builder</p>
+                    </div>
                 </a>
             </div>
+
+            <!-- 24H Delivery Highlight Box -->
+            <div class="p-4 mx-4 mt-4 rounded-2xl bg-black text-white text-xs shadow-sm">
+                <div class="flex items-center gap-1.5 font-bold mb-1">
+                    <span class="w-2 h-2 rounded-full bg-white animate-ping"></span>
+                    <span>⚡ 24H DELIVERY GUARANTEE</span>
+                </div>
+                <p class="text-white/80 leading-relaxed text-[11px]">
+                    Turn your business into an official website in 24 hours. From <strong class="text-white underline">$2/month</strong>.
+                </p>
+            </div>
+
+            <!-- Vertical Navigation Menu -->
+            <nav class="p-4 space-y-1 text-sm font-bold text-black/80">
+                <a href="{{ url_for('index') }}#plans" class="nav-close-link flex items-center justify-between p-3 rounded-xl hover:bg-black/5 hover:text-black transition">
+                    <span class="flex items-center gap-3">
+                        <i class="fa-solid fa-tag text-black/60 w-5"></i> Pricing Plans
+                    </span>
+                    <i class="fa-solid fa-chevron-right text-xs text-black/30"></i>
+                </a>
+                <a href="{{ url_for('index') }}#how-it-works" class="nav-close-link flex items-center justify-between p-3 rounded-xl hover:bg-black/5 hover:text-black transition">
+                    <span class="flex items-center gap-3">
+                        <i class="fa-solid fa-list-check text-black/60 w-5"></i> How It Works
+                    </span>
+                    <i class="fa-solid fa-chevron-right text-xs text-black/30"></i>
+                </a>
+                <a href="{{ url_for('index') }}#demo" class="nav-close-link flex items-center justify-between p-3 rounded-xl hover:bg-black/5 hover:text-black transition">
+                    <span class="flex items-center gap-3">
+                        <i class="fa-solid fa-store text-black/60 w-5"></i> Live Demo Store
+                    </span>
+                    <i class="fa-solid fa-chevron-right text-xs text-black/30"></i>
+                </a>
+                <a href="{{ url_for('track') }}" class="nav-close-link flex items-center justify-between p-3 rounded-xl hover:bg-black/5 hover:text-black transition">
+                    <span class="flex items-center gap-3">
+                        <i class="fa-solid fa-clock-rotate-left text-black/60 w-5"></i> Track Website Status
+                    </span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-black text-white font-bold">24H</span>
+                </a>
+                <a href="{{ url_for('admin_dashboard') }}" class="nav-close-link flex items-center justify-between p-3 rounded-xl hover:bg-black/5 hover:text-black transition">
+                    <span class="flex items-center gap-3">
+                        <i class="fa-solid fa-shield-halved text-black/60 w-5"></i> Platform Admin
+                    </span>
+                    <i class="fa-solid fa-lock text-xs text-black/40"></i>
+                </a>
+            </nav>
         </div>
 
-        <!-- Mobile Navigation Menu Links (Visible when header is expanded on mobile) -->
-        <div class="md:hidden py-3 px-4 border-t border-black/10 flex flex-wrap items-center justify-around gap-2 text-xs font-bold text-black/80 bg-white">
-            <a href="{{ url_for('index') }}#plans" class="nav-close-link py-1 px-2.5 rounded-lg hover:bg-black/5">Pricing Plans</a>
-            <a href="{{ url_for('index') }}#how-it-works" class="nav-close-link py-1 px-2.5 rounded-lg hover:bg-black/5">How It Works</a>
-            <a href="{{ url_for('index') }}#demo" class="nav-close-link py-1 px-2.5 rounded-lg hover:bg-black/5">Live Demo</a>
-            <a href="{{ url_for('track') }}" class="nav-close-link py-1 px-2.5 rounded-lg hover:bg-black/5">Track Status</a>
+        <!-- Sidebar Bottom Action CTAs -->
+        <div class="p-5 border-t border-black/10 space-y-2.5 bg-white">
+            <a href="{{ url_for('order') }}" class="nav-close-link w-full flex items-center justify-center gap-2 py-3.5 px-4 text-sm font-bold text-white bg-black hover:bg-neutral-800 rounded-xl shadow-lg border border-black transition active:scale-98">
+                <i class="fa-solid fa-rocket text-white"></i>
+                <span>Create Website Now</span>
+            </a>
+            <a href="{{ url_for('track') }}" class="nav-close-link w-full flex items-center justify-center gap-2 py-2.5 px-4 text-xs font-semibold text-black bg-white hover:bg-black/5 border border-black/20 rounded-xl transition">
+                <i class="fa-solid fa-hourglass-half text-black"></i>
+                <span>Check Order Status</span>
+            </a>
+            <p class="text-center text-[10px] text-black/50 pt-1">
+                Built for WhatsApp, Instagram & Local Businesses
+            </p>
         </div>
-    </header>
+    </aside>
 
     <!-- Flash Messages (Monochrome) -->
     {% with messages = get_flashed_messages(with_categories=true) %}
