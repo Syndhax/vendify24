@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#141414" />
+      <stop offset="100%" stop-color="#000000" />
+    </linearGradient>
+
+    <filter id="neonShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#ffffff" flood-opacity="0.2" />
+    </filter>
+  </defs>
+
+  <!-- Rounded App Icon Background -->
+  <rect width="500" height="500" rx="110" fill="url(#bgGrad)" stroke="#333333" stroke-width="2" />
+  
+  <g transform="translate(45, 60)">
+    <!-- Digit 2 -->
+    <path d="M 60 140 C 60 70, 110 40, 180 40 C 235 40, 275 75, 275 130 C 275 165, 255 195, 225 230 L 140 330 L 260 330 L 260 380 L 60 380 L 60 335 L 165 210 C 190 180, 205 160, 205 135 C 205 105, 185 88, 160 88 C 125 88, 110 108, 110 140 Z" 
+          fill="#262626" />
+
+    <!-- Digit 4 -->
+    <path d="M 285 260 L 285 215 L 340 120 L 390 120 L 390 260 L 430 260 L 430 310 L 390 310 L 390 380 L 340 380 L 340 310 L 250 310 L 250 260 Z" 
+          fill="#262626" />
+
+    <!-- The Interlocking 'V' Cut / Ligature (Pure White) -->
+    <path d="M 160 215 L 225 330 L 340 135 L 305 135 L 225 285 L 185 215 Z" 
+          fill="#ffffff" filter="url(#neonShadow)" />
+
+    <!-- Sleek Dot Accent -->
+    <circle cx="225" cy="330" r="4.5" fill="#ffffff" />
+  </g>
+</svg>

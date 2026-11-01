@@ -1,0 +1,367 @@
+{% extends 'base.html' %}
+
+{% block title %}Owner Dashboard - Manage Vendor Websites{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 bg-white">
+
+    <!-- Top Admin Header -->
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-8 mb-8 border-b border-black/10">
+        <div>
+            <div class="flex items-center gap-2">
+                <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-black text-white">
+                    OWNER PORTAL
+                </span>
+                <span class="text-xs text-black/60">24H WhatsApp Website Operations</span>
+            </div>
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-black mt-1 font-['Plus_Jakarta_Sans']">Vendor Submissions & Orders</h1>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <a href="{{ url_for('order') }}" target="_blank" class="px-4 py-2.5 rounded-xl bg-white hover:bg-black/5 text-black text-xs font-bold transition flex items-center gap-2 border border-black/20 shadow-sm">
+                <i class="fa-solid fa-plus text-black"></i> New Submission Test
+            </a>
+            <a href="{{ url_for('admin_logout') }}" class="px-4 py-2.5 rounded-xl bg-white hover:bg-black/5 text-black text-xs font-bold transition flex items-center gap-2 border border-black/20 shadow-sm">
+                <i class="fa-solid fa-arrow-right-from-bracket text-black"></i> Sign Out
+            </a>
+        </div>
+    </div>
+
+    <!-- Statistics Cards -->
+    <div class="grid grid-cols-2 lg:grid-cols-6 gap-4 mb-10">
+        <div class="p-4 rounded-2xl bg-white border border-black/20 shadow-sm">
+            <span class="text-[11px] uppercase tracking-wider text-black/60 block font-semibold">Total Orders</span>
+            <span class="text-2xl font-black text-black mt-1 block font-['Plus_Jakarta_Sans']">{{ total_orders }}</span>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-white border border-black/20 shadow-sm">
+            <span class="text-[11px] uppercase tracking-wider text-black/60 block font-semibold">$2 Basic Sites</span>
+            <span class="text-2xl font-black text-black mt-1 block font-['Plus_Jakarta_Sans']">{{ basic_orders }}</span>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-white border border-black/20 shadow-sm">
+            <span class="text-[11px] uppercase tracking-wider text-black/60 block font-semibold">$10 Pro Sites</span>
+            <span class="text-2xl font-black text-black mt-1 block font-['Plus_Jakarta_Sans']">{{ pro_orders }}</span>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-white border border-black/20 shadow-sm">
+            <span class="text-[11px] uppercase tracking-wider text-black/60 block font-semibold">Active 24H Timers</span>
+            <span class="text-2xl font-black text-black mt-1 block font-['Plus_Jakarta_Sans']">{{ active_countdowns }}</span>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-white border border-black/20 shadow-sm">
+            <span class="text-[11px] uppercase tracking-wider text-black/60 block font-semibold">Completed Sites</span>
+            <span class="text-2xl font-black text-black mt-1 block font-['Plus_Jakarta_Sans']">{{ completed_orders }}</span>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-white border border-black/20 shadow-sm">
+            <span class="text-[11px] uppercase tracking-wider text-black/60 block font-semibold">Est. Monthly Rev</span>
+            <span class="text-2xl font-black text-black mt-1 block font-['Plus_Jakarta_Sans']">${{ total_revenue }}</span>
+        </div>
+    </div>
+
+    <!-- Orders Table Section -->
+    <div class="rounded-3xl bg-white border border-black/20 shadow-md overflow-hidden">
+        <div class="p-6 border-b border-black/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+                <h2 class="text-lg font-bold text-black">Vendor Queue</h2>
+                <p class="text-xs text-black/60">View vendor business submissions, submit live website links, and track countdown timers.</p>
+            </div>
+            <div class="flex items-center gap-2 text-xs">
+                <span class="px-2.5 py-1 rounded-lg bg-black text-white font-semibold">
+                    Total: {{ orders|length }}
+                </span>
+            </div>
+        </div>
+
+        {% if not orders %}
+        <div class="py-16 text-center text-black/60">
+            <i class="fa-solid fa-inbox text-4xl mb-3 text-black/30 block"></i>
+            <p class="text-base font-semibold text-black">No vendor submissions yet.</p>
+            <p class="text-xs text-black/60 mt-1">Submit a test order on the frontend to see it appear here!</p>
+            <a href="{{ url_for('order') }}" target="_blank" class="inline-flex items-center gap-2 mt-4 px-4 py-2 rounded-xl bg-black hover:bg-neutral-800 text-white text-xs font-bold shadow-md border border-black">
+                <i class="fa-solid fa-plus text-white"></i> Submit Test Order
+            </a>
+        </div>
+        {% else %}
+        <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs sm:text-sm text-black">
+                <thead class="bg-white text-[11px] uppercase tracking-wider text-black/60 border-b border-black/10">
+                    <tr>
+                        <th class="py-4 px-6">Order ID & Plan</th>
+                        <th class="py-4 px-6">Business / Vendor</th>
+                        <th class="py-4 px-6">WhatsApp Contact</th>
+                        <th class="py-4 px-6">24H Countdown</th>
+                        <th class="py-4 px-6">Website Link Status</th>
+                        <th class="py-4 px-6 text-right">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-black/10">
+                    {% for ord in orders %}
+                    <tr class="hover:bg-black/[0.02] transition">
+                        <!-- Order & Plan -->
+                        <td class="py-4 px-6">
+                            <span class="font-mono font-bold text-black block">{{ ord.id }}</span>
+                            <span class="inline-block mt-1 px-2 py-0.5 rounded text-[10px] font-bold {% if ord.plan_type == 'basic_2' %}bg-black text-white{% else %}bg-white text-black border border-black{% endif %}">
+                                {% if ord.plan_type == 'basic_2' %}$2 Basic (No Admin){% else %}$10 Pro (With Admin){% endif %}
+                            </span>
+                        </td>
+
+                        <!-- Business & Category -->
+                        <td class="py-4 px-6">
+                            <span class="font-bold text-black block">{{ ord.business_name }}</span>
+                            <span class="text-black/60 text-xs">{{ ord.vendor_name }} • {{ ord.category }}</span>
+                        </td>
+
+                        <!-- WhatsApp -->
+                        <td class="py-4 px-6">
+                            <a href="https://wa.me/{{ ord.whatsapp_number|replace(' ', '')|replace('+', '') }}" target="_blank" class="inline-flex items-center gap-1.5 text-black hover:underline font-semibold">
+                                <i class="fa-brands fa-whatsapp text-sm text-black"></i>
+                                <span>{{ ord.whatsapp_number }}</span>
+                            </a>
+                        </td>
+
+                        <!-- 24-Hour Timer Status -->
+                        <td class="py-4 px-6">
+                            {% if ord.is_expired %}
+                                <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-[11px] font-bold bg-white text-black border border-black/20">
+                                    <i class="fa-solid fa-flag-checkered text-black"></i> 24H Expired
+                                </span>
+                            {% else %}
+                                <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-[11px] font-bold bg-black text-white">
+                                    <i class="fa-solid fa-clock text-white"></i>
+                                    {{ (ord.seconds_left // 3600) }}h {{ ((ord.seconds_left % 3600) // 60) }}m left
+                                </span>
+                            {% endif %}
+                        </td>
+
+                        <!-- Live Link Submission -->
+                        <td class="py-4 px-6">
+                            {% if ord.website_url %}
+                                <div class="max-w-[200px] truncate">
+                                    <a href="{{ ord.website_url }}" target="_blank" class="text-black underline font-bold text-xs truncate block">
+                                        {{ ord.website_url }}
+                                    </a>
+                                    {% if ord.can_show_website %}
+                                        <span class="text-[10px] text-black font-semibold">● Visible to Vendor</span>
+                                    {% else %}
+                                        <span class="text-[10px] text-black/60 font-semibold">● Will reveal at 24h</span>
+                                    {% endif %}
+                                </div>
+                            {% else %}
+                                <span class="text-black/40 text-xs italic">Pending link entry</span>
+                            {% endif %}
+                        </td>
+
+                        <!-- Actions -->
+                        <td class="py-4 px-6 text-right">
+                            <div class="flex items-center justify-end gap-2">
+                                <button onclick="openManageModal('{{ ord.id }}')" class="px-3 py-1.5 rounded-lg bg-black hover:bg-neutral-800 text-white font-bold text-xs transition flex items-center gap-1 shadow-sm border border-black">
+                                    <i class="fa-solid fa-pen-to-square text-white"></i> Submit Link
+                                </button>
+                                <a href="{{ url_for('status', order_id=ord.id) }}" target="_blank" class="p-1.5 rounded-lg bg-white hover:bg-black/5 text-black text-xs transition border border-black/20 shadow-sm" title="View Vendor's 24H Page">
+                                    <i class="fa-solid fa-eye"></i>
+                                </a>
+                                <a href="{{ url_for('preview_store', order_id=ord.id) }}" target="_blank" class="p-1.5 rounded-lg bg-white hover:bg-black/5 text-black text-xs transition border border-black/20 shadow-sm" title="View Auto-Generated Preview">
+                                    <i class="fa-solid fa-store"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+    </div>
+
+</div>
+
+<!-- Manage / Submit Website Link Modal -->
+<div id="manageModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white border border-black/20 rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl p-6 sm:p-8 animate-fade-in text-black">
+        
+        <div class="flex items-center justify-between pb-4 border-b border-black/10 mb-6">
+            <div>
+                <h3 class="text-xl font-bold text-black flex items-center gap-2 font-['Plus_Jakarta_Sans']">
+                    <span>Manage Vendor Order</span>
+                    <span id="modalOrderId" class="text-black font-mono text-sm px-2 py-0.5 rounded bg-black/5 border border-black/20"></span>
+                </h3>
+                <p id="modalBusinessName" class="text-xs text-black/60 mt-1"></p>
+            </div>
+            <button onclick="closeManageModal()" class="text-black/40 hover:text-black text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <!-- Form for Submitting Live Website Link -->
+        <form id="modalUpdateForm" action="" method="POST" class="space-y-6">
+            
+            <!-- WEBSITE URL INPUT -->
+            <div class="p-4 rounded-2xl bg-neutral-50 border border-black/20 space-y-2">
+                <label class="block text-xs font-bold uppercase tracking-wider text-black">
+                    <i class="fa-solid fa-link text-black"></i> Website Link For This Vendor
+                </label>
+                <input type="url" name="website_url" id="modalWebsiteUrl" placeholder="https://joycebakes.com or https://xol.site/joycebakes" class="w-full px-4 py-3 rounded-xl bg-white border border-black/20 text-black placeholder-black/40 text-sm focus:outline-none focus:border-black">
+                <p class="text-[11px] text-black/70">
+                    Paste the website you created for this vendor here. When the 24 hours expire, this link will be automatically shown on their status page!
+                </p>
+                <div class="pt-1">
+                    <button type="button" onclick="useInstantPreviewLink()" class="text-xs text-black hover:underline font-semibold flex items-center gap-1">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> Or use built-in auto-generated store link
+                    </button>
+                </div>
+            </div>
+
+            <!-- Publish Timing Option -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-xs font-semibold text-black mb-1">Display / Publish Mode</label>
+                    <select name="publish_mode" id="modalPublishMode" class="w-full px-3 py-2.5 rounded-xl bg-white border border-black/20 text-black text-xs focus:outline-none focus:border-black">
+                        <option value="countdown">⏳ Countdown (Reveal when 24h expires)</option>
+                        <option value="immediate">⚡ Immediate (Reveal right now)</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-black mb-1">Production Status</label>
+                    <select name="status" id="modalStatus" class="w-full px-3 py-2.5 rounded-xl bg-white border border-black/20 text-black text-xs focus:outline-none focus:border-black">
+                        <option value="submitted">1. Submitted (Pending)</option>
+                        <option value="in_progress">2. In Progress (Designing)</option>
+                        <option value="ready">3. Ready / QA Tested</option>
+                        <option value="completed">4. Completed / Live</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Pro Plan ($10) Admin Credentials Fields -->
+            <div id="modalProAdminFields" class="p-4 rounded-2xl bg-white border border-black/20 space-y-3">
+                <div class="text-xs font-bold text-black flex items-center gap-1.5">
+                    <i class="fa-solid fa-shield-halved text-black"></i> Pro Plan ($10) Admin Login Information
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <div>
+                        <label class="block text-[10px] text-black/60 uppercase font-semibold">Vendor Admin URL</label>
+                        <input type="text" name="vendor_admin_url" id="modalVendorAdminUrl" placeholder="https://store.com/admin" class="w-full px-3 py-2 rounded-lg bg-white border border-black/20 text-black text-xs focus:outline-none focus:border-black">
+                    </div>
+                    <div>
+                        <label class="block text-[10px] text-black/60 uppercase font-semibold">Username</label>
+                        <input type="text" name="vendor_admin_user" id="modalVendorAdminUser" placeholder="admin" class="w-full px-3 py-2 rounded-lg bg-white border border-black/20 text-black text-xs focus:outline-none focus:border-black">
+                    </div>
+                    <div>
+                        <label class="block text-[10px] text-black/60 uppercase font-semibold">Password</label>
+                        <input type="text" name="vendor_admin_pass" id="modalVendorAdminPass" placeholder="store2026" class="w-full px-3 py-2 rounded-lg bg-white border border-black/20 text-black text-xs focus:outline-none focus:border-black">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Admin Notes -->
+            <div>
+                <label class="block text-xs font-semibold text-black mb-1">Internal Notes</label>
+                <textarea name="admin_notes" id="modalAdminNotes" rows="2" placeholder="e.g. Domain registered, customized hero banner..." class="w-full px-3 py-2 rounded-xl bg-white border border-black/20 text-black text-xs focus:outline-none focus:border-black"></textarea>
+            </div>
+
+            <!-- Save Changes Button -->
+            <button type="submit" class="w-full py-3.5 rounded-xl text-white font-bold text-sm bg-black hover:bg-neutral-800 transition shadow-md shadow-black/20 border border-black">
+                Save & Submit Website Link
+            </button>
+        </form>
+
+        <!-- Testing & Simulation Tools for Admin -->
+        <div class="mt-8 pt-6 border-t border-black/10 space-y-3">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-black/60">Testing & Quick Tools</h4>
+            
+            <div class="flex flex-wrap items-center gap-3">
+                <!-- Simulate 24H Expiration -->
+                <form id="simulateExpireForm" action="" method="POST" class="inline">
+                    <input type="hidden" name="action" value="expire">
+                    <button type="submit" class="px-3 py-1.5 rounded-lg bg-white hover:bg-black/5 text-black text-xs font-semibold border border-black/20 transition" title="Force timer to expired state to test what vendor sees">
+                        <i class="fa-solid fa-forward-step text-black"></i> Fast-Forward 24H (Expire Timer)
+                    </button>
+                </form>
+
+                <!-- Reset 24H Countdown -->
+                <form id="simulateResetForm" action="" method="POST" class="inline">
+                    <input type="hidden" name="action" value="reset">
+                    <button type="submit" class="px-3 py-1.5 rounded-lg bg-white hover:bg-black/5 text-black text-xs font-semibold border border-black/20 transition">
+                        <i class="fa-solid fa-rotate-left"></i> Reset to 24H
+                    </button>
+                </form>
+
+                <!-- WhatsApp Vendor Directly -->
+                <a id="modalWhatsAppChatBtn" href="" target="_blank" class="px-3 py-1.5 rounded-lg bg-black text-white border border-black text-xs font-semibold hover:bg-neutral-800 transition flex items-center gap-1 shadow-sm">
+                    <i class="fa-brands fa-whatsapp text-white"></i> Chat on WhatsApp
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Embedded JSON Data for Modals -->
+<script>
+    const ordersData = {
+        {% for o in orders %}
+        "{{ o.id }}": {
+            id: "{{ o.id }}",
+            business_name: "{{ o.business_name|e }}",
+            vendor_name: "{{ o.vendor_name|e }}",
+            whatsapp_number: "{{ o.whatsapp_number }}",
+            plan_type: "{{ o.plan_type }}",
+            website_url: "{{ o.website_url or '' }}",
+            publish_mode: "{{ o.publish_mode or 'countdown' }}",
+            status: "{{ o.status }}",
+            vendor_admin_url: "{{ o.vendor_admin_url or '' }}",
+            vendor_admin_user: "{{ o.vendor_admin_user or '' }}",
+            vendor_admin_pass: "{{ o.vendor_admin_pass or '' }}",
+            admin_notes: "{{ o.admin_notes|e or '' }}"
+        },
+        {% endfor %}
+    };
+
+    let currentSelectedId = null;
+
+    function openManageModal(orderId) {
+        currentSelectedId = orderId;
+        const ord = ordersData[orderId];
+        if (!ord) return;
+
+        document.getElementById('modalOrderId').textContent = ord.id;
+        document.getElementById('modalBusinessName').textContent = `${ord.business_name} (${ord.vendor_name})`;
+        document.getElementById('modalWebsiteUrl').value = ord.website_url;
+        document.getElementById('modalPublishMode').value = ord.publish_mode;
+        document.getElementById('modalStatus').value = ord.status;
+        document.getElementById('modalVendorAdminUrl').value = ord.vendor_admin_url;
+        document.getElementById('modalVendorAdminUser').value = ord.vendor_admin_user;
+        document.getElementById('modalVendorAdminPass').value = ord.vendor_admin_pass;
+        document.getElementById('modalAdminNotes').value = ord.admin_notes;
+
+        const proFields = document.getElementById('modalProAdminFields');
+        if (ord.plan_type === 'pro_10') {
+            proFields.classList.remove('hidden');
+        } else {
+            proFields.classList.add('hidden');
+        }
+
+        document.getElementById('modalUpdateForm').action = `/admin/order/${ord.id}/update`;
+        document.getElementById('simulateExpireForm').action = `/admin/order/${ord.id}/simulate-time`;
+        document.getElementById('simulateResetForm').action = `/admin/order/${ord.id}/simulate-time`;
+        
+        const cleanPhone = ord.whatsapp_number.replace(/\D/g, '');
+        const message = encodeURIComponent(`Hello ${ord.vendor_name}! Regarding your ${ord.business_name} website from Vendify24:`);
+        document.getElementById('modalWhatsAppChatBtn').href = `https://wa.me/${cleanPhone}?text=${message}`;
+
+        document.getElementById('manageModal').classList.remove('hidden');
+    }
+
+    function closeManageModal() {
+        document.getElementById('manageModal').classList.add('hidden');
+    }
+
+    function useInstantPreviewLink() {
+        if (!currentSelectedId) return;
+        const host = window.location.origin;
+        document.getElementById('modalWebsiteUrl').value = `${host}/preview/${currentSelectedId}`;
+    }
+</script>
+{% endblock %}

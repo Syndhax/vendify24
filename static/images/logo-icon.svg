@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient (Pure Obsidian Black) -->
+    <linearGradient id="proIconBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#141414" />
+      <stop offset="100%" stop-color="#000000" />
+    </linearGradient>
+
+    <!-- Clean Monochrome Glow Filter -->
+    <filter id="glassGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#ffffff" flood-opacity="0.25" />
+    </filter>
+  </defs>
+
+  <!-- Container Box (Black with Clean White Border) -->
+  <rect width="200" height="200" rx="48" fill="url(#proIconBg)" stroke="rgba(255, 255, 255, 0.2)" stroke-width="2" />
+
+  <!-- 
+    PROFESSIONAL "24-V" MARK IN PURE WHITE & BLACK
+  -->
+  <g filter="url(#glassGlow)" transform="translate(6, 6)">
+    <!-- 2 Head & Spine -->
+    <path d="M 44 60 
+             C 44 32, 62 22, 86 22 
+             C 110 22, 118 36, 114 54 
+             C 110 74, 90 98, 52 144" 
+          fill="none" 
+          stroke="#ffffff" 
+          stroke-width="14" 
+          stroke-linecap="square" 
+          stroke-miterlimit="10" />
+
+    <!-- Center V Arm to 4 Peak -->
+    <path d="M 52 144 
+             L 142 28" 
+          fill="none" 
+          stroke="#ffffff" 
+          stroke-width="14" 
+          stroke-linecap="square" 
+          stroke-miterlimit="10" />
+
+    <!-- 4 Vertical Stem -->
+    <path d="M 142 28 
+             L 142 168" 
+          fill="none" 
+          stroke="#ffffff" 
+          stroke-width="14" 
+          stroke-linecap="square" 
+          stroke-miterlimit="10" />
+
+    <!-- 4 Horizontal Crossbar -->
+    <path d="M 52 144 
+             L 162 144" 
+          fill="none" 
+          stroke="#ffffff" 
+          stroke-width="14" 
+          stroke-linecap="square" 
+          stroke-miterlimit="10" />
+
+    <!-- Precision Apex Points -->
+    <circle cx="52" cy="144" r="4.5" fill="#ffffff" />
+    <circle cx="142" cy="28" r="4.5" fill="#ffffff" />
+  </g>
+</svg>

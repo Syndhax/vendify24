@@ -1,0 +1,88 @@
+/* ===================================================
+   3D SOLAR SYSTEM & PLANETARY CAROUSEL STYLING
+   STRICT MONOCHROME: BLACK AND WHITE ONLY
+   =================================================== */
+
+.solar-viewport {
+    perspective: 1200px;
+    perspective-origin: 50% 45%;
+    overflow: visible;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.solar-stage {
+    transform-style: preserve-3d;
+    transition: transform 0.1s ease-out;
+}
+
+/* Orbital Rings (Tilted Monochrome Ellipses floating on real white background) */
+.orbit-ring-primary {
+    border: 1.5px dashed rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    transform: rotateX(72deg) rotateY(-8deg);
+    box-shadow: none;
+}
+
+.orbit-ring-secondary {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    transform: rotateX(72deg) rotateY(-8deg);
+    box-shadow: none;
+}
+
+/* Saturn-like Planetary Rings in Monochrome */
+.planet-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) rotateX(75deg);
+    pointer-events: none;
+    border: 2px solid rgba(0, 0, 0, 0.35);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+}
+
+/* 3D Planet Node */
+.planet-item {
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease;
+}
+
+.planet-item:hover {
+    filter: brightness(0.98);
+}
+
+/* Clean Monochrome Shadows & Borders */
+.planet-glow-glassy {
+    box-shadow: 
+        0 14px 40px -10px rgba(0, 0, 0, 0.15), 
+        0 2px 10px rgba(0, 0, 0, 0.05),
+        0 0 0 1px rgba(0, 0, 0, 0.15);
+}
+
+.planet-glow-glassy-pro {
+    box-shadow: 
+        0 18px 50px -10px rgba(0, 0, 0, 0.25), 
+        0 4px 14px rgba(0, 0, 0, 0.08),
+        0 0 0 2px #000000;
+}
+
+/* Planet Images: Default Grayscale Monochrome, Smoothly Reveals Original Color on Tap */
+.planet-item img {
+    filter: grayscale(100%) contrast(105%);
+    transition: filter 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.planet-item.show-color {
+    border-color: #000000 !important;
+    box-shadow: 
+        0 25px 60px -10px rgba(0, 0, 0, 0.35), 
+        0 0 0 2px #000000 !important;
+}
+
+.planet-item.show-color img {
+    filter: grayscale(0%) contrast(100%) !important;
+}

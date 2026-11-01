@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}Track 24-Hour Website Status - Vendify24{% endblock %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto px-4 sm:px-6 py-16 bg-white">
+    <div class="text-center mb-8">
+        <div class="w-14 h-14 rounded-2xl bg-black text-white flex items-center justify-center text-2xl mx-auto mb-4 shadow-sm">
+            <i class="fa-solid fa-hourglass-half"></i>
+        </div>
+        <h1 class="text-3xl font-extrabold text-black font-['Plus_Jakarta_Sans']">Track Your 24-Hour Website</h1>
+        <p class="text-black/70 text-sm mt-2">
+            Enter your Order ID or the WhatsApp phone number you submitted to check the countdown timer and get your website link.
+        </p>
+    </div>
+
+    <div class="p-8 rounded-3xl bg-white border border-black/20 shadow-md">
+        <form action="{{ url_for('track') }}" method="POST" class="space-y-6">
+            <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-black mb-2">
+                    Order Reference ID or WhatsApp Number
+                </label>
+                <div class="relative">
+                    <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-black/40">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </span>
+                    <input type="text" name="query" required placeholder="e.g. V24-AB1234 or +1234567890" class="w-full pl-11 pr-4 py-3.5 rounded-xl bg-white border border-black/20 text-black placeholder-black/40 text-sm focus:outline-none focus:border-black transition shadow-sm">
+                </div>
+                <p class="text-[11px] text-black/60 mt-2">
+                    You can find your Order ID on your confirmation screen, or simply type the WhatsApp number you used during checkout.
+                </p>
+            </div>
+
+            <button type="submit" class="w-full py-4 rounded-xl text-white font-extrabold text-sm bg-black hover:bg-neutral-800 shadow-md shadow-black/20 transition flex items-center justify-center gap-2 border border-black">
+                <i class="fa-solid fa-bolt text-white"></i>
+                <span>Check Countdown & Website Link</span>
+            </button>
+        </form>
+
+        <div class="mt-8 pt-6 border-t border-black/10 text-center">
+            <p class="text-xs text-black/60">
+                Haven't created your website yet?
+                <a href="{{ url_for('order') }}" class="text-black hover:underline font-bold">Start for as low as $2/month &rarr;</a>
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

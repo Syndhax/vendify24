@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <!-- Glassy Sky Blue Gradient -->
+    <linearGradient id="v24TealGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#0284c7" />
+    </linearGradient>
+
+    <!-- Glowing Accent -->
+    <linearGradient id="vCenterGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#bae6fd" />
+      <stop offset="100%" stop-color="#38bdf8" />
+    </linearGradient>
+
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="6" flood-color="#38bdf8" flood-opacity="0.45" />
+    </filter>
+  </defs>
+
+  <g id="logo24V" filter="url(#softGlow)">
+    <!-- THE DIGIT '2' -->
+    <path d="M 50 105 
+             C 50 55, 90 35, 140 35 
+             C 185 35, 215 58, 215 95 
+             C 215 125, 195 150, 165 180 
+             L 105 240 
+             L 215 240 
+             L 215 275 
+             L 50 275 
+             L 50 240 
+             L 130 155 
+             C 152 132, 168 115, 168 95 
+             C 168 76, 154 65, 138 65 
+             C 118 65, 102 78, 100 105 
+             Z" 
+          fill="url(#v24TealGrad)" />
+
+    <!-- THE DIGIT '4' -->
+    <path d="M 270 35 
+             L 270 85 
+             L 245 160 
+             L 305 160 
+             L 305 35 
+             L 345 35 
+             L 345 160 
+             L 370 160 
+             L 370 195 
+             L 345 195 
+             L 345 275 
+             L 305 275 
+             L 305 195 
+             L 215 195 
+             L 215 155 
+             L 285 35 
+             Z" 
+          fill="url(#v24TealGrad)" />
+
+    <!-- THE INTERLOCKING 'V' LIGATURE -->
+    <path d="M 130 155 
+             L 185 240 
+             L 270 85 
+             L 245 85 
+             L 185 195 
+             L 155 155 
+             Z" 
+          fill="url(#vCenterGlow)" />
+  </g>
+</svg>

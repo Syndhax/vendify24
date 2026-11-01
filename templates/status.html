@@ -1,0 +1,332 @@
+{% extends 'base.html' %}
+
+{% block title %}24-Hour Countdown & Delivery - {{ order.business_name }}{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 bg-white">
+
+    {% if is_new %}
+    <!-- Celebratory Banner For Newly Submitted Orders -->
+    <div class="p-6 rounded-3xl bg-black text-white shadow-xl mb-8 flex flex-col sm:flex-row items-center justify-between gap-4 animate-fade-in border border-black">
+        <div class="flex items-center gap-4 text-center sm:text-left">
+            <div class="w-12 h-12 rounded-2xl bg-white text-black flex items-center justify-center text-2xl font-bold shrink-0 shadow-md">
+                <i class="fa-solid fa-check text-black"></i>
+            </div>
+            <div>
+                <h2 class="text-xl font-extrabold text-white font-['Plus_Jakarta_Sans']">Business Info Received!</h2>
+                <p class="text-xs sm:text-sm text-white/80">Your website will be ready in 24 hours. The countdown has begun below!</p>
+            </div>
+        </div>
+        <div class="text-right shrink-0">
+            <span class="text-xs text-white/70 block">Bookmark this page:</span>
+            <span class="px-3 py-1 rounded-lg bg-white/20 border border-white/40 text-white font-mono text-xs font-bold">{{ order.id }}</span>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Status Card Header -->
+    <div class="p-6 sm:p-8 rounded-3xl bg-white border border-black/15 shadow-md mb-8">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-black/10">
+            <div>
+                <div class="flex items-center gap-2 mb-2">
+                    <span class="px-3 py-1 rounded-full text-xs font-bold bg-white text-black border border-black/20">
+                        Order ID: <span class="text-black font-mono font-bold">{{ order.id }}</span>
+                    </span>
+                    <span class="px-3 py-1 rounded-full text-xs font-bold {% if order.plan_type == 'basic_2' %}bg-black text-white{% else %}bg-white text-black border border-black{% endif %}">
+                        {{ order.plan_name }}
+                    </span>
+                </div>
+                <h1 class="text-2xl sm:text-3xl font-extrabold text-black font-['Plus_Jakarta_Sans']">{{ order.business_name }}</h1>
+                <p class="text-xs text-black/60 mt-1 flex items-center gap-2">
+                    <span><i class="fa-solid fa-user text-black/50"></i> {{ order.vendor_name }}</span>
+                    <span>•</span>
+                    <span><i class="fa-brands fa-whatsapp text-black"></i> {{ order.whatsapp_number }}</span>
+                </p>
+            </div>
+
+            <!-- Current Stage Badge -->
+            <div class="sm:text-right">
+                <span class="text-[11px] uppercase tracking-wider text-black/60 block mb-1">Production Status</span>
+                {% if order.can_show_website %}
+                    <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold bg-black text-white shadow-md shadow-black/20 border border-black">
+                        <i class="fa-solid fa-circle-check text-white"></i> WEBSITE LIVE
+                    </span>
+                {% elif order.is_expired and not order.website_url %}
+                    <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold bg-white text-black border-2 border-black">
+                        <i class="fa-solid fa-spinner fa-spin text-black"></i> FINALIZING LAUNCH
+                    </span>
+                {% else %}
+                    <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold bg-black text-white border border-black animate-pulse">
+                        <i class="fa-solid fa-clock text-white"></i> IN PRODUCTION (24H)
+                    </span>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Dynamic Delivery Section -->
+        {% if order.can_show_website %}
+        <!-- 🚀 LIVE WEBSITE DISPLAY -->
+        <div id="websiteReadySection" class="pt-8">
+            <div class="p-8 rounded-3xl bg-white border-2 border-black shadow-xl relative overflow-hidden">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="w-10 h-10 rounded-2xl bg-black text-white flex items-center justify-center text-xl font-black shadow-md">
+                        <i class="fa-solid fa-rocket text-white"></i>
+                    </span>
+                    <div>
+                        <h2 class="text-2xl sm:text-3xl font-black text-black font-['Plus_Jakarta_Sans']">Your Website Is Live!</h2>
+                        <p class="text-xs sm:text-sm text-black/70 font-medium">Congratulations! Your website was completed within the 24-hour guarantee.</p>
+                    </div>
+                </div>
+
+                <!-- Live URL Box -->
+                <div class="my-6 p-4 sm:p-5 rounded-2xl bg-white border border-black/20 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div class="flex items-center gap-3 w-full sm:w-auto truncate">
+                        <div class="w-10 h-10 rounded-xl bg-black text-white flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-globe text-lg"></i>
+                        </div>
+                        <div class="truncate">
+                            <span class="text-[11px] text-black/60 uppercase tracking-wider block font-semibold">Official Live Website Link</span>
+                            <a href="{{ order.website_url }}" target="_blank" id="liveWebsiteUrl" class="text-black font-bold text-base sm:text-lg hover:underline break-all">
+                                {{ order.website_url }}
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-2 w-full sm:w-auto shrink-0">
+                        <button onclick="copyWebsiteLink()" class="flex-1 sm:flex-none px-4 py-2.5 rounded-xl bg-white hover:bg-black/5 text-black text-xs font-bold transition flex items-center justify-center gap-1.5 border border-black/20">
+                            <i class="fa-solid fa-copy"></i>
+                            <span id="copyBtnText">Copy Link</span>
+                        </button>
+                        <a href="{{ order.website_url }}" target="_blank" class="flex-1 sm:flex-none px-6 py-2.5 rounded-xl bg-black hover:bg-neutral-800 text-white text-xs sm:text-sm font-extrabold transition flex items-center justify-center gap-2 shadow-md">
+                            <span>Visit Website</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Pro Plan Admin Details (If $10 Pro tier) -->
+                {% if order.plan_type == 'pro_10' %}
+                <div class="mb-6 p-5 rounded-2xl bg-neutral-50 border border-black/20">
+                    <div class="flex items-center gap-2 text-black font-bold text-sm mb-2">
+                        <i class="fa-solid fa-shield-halved text-black"></i> Your Pro Admin Login Credentials
+                    </div>
+                    <p class="text-xs text-black/70 mb-3">Use these details to access your store's private admin dashboard to edit products and prices:</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                        <div class="p-3 rounded-xl bg-white border border-black/20 shadow-sm">
+                            <span class="text-black/60 block text-[10px] uppercase font-semibold">Admin URL</span>
+                            <a href="{{ order.vendor_admin_url or url_for('preview_vendor_admin', order_id=order.id) }}" target="_blank" class="text-black font-bold hover:underline truncate block">
+                                {% if order.vendor_admin_url %}{{ order.vendor_admin_url }}{% else %}Click to Open Admin{% endif %}
+                            </a>
+                        </div>
+                        <div class="p-3 rounded-xl bg-white border border-black/20 shadow-sm">
+                            <span class="text-black/60 block text-[10px] uppercase font-semibold">Username</span>
+                            <span class="text-black font-mono font-bold">{{ order.vendor_admin_user or order.email or 'admin' }}</span>
+                        </div>
+                        <div class="p-3 rounded-xl bg-white border border-black/20 shadow-sm">
+                            <span class="text-black/60 block text-[10px] uppercase font-semibold">Temporary Password</span>
+                            <span class="text-black font-mono font-bold">{{ order.vendor_admin_pass or 'store2026' }}</span>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- Action Buttons: Share to WhatsApp -->
+                <div class="flex flex-wrap items-center gap-3 pt-2">
+                    <a href="https://wa.me/?text={{ 'Check%20out%20our%20official%20store%20website:%20' ~ order.website_url }}" target="_blank" class="px-5 py-2.5 rounded-xl bg-black hover:bg-neutral-800 text-white text-xs font-bold transition flex items-center gap-2 shadow-sm border border-black">
+                        <i class="fa-brands fa-whatsapp text-white text-base"></i> Share on WhatsApp Status
+                    </a>
+                    <a href="{{ url_for('preview_store', order_id=order.id) }}" target="_blank" class="px-4 py-2.5 rounded-xl bg-white hover:bg-black/5 text-black text-xs font-semibold transition flex items-center gap-2 border border-black/20 shadow-sm">
+                        <i class="fa-solid fa-mobile-screen text-black"></i> View Mobile Storefront
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        {% else %}
+        <!-- ⏳ COUNTDOWN IN PROGRESS SECTION (THE CORE 24-HOUR COUNTDOWN) -->
+        <div id="countdownContainer" class="pt-8">
+            <div class="text-center max-w-xl mx-auto mb-8">
+                <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-bold bg-black text-white mb-3 animate-pulse">
+                    <i class="fa-solid fa-clock text-white"></i> 24-Hour Timer Active
+                </span>
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-black font-['Plus_Jakarta_Sans']">Your Website Will Be Ready In</h2>
+                <p class="text-xs sm:text-sm text-black/70 mt-2">
+                    Our team is building your custom store right now. When the 24-hour countdown reaches zero, your live link will display here!
+                </p>
+            </div>
+
+            <!-- Digital Countdown Boxes -->
+            <div class="grid grid-cols-3 gap-3 sm:gap-6 max-w-md mx-auto mb-8 text-center" id="countdownGrid">
+                <!-- Hours -->
+                <div class="p-4 sm:p-6 rounded-2xl bg-white border border-black/20 shadow-sm">
+                    <span id="cdHours" class="text-3xl sm:text-5xl font-black text-black font-mono tracking-wider">--</span>
+                    <span class="block text-[10px] sm:text-xs uppercase tracking-wider text-black/60 font-semibold mt-1">Hours</span>
+                </div>
+                <!-- Minutes -->
+                <div class="p-4 sm:p-6 rounded-2xl bg-white border border-black/20 shadow-sm">
+                    <span id="cdMinutes" class="text-3xl sm:text-5xl font-black text-black font-mono tracking-wider">--</span>
+                    <span class="block text-[10px] sm:text-xs uppercase tracking-wider text-black/60 font-semibold mt-1">Minutes</span>
+                </div>
+                <!-- Seconds -->
+                <div class="p-4 sm:p-6 rounded-2xl bg-white border border-black/20 shadow-sm">
+                    <span id="cdSeconds" class="text-3xl sm:text-5xl font-black text-black font-mono tracking-wider">--</span>
+                    <span class="block text-[10px] sm:text-xs uppercase tracking-wider text-black/60 font-semibold mt-1">Seconds</span>
+                </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="max-w-md mx-auto mb-8">
+                <div class="flex items-center justify-between text-xs text-black/60 mb-2 font-medium">
+                    <span>24H Production Progress</span>
+                    <span id="progressPercent" class="font-bold text-black">0%</span>
+                </div>
+                <div class="w-full h-3 rounded-full bg-black/10 border border-black/10 overflow-hidden p-0.5">
+                    <div id="progressBar" class="h-full rounded-full bg-black transition-all duration-1000" style="width: 5%;"></div>
+                </div>
+            </div>
+
+            <!-- Notice Box -->
+            <div class="p-5 rounded-2xl bg-white border border-black/15 max-w-lg mx-auto text-center space-y-2 shadow-sm">
+                <div class="text-xs text-black font-semibold flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-bell text-black"></i> No need to keep this tab open!
+                </div>
+                <p class="text-xs text-black/70">
+                    You can return to this page anytime with Order ID <strong class="text-black font-mono">{{ order.id }}</strong> or your WhatsApp number. When 24 hours expire, your website link will be waiting for you.
+                </p>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Production Pipeline / Milestones -->
+    <div class="p-6 sm:p-8 rounded-3xl bg-white border border-black/15 shadow-md mb-8">
+        <h3 class="text-sm font-bold uppercase tracking-wider text-black mb-6">24-Hour Production Milestones</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-4 gap-4">
+            <!-- Stage 1 -->
+            <div class="p-4 rounded-2xl bg-white border border-black/20 space-y-2 shadow-sm">
+                <div class="w-7 h-7 rounded-full bg-black text-white flex items-center justify-center text-xs font-bold">
+                    <i class="fa-solid fa-check text-white"></i>
+                </div>
+                <span class="text-xs font-bold text-black block">1. Info Received</span>
+                <p class="text-[11px] text-black/60">Products & business profile verified.</p>
+            </div>
+
+            <!-- Stage 2 -->
+            <div class="p-4 rounded-2xl bg-white border border-black/20 space-y-2 shadow-sm">
+                <div class="w-7 h-7 rounded-full {% if order.status in ['in_progress', 'ready', 'completed'] %}bg-black text-white{% else %}bg-black/5 text-black/40{% endif %} flex items-center justify-center text-xs font-bold">
+                    {% if order.status in ['in_progress', 'ready', 'completed'] %}<i class="fa-solid fa-check text-white"></i>{% else %}2{% endif %}
+                </div>
+                <span class="text-xs font-bold text-black block">2. Store Design</span>
+                <p class="text-[11px] text-black/60">Mobile theme & brand colors applied.</p>
+            </div>
+
+            <!-- Stage 3 -->
+            <div class="p-4 rounded-2xl bg-white border border-black/20 space-y-2 shadow-sm">
+                <div class="w-7 h-7 rounded-full {% if order.status in ['ready', 'completed'] %}bg-black text-white{% else %}bg-black/5 text-black/40{% endif %} flex items-center justify-center text-xs font-bold">
+                    {% if order.status in ['ready', 'completed'] %}<i class="fa-solid fa-check text-white"></i>{% else %}3{% endif %}
+                </div>
+                <span class="text-xs font-bold text-black block">3. WhatsApp Setup</span>
+                <p class="text-[11px] text-black/60">1-click order buttons connected.</p>
+            </div>
+
+            <!-- Stage 4 -->
+            <div class="p-4 rounded-2xl bg-white border border-black/20 space-y-2 shadow-sm">
+                <div class="w-7 h-7 rounded-full {% if order.can_show_website %}bg-black text-white{% else %}bg-black/5 text-black/40{% endif %} flex items-center justify-center text-xs font-bold">
+                    {% if order.can_show_website %}<i class="fa-solid fa-check text-white"></i>{% else %}4{% endif %}
+                </div>
+                <span class="text-xs font-bold text-black block">4. Live Link Reveal</span>
+                <p class="text-[11px] text-black/60">Published to your status page.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Submitted Products Summary -->
+    <div class="p-6 sm:p-8 rounded-3xl bg-white border border-black/15 shadow-md">
+        <div class="flex items-center justify-between mb-4">
+            <h3 class="text-sm font-bold uppercase tracking-wider text-black">Submitted Items ({{ order.products|length }})</h3>
+            <span class="text-xs text-black font-semibold bg-white px-2.5 py-1 rounded-lg border border-black/20">Store Currency: {{ order.currency }}</span>
+        </div>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {% for item in order.products %}
+            <div class="p-3 rounded-xl bg-white border border-black/15 flex items-center gap-3 shadow-sm">
+                <img src="{{ item.image }}" alt="{{ item.name }}" class="w-12 h-12 rounded-lg object-cover bg-black/5 shrink-0" onerror="this.src='https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=200'">
+                <div class="truncate">
+                    <h4 class="text-xs font-bold text-black truncate">{{ item.name }}</h4>
+                    <span class="text-xs font-black text-black">{{ order.currency }}{{ item.price }}</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</div>
+
+<!-- Countdown Logic & Auto-refresh JS -->
+<script>
+    const orderId = "{{ order.id }}";
+    let secondsLeft = parseInt("{{ order.seconds_left }}", 10) || 0;
+    const totalDurationSeconds = 24 * 3600;
+
+    function updateCountdownDisplay() {
+        if (secondsLeft <= 0) {
+            const h = document.getElementById('cdHours');
+            const m = document.getElementById('cdMinutes');
+            const s = document.getElementById('cdSeconds');
+            if (h) h.textContent = "00";
+            if (m) m.textContent = "00";
+            if (s) s.textContent = "00";
+            
+            checkLiveStatus();
+            return;
+        }
+
+        const hours = Math.floor(secondsLeft / 3600);
+        const minutes = Math.floor((secondsLeft % 3600) / 60);
+        const seconds = secondsLeft % 60;
+
+        const h = document.getElementById('cdHours');
+        const m = document.getElementById('cdMinutes');
+        const s = document.getElementById('cdSeconds');
+        if (h) h.textContent = String(hours).padStart(2, '0');
+        if (m) m.textContent = String(minutes).padStart(2, '0');
+        if (s) s.textContent = String(seconds).padStart(2, '0');
+
+        const elapsed = totalDurationSeconds - secondsLeft;
+        const percent = Math.min(100, Math.max(5, Math.floor((elapsed / totalDurationSeconds) * 100)));
+        const pBar = document.getElementById('progressBar');
+        const pText = document.getElementById('progressPercent');
+        if (pBar) pBar.style.width = percent + '%';
+        if (pText) pText.textContent = percent + '%';
+
+        secondsLeft--;
+    }
+
+    setInterval(updateCountdownDisplay, 1000);
+    updateCountdownDisplay();
+
+    async function checkLiveStatus() {
+        try {
+            const res = await fetch(`/api/status/${orderId}`);
+            if (res.ok) {
+                const data = await res.json();
+                if (data.can_show_website) {
+                    window.location.reload();
+                }
+            }
+        } catch (e) {
+            console.error("Status check error", e);
+        }
+    }
+    setInterval(checkLiveStatus, 10000);
+
+    function copyWebsiteLink() {
+        const link = document.getElementById('liveWebsiteUrl').href;
+        navigator.clipboard.writeText(link).then(() => {
+            const btn = document.getElementById('copyBtnText');
+            btn.textContent = "Copied! ✓";
+            setTimeout(() => { btn.textContent = "Copy Link"; }, 2500);
+        });
+    }
+</script>
+{% endblock %}

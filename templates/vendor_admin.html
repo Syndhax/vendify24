@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendor Dashboard - {{ store.business_name }} ($10 Pro Plan)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: #ffffff !important;
+        }
+    </style>
+</head>
+<body class="bg-white text-black min-h-screen">
+
+    <!-- Top Bar -->
+    <header class="bg-white border-b border-black/10 px-4 py-4">
+        <div class="max-w-6xl mx-auto flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-xl bg-black text-white flex items-center justify-center font-bold">
+                    <i class="fa-solid fa-shield-halved text-white text-sm"></i>
+                </div>
+                <div>
+                    <h1 class="text-base font-bold text-black">{{ store.business_name }} Dashboard</h1>
+                    <span class="text-[10px] text-black font-semibold uppercase tracking-wider">Pro Store ($10/mo)</span>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <a href="{{ url_for('preview_store', order_id=store.id) }}" target="_blank" class="px-3 py-1.5 rounded-lg bg-white text-black hover:bg-black/5 text-xs font-semibold flex items-center gap-1.5 border border-black/20">
+                    <i class="fa-solid fa-arrow-up-right-from-square text-black"></i> View Store
+                </a>
+                <a href="{{ url_for('status', order_id=store.id) }}" class="px-3 py-1.5 rounded-lg bg-white text-black hover:bg-black/5 text-xs font-semibold border border-black/20">
+                    Status Page
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-8 bg-white">
+        <!-- Quick stats -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+            <div class="p-5 rounded-2xl bg-white border border-black/15 shadow-sm">
+                <span class="text-xs text-black/60 block">Total Active Products</span>
+                <span class="text-3xl font-black text-black mt-1 block">{{ store.products|length }}</span>
+            </div>
+            <div class="p-5 rounded-2xl bg-white border border-black/15 shadow-sm">
+                <span class="text-xs text-black/60 block">Connected WhatsApp</span>
+                <span class="text-base font-bold text-black mt-1 block">{{ store.whatsapp_number }}</span>
+            </div>
+            <div class="p-5 rounded-2xl bg-white border border-black/15 shadow-sm">
+                <span class="text-xs text-black/60 block">Store Currency</span>
+                <span class="text-3xl font-black text-black mt-1 block">{{ store.currency }}</span>
+            </div>
+        </div>
+
+        <!-- Products Manager -->
+        <div class="rounded-3xl bg-white border border-black/15 p-6 sm:p-8 shadow-md">
+            <div class="flex items-center justify-between pb-6 border-b border-black/10 mb-6">
+                <div>
+                    <h2 class="text-xl font-bold text-black">Product Catalog Management</h2>
+                    <p class="text-xs text-black/60">Add new items or edit prices. All changes update instantly on your store.</p>
+                </div>
+                <button onclick="alert('Feature active! In the $10 Pro tier, you can edit and add items directly.')" class="px-4 py-2 rounded-xl bg-black text-white font-bold text-xs flex items-center gap-1.5 hover:bg-neutral-800 transition border border-black shadow-sm">
+                    <i class="fa-solid fa-plus text-white"></i> Add New Product
+                </button>
+            </div>
+
+            <div class="space-y-4">
+                {% for item in store.products %}
+                <div class="p-4 rounded-2xl bg-white border border-black/15 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-sm">
+                    <div class="flex items-center gap-4">
+                        <img src="{{ item.image }}" class="w-14 h-14 rounded-xl object-cover bg-black/5" onerror="this.src='https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=200'">
+                        <div>
+                            <h3 class="text-sm font-bold text-black">{{ item.name }}</h3>
+                            <span class="text-xs text-black/60 block">{{ item.desc or 'In Stock' }}</span>
+                            <span class="text-xs font-black text-black mt-1 block">{{ store.currency }}{{ item.price }}</span>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-2">
+                        <span class="px-2.5 py-1 rounded-md text-[10px] font-bold bg-black text-white">
+                            In Stock
+                        </span>
+                        <button onclick="alert('Edit product modal opened')" class="p-2 rounded-lg bg-white hover:bg-black/5 text-black text-xs transition border border-black/20">
+                            <i class="fa-solid fa-pen"></i> Edit
+                        </button>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>

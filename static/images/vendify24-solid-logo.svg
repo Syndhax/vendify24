@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="solidBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A" />
+      <stop offset="100%" stop-color="#020617" />
+    </linearGradient>
+
+    <!-- Emerald to Teal Solid Gradient -->
+    <linearGradient id="v24BrandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34D399" />
+      <stop offset="50%" stop-color="#10B981" />
+      <stop offset="100%" stop-color="#06B6D4" />
+    </linearGradient>
+
+    <linearGradient id="vAccentGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#A7F3D0" />
+      <stop offset="100%" stop-color="#38BDF8" />
+    </linearGradient>
+
+    <filter id="badgeShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="12" flood-color="#10B981" flood-opacity="0.35" />
+    </filter>
+  </defs>
+
+  <!-- App Icon Badge -->
+  <rect width="500" height="500" rx="110" fill="url(#solidBg)" stroke="#1E293B" stroke-width="2" />
+
+  <!-- 
+    SOLID GEOMETRIC LOGOMARK
+    Derived directly from the continuous 24-V drawing:
+    - 2 arch on left
+    - V created by diagonal of 2 meeting diagonal of 4
+    - 4 vertical post & crossbar
+  -->
+  <g transform="translate(15, 15)" filter="url(#badgeShadow)">
+    
+    <!-- 2 Head & Neck -->
+    <path d="M 120 125 
+             C 120 70, 160 50, 215 50 
+             C 265 50, 275 90, 260 135 
+             C 250 165, 220 215, 175 270 
+             L 205 270 
+             C 240 225, 275 165, 290 125 
+             C 305 75, 285 25, 215 25 
+             C 140 25, 95 55, 95 125 
+             Z" 
+          fill="url(#v24BrandGrad)" />
+
+    <!-- The 2 & 4 Interlocking Triangle / V-Wing -->
+    <!-- Left arm of the V slants down from 2's neck -->
+    <!-- Right arm of the V slants up to 4's top peak -->
+    <!-- Horizontal base connects them -->
+    <polygon points="125,325 330,85 365,95 365,365 330,365 330,295 125,295" 
+             fill="url(#v24BrandGrad)" />
+
+    <!-- Cutout inner space of the 4 to form the classic number 4 counter -->
+    <polygon points="175,295 330,295 330,135" 
+             fill="#0F172A" />
+
+    <!-- Crossbar tail of the 4 -->
+    <rect x="365" y="295" width="30" height="30" rx="6" fill="url(#v24BrandGrad)" />
+
+    <!-- Glowing V Apex Line (Emphasizing the V) -->
+    <path d="M 235 185 L 125 325 L 330 85" 
+          fill="none" 
+          stroke="url(#vAccentGold)" 
+          stroke-width="10" 
+          stroke-linecap="round" 
+          stroke-linejoin="round" />
+  </g>
+</svg>

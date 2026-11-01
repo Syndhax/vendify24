@@ -1,0 +1,393 @@
+{% extends 'base.html' %}
+
+{% block title %}Create Your Business Website - Vendify24{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-white">
+    <!-- Header -->
+    <div class="text-center mb-10">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-black text-white mb-3">
+            <i class="fa-solid fa-bolt text-white"></i> 24-Hour Guarantee
+        </span>
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-black tracking-tight font-['Plus_Jakarta_Sans']">Create Your Website</h1>
+        <p class="text-black/70 text-sm sm:text-base mt-2 max-w-xl mx-auto">
+            Fill in your business details below. Your 24-hour countdown will begin immediately, and we'll deliver your ready link!
+        </p>
+    </div>
+
+    <!-- Main Submission Form -->
+    <form action="{{ url_for('order') }}" method="POST" id="vendorOrderForm" class="space-y-10">
+        
+        <!-- STEP 1: PLAN SELECTION -->
+        <div class="p-6 sm:p-8 rounded-3xl bg-white border border-black/15 shadow-md relative">
+            <div class="flex items-center gap-3 mb-6">
+                <span class="w-8 h-8 rounded-xl bg-black text-white font-black text-sm flex items-center justify-center">1</span>
+                <div>
+                    <h2 class="text-lg sm:text-xl font-bold text-black">Select Your Website Plan</h2>
+                    <p class="text-xs text-black/60">Choose the monthly tier that best fits your business</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Option 1: $2/mo -->
+                <label class="relative flex flex-col p-5 rounded-2xl border-2 cursor-pointer transition-all plan-card
+                    {% if selected_plan == 'basic_2' or not selected_plan %}border-black bg-white shadow-md{% else %}border-black/15 bg-white hover:border-black/30{% endif %}"
+                    id="planCardBasic">
+                    <input type="radio" name="plan_type" value="basic_2" {% if selected_plan == 'basic_2' or not selected_plan %}checked{% endif %} class="sr-only plan-radio" onchange="updatePlanUI('basic_2')">
+                    
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="px-2.5 py-0.5 rounded text-[11px] font-bold bg-black text-white">STARTER</span>
+                        <span class="text-2xl font-black text-black">$2 <span class="text-xs font-normal text-black/60">/mo</span></span>
+                    </div>
+                    <span class="text-base font-bold text-black mb-1">Basic Website (No Admin Login)</span>
+                    <p class="text-xs text-black/70 leading-relaxed">
+                        Clean mobile showcase with direct WhatsApp ordering. Perfect if you just want customers to view items and message you.
+                    </p>
+                    <div class="mt-4 pt-3 border-t border-black/10 flex items-center gap-2 text-xs text-black font-semibold">
+                        <i class="fa-solid fa-check text-black"></i> 24h delivery included
+                    </div>
+                </label>
+
+                <!-- Option 2: $10/mo -->
+                <label class="relative flex flex-col p-5 rounded-2xl border-2 cursor-pointer transition-all plan-card
+                    {% if selected_plan == 'pro_10' %}border-black bg-neutral-100 shadow-md{% else %}border-black/15 bg-white hover:border-black/30{% endif %}"
+                    id="planCardPro">
+                    <input type="radio" name="plan_type" value="pro_10" {% if selected_plan == 'pro_10' %}checked{% endif %} class="sr-only plan-radio" onchange="updatePlanUI('pro_10')">
+                    
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="px-2.5 py-0.5 rounded text-[11px] font-bold bg-black text-white">PRO DASHBOARD</span>
+                        <span class="text-2xl font-black text-black">$10 <span class="text-xs font-normal text-black/60">/mo</span></span>
+                    </div>
+                    <span class="text-base font-bold text-black mb-1">Pro Website (With Admin Login)</span>
+                    <p class="text-xs text-black/70 leading-relaxed">
+                        Includes your private Admin Login Dashboard to change prices, add products, manage stock status, and view customer logs.
+                    </p>
+                    <div class="mt-4 pt-3 border-t border-black/10 flex items-center gap-2 text-xs text-black font-semibold">
+                        <i class="fa-solid fa-shield-halved text-black"></i> Includes Admin Credentials
+                    </div>
+                </label>
+            </div>
+        </div>
+
+        <!-- STEP 2: BUSINESS INFORMATION -->
+        <div class="p-6 sm:p-8 rounded-3xl bg-white border border-black/15 shadow-md space-y-6">
+            <div class="flex items-center gap-3 mb-2">
+                <span class="w-8 h-8 rounded-xl bg-black text-white font-black text-sm flex items-center justify-center">2</span>
+                <div>
+                    <h2 class="text-lg sm:text-xl font-bold text-black">Your Business Information</h2>
+                    <p class="text-xs text-black/60">We'll use this to brand your store and direct customers to your WhatsApp</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Business Name -->
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-black mb-2">
+                        Business / Store Name *
+                    </label>
+                    <input type="text" name="business_name" required placeholder="e.g. Bella's Chic Boutique" class="w-full px-4 py-3 rounded-xl bg-white border border-black/20 text-black placeholder-black/40 text-sm focus:outline-none focus:border-black transition">
+                </div>
+
+                <!-- Vendor Name -->
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-black mb-2">
+                        Your Name (Owner)
+                    </label>
+                    <input type="text" name="vendor_name" placeholder="e.g. Sarah Jenkins" class="w-full px-4 py-3 rounded-xl bg-white border border-black/20 text-black placeholder-black/40 text-sm focus:outline-none focus:border-black transition">
+                </div>
+
+                <!-- WhatsApp Phone Number -->
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-black mb-2">
+                        WhatsApp Number (With Country Code) *
+                    </label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-black">
+                            <i class="fa-brands fa-whatsapp text-lg"></i>
+                        </span>
+                        <input type="text" name="whatsapp_number" required placeholder="+1234567890 or +234..." class="w-full pl-11 pr-4 py-3 rounded-xl bg-white border border-black/20 text-black placeholder-black/40 text-sm focus:outline-none focus:border-black transition">
+                    </div>
+                    <p class="text-[11px] text-black/60 mt-1">Orders from the website will be sent directly to this WhatsApp number.</p>
+                </div>
+
+                <!-- Email -->
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-black mb-2">
+                        Email Address (Optional)
+                    </label>
+                    <input type="email" name="email" placeholder="sarah@example.com" class="w-full px-4 py-3 rounded-xl bg-white border border-black/20 text-black placeholder-black/40 text-sm focus:outline-none focus:border-black transition">
+                </div>
+
+                <!-- Business Category -->
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-black mb-2">
+                        Business Category
+                    </label>
+                    <select name="category" class="w-full px-4 py-3 rounded-xl bg-white border border-black/20 text-black text-sm focus:outline-none focus:border-black transition">
+                        <option value="Fashion & Clothing">Fashion & Clothing</option>
+                        <option value="Beauty & Skincare">Beauty & Skincare</option>
+                        <option value="Food & Bakery">Food, Bakery & Drinks</option>
+                        <option value="Jewelry & Accessories">Jewelry & Watches</option>
+                        <option value="Electronics & Gadgets">Electronics & Gadgets</option>
+                        <option value="Perfumes & Scents">Perfumes & Scents</option>
+                        <option value="Shoes & Bags">Shoes & Handbags</option>
+                        <option value="Home & Decor">Home & Decor</option>
+                        <option value="Groceries & Essentials">Groceries & Essentials</option>
+                        <option value="Other">Other Retail / Services</option>
+                    </select>
+                </div>
+
+                <!-- Currency -->
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-black mb-2">
+                        Store Currency
+                    </label>
+                    <select name="currency" class="w-full px-4 py-3 rounded-xl bg-white border border-black/20 text-black text-sm focus:outline-none focus:border-black transition">
+                        <option value="$">USD ($)</option>
+                        <option value="₦">NGN (₦)</option>
+                        <option value="KSh">KES (KSh)</option>
+                        <option value="GH₵">GHS (GH₵)</option>
+                        <option value="R">ZAR (R)</option>
+                        <option value="₹">INR (₹)</option>
+                        <option value="£">GBP (£)</option>
+                        <option value="€">EUR (€)</option>
+                        <option value="C$">CAD (C$)</option>
+                        <option value="A$">AUD (A$)</option>
+                    </select>
+                </div>
+
+                <!-- Tagline -->
+                <div class="md:col-span-2">
+                    <label class="block text-xs font-bold uppercase tracking-wider text-black mb-2">
+                        Store Tagline / Bio (One sentence)
+                    </label>
+                    <input type="text" name="tagline" placeholder="e.g. Trendy women fashion, luxury perfumes & fast delivery nationwide" class="w-full px-4 py-3 rounded-xl bg-white border border-black/20 text-black placeholder-black/40 text-sm focus:outline-none focus:border-black transition">
+                </div>
+
+                <!-- Location & Delivery info -->
+                <div class="md:col-span-2">
+                    <label class="block text-xs font-bold uppercase tracking-wider text-black mb-2">
+                        Location / Delivery Terms
+                    </label>
+                    <input type="text" name="address" placeholder="e.g. Based in Downtown | Same-day delivery available" class="w-full px-4 py-3 rounded-xl bg-white border border-black/20 text-black placeholder-black/40 text-sm focus:outline-none focus:border-black transition">
+                </div>
+            </div>
+        </div>
+
+        <!-- STEP 3: INITIAL PRODUCTS -->
+        <div class="p-6 sm:p-8 rounded-3xl bg-white border border-black/15 shadow-md space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-black/10">
+                <div class="flex items-center gap-3">
+                    <span class="w-8 h-8 rounded-xl bg-black text-white font-black text-sm flex items-center justify-center">3</span>
+                    <div>
+                        <h2 class="text-lg sm:text-xl font-bold text-black">Your Products / Services</h2>
+                        <p class="text-xs text-black/60">Add a few items now. You can add more later or anytime in Pro!</p>
+                    </div>
+                </div>
+                <button type="button" onclick="addProductRow()" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold bg-white hover:bg-black/5 text-black border border-black/20 transition">
+                    <i class="fa-solid fa-plus text-black"></i> Add Another Product
+                </button>
+            </div>
+
+            <!-- Dynamic Product Container -->
+            <div id="productsContainer" class="space-y-4">
+                <!-- Product Card 1 (Default) -->
+                <div class="product-item p-5 rounded-2xl bg-white border border-black/15 relative group shadow-sm">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-bold text-black/70 product-index-label">Product #1</span>
+                        <button type="button" onclick="removeProductRow(this)" class="text-xs text-black/40 hover:text-black transition" title="Remove Item">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div class="sm:col-span-2">
+                            <label class="block text-[11px] font-semibold text-black/70 mb-1">Product Title</label>
+                            <input type="text" name="product_name[]" placeholder="e.g. Classic Silk Summer Dress" required class="w-full px-3 py-2 rounded-lg bg-white border border-black/20 text-black text-xs placeholder-black/40 focus:outline-none focus:border-black">
+                        </div>
+
+                        <div>
+                            <label class="block text-[11px] font-semibold text-black/70 mb-1">Price (Numbers only)</label>
+                            <input type="text" name="product_price[]" placeholder="e.g. 25.00" required class="w-full px-3 py-2 rounded-lg bg-white border border-black/20 text-black text-xs placeholder-black/40 focus:outline-none focus:border-black">
+                        </div>
+
+                        <div class="sm:col-span-2">
+                            <label class="block text-[11px] font-semibold text-black/70 mb-1">Brief Description</label>
+                            <input type="text" name="product_desc[]" placeholder="e.g. Available in sizes S, M, L. 100% pure silk." class="w-full px-3 py-2 rounded-lg bg-white border border-black/20 text-black text-xs placeholder-black/40 focus:outline-none focus:border-black">
+                        </div>
+
+                        <div>
+                            <label class="block text-[11px] font-semibold text-black/70 mb-1">Image URL or Photo Link</label>
+                            <input type="text" name="product_image[]" placeholder="https://... (or leave blank)" class="w-full px-3 py-2 rounded-lg bg-white border border-black/20 text-black text-xs placeholder-black/40 focus:outline-none focus:border-black">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Card 2 (Pre-added) -->
+                <div class="product-item p-5 rounded-2xl bg-white border border-black/15 relative group shadow-sm">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-bold text-black/70 product-index-label">Product #2</span>
+                        <button type="button" onclick="removeProductRow(this)" class="text-xs text-black/40 hover:text-black transition" title="Remove Item">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div class="sm:col-span-2">
+                            <label class="block text-[11px] font-semibold text-black/70 mb-1">Product Title</label>
+                            <input type="text" name="product_name[]" placeholder="e.g. Vintage Leather Handbag" class="w-full px-3 py-2 rounded-lg bg-white border border-black/20 text-black text-xs placeholder-black/40 focus:outline-none focus:border-black">
+                        </div>
+
+                        <div>
+                            <label class="block text-[11px] font-semibold text-black/70 mb-1">Price (Numbers only)</label>
+                            <input type="text" name="product_price[]" placeholder="e.g. 45.00" class="w-full px-3 py-2 rounded-lg bg-white border border-black/20 text-black text-xs placeholder-black/40 focus:outline-none focus:border-black">
+                        </div>
+
+                        <div class="sm:col-span-2">
+                            <label class="block text-[11px] font-semibold text-black/70 mb-1">Brief Description</label>
+                            <input type="text" name="product_desc[]" placeholder="e.g. Premium leather with gold buckle. Brown and Black." class="w-full px-3 py-2 rounded-lg bg-white border border-black/20 text-black text-xs placeholder-black/40 focus:outline-none focus:border-black">
+                        </div>
+
+                        <div>
+                            <label class="block text-[11px] font-semibold text-black/70 mb-1">Image URL or Photo Link</label>
+                            <input type="text" name="product_image[]" placeholder="https://... (or leave blank)" class="w-full px-3 py-2 rounded-lg bg-white border border-black/20 text-black text-xs placeholder-black/40 focus:outline-none focus:border-black">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-2 text-center">
+                <button type="button" onclick="addProductRow()" class="text-xs font-semibold text-black hover:underline inline-flex items-center gap-1.5 transition">
+                    <i class="fa-solid fa-circle-plus"></i> Need to add more items? Click here to add another
+                </button>
+            </div>
+        </div>
+
+        <!-- STEP 4: SOCIAL LINKS & CONFIRMATION -->
+        <div class="p-6 sm:p-8 rounded-3xl bg-white border border-black/15 shadow-md space-y-6">
+            <div class="flex items-center gap-3 mb-2">
+                <span class="w-8 h-8 rounded-xl bg-black text-white font-black text-sm flex items-center justify-center">4</span>
+                <div>
+                    <h2 class="text-lg sm:text-xl font-bold text-black">Social Media & Final Check</h2>
+                    <p class="text-xs text-black/60">Optional social links to display in your website header and footer</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div>
+                    <label class="block text-[11px] font-semibold text-black/70 mb-1 flex items-center gap-1">
+                        <i class="fa-brands fa-instagram text-black"></i> Instagram Handle
+                    </label>
+                    <input type="text" name="instagram" placeholder="@yourstore" class="w-full px-3 py-2.5 rounded-xl bg-white border border-black/20 text-black text-xs placeholder-black/40 focus:outline-none focus:border-black">
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-semibold text-black/70 mb-1 flex items-center gap-1">
+                        <i class="fa-brands fa-tiktok text-black"></i> TikTok Handle
+                    </label>
+                    <input type="text" name="tiktok" placeholder="@yourstore" class="w-full px-3 py-2.5 rounded-xl bg-white border border-black/20 text-black text-xs placeholder-black/40 focus:outline-none focus:border-black">
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-semibold text-black/70 mb-1 flex items-center gap-1">
+                        <i class="fa-brands fa-facebook text-black"></i> Facebook Page
+                    </label>
+                    <input type="text" name="facebook" placeholder="facebook.com/yourstore" class="w-full px-3 py-2.5 rounded-xl bg-white border border-black/20 text-black text-xs placeholder-black/40 focus:outline-none focus:border-black">
+                </div>
+            </div>
+
+            <!-- Summary Box -->
+            <div class="p-5 rounded-2xl bg-neutral-100 border border-black/15 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="space-y-1 text-center sm:text-left">
+                    <span class="text-xs font-bold text-black uppercase tracking-wider">What happens next?</span>
+                    <p class="text-sm text-black font-semibold">Your 24-Hour Countdown starts the instant you submit!</p>
+                    <p class="text-xs text-black/70">You will be redirected to your live countdown page where your site link will appear when ready.</p>
+                </div>
+                <div class="text-right">
+                    <span class="text-xs text-black/60">Selected Plan:</span>
+                    <div id="summaryPlanPrice" class="text-2xl font-black text-black font-['Plus_Jakarta_Sans']">$2 / month</div>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="w-full py-4 rounded-2xl text-white font-extrabold text-base sm:text-lg bg-black hover:bg-neutral-800 shadow-xl shadow-black/20 transition-all transform hover:-translate-y-0.5 border border-black flex items-center justify-center gap-3">
+                <i class="fa-solid fa-clock text-white"></i>
+                <span>Submit Details & Start 24-Hour Countdown</span>
+            </button>
+        </div>
+    </form>
+</div>
+
+<script>
+    function updatePlanUI(plan) {
+        const basicCard = document.getElementById('planCardBasic');
+        const proCard = document.getElementById('planCardPro');
+        const summaryPrice = document.getElementById('summaryPlanPrice');
+
+        if (plan === 'basic_2') {
+            basicCard.classList.add('border-black', 'bg-white', 'shadow-md');
+            basicCard.classList.remove('border-black/15', 'shadow-none');
+            proCard.classList.remove('border-black', 'bg-neutral-100', 'shadow-md');
+            proCard.classList.add('border-black/15', 'bg-white');
+            summaryPrice.innerHTML = "$2 <span class='text-xs font-normal text-black/60'>/ month</span>";
+            summaryPrice.className = "text-2xl font-black text-black font-['Plus_Jakarta_Sans']";
+        } else {
+            proCard.classList.add('border-black', 'bg-neutral-100', 'shadow-md');
+            proCard.classList.remove('border-black/15');
+            basicCard.classList.remove('border-black', 'shadow-md');
+            basicCard.classList.add('border-black/15', 'bg-white');
+            summaryPrice.innerHTML = "$10 <span class='text-xs font-normal text-black/60'>/ month</span>";
+            summaryPrice.className = "text-2xl font-black text-black font-['Plus_Jakarta_Sans']";
+        }
+    }
+
+    let productCount = 2;
+    function addProductRow() {
+        productCount++;
+        const container = document.getElementById('productsContainer');
+        const div = document.createElement('div');
+        div.className = "product-item p-5 rounded-2xl bg-white border border-black/15 relative group animate-fade-in shadow-sm";
+        div.innerHTML = `
+            <div class="flex items-center justify-between mb-3">
+                <span class="text-xs font-bold text-black/70 product-index-label">Product #${productCount}</span>
+                <button type="button" onclick="removeProductRow(this)" class="text-xs text-black/40 hover:text-black transition" title="Remove Item">
+                    <i class="fa-solid fa-trash-can"></i>
+                </button>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div class="sm:col-span-2">
+                    <label class="block text-[11px] font-semibold text-black/70 mb-1">Product Title</label>
+                    <input type="text" name="product_name[]" placeholder="e.g. Item Name" required class="w-full px-3 py-2 rounded-lg bg-white border border-black/20 text-black text-xs placeholder-black/40 focus:outline-none focus:border-black">
+                </div>
+                <div>
+                    <label class="block text-[11px] font-semibold text-black/70 mb-1">Price (Numbers only)</label>
+                    <input type="text" name="product_price[]" placeholder="e.g. 19.99" required class="w-full px-3 py-2 rounded-lg bg-white border border-black/20 text-black text-xs placeholder-black/40 focus:outline-none focus:border-black">
+                </div>
+                <div class="sm:col-span-2">
+                    <label class="block text-[11px] font-semibold text-black/70 mb-1">Brief Description</label>
+                    <input type="text" name="product_desc[]" placeholder="e.g. Color, size, specifications..." class="w-full px-3 py-2 rounded-lg bg-white border border-black/20 text-black text-xs placeholder-black/40 focus:outline-none focus:border-black">
+                </div>
+                <div>
+                    <label class="block text-[11px] font-semibold text-black/70 mb-1">Image URL or Photo Link</label>
+                    <input type="text" name="product_image[]" placeholder="https://... (or leave blank)" class="w-full px-3 py-2 rounded-lg bg-white border border-black/20 text-black text-xs placeholder-black/40 focus:outline-none focus:border-black">
+                </div>
+            </div>
+        `;
+        container.appendChild(div);
+    }
+
+    function removeProductRow(button) {
+        const items = document.querySelectorAll('.product-item');
+        if (items.length <= 1) {
+            alert("You need to keep at least one product.");
+            return;
+        }
+        button.closest('.product-item').remove();
+        
+        document.querySelectorAll('.product-item').forEach((item, idx) => {
+            item.querySelector('.product-index-label').textContent = `Product #${idx + 1}`;
+        });
+        productCount = document.querySelectorAll('.product-item').length;
+    }
+</script>
+{% endblock %}

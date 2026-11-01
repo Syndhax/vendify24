@@ -1,0 +1,451 @@
+{% extends 'base.html' %}
+
+{% block title %}Vendify24 - Get a Business Website in 24 Hours ($2/mo){% endblock %}
+
+{% block content %}
+<!-- ===================================================
+     TOP SECTION: 3D SOLAR SYSTEM & PLANETARY CAROUSEL
+     =================================================== -->
+<section class="relative pt-20 sm:pt-24 lg:pt-28 pb-8 bg-white overflow-visible min-h-[85vh] flex flex-col justify-center">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center w-full">
+        <!-- 3D Solar Viewport (Screen-Filling, Borderless & Floating in Real White Page) -->
+        <div id="solarViewport" class="solar-viewport relative w-full h-[620px] sm:h-[680px] lg:h-[720px] flex items-center justify-center cursor-grab select-none bg-transparent">
+            
+            <!-- 3D Orbital Rings in Monochrome Space -->
+            <div class="absolute w-[480px] sm:w-[740px] lg:w-[1060px] h-[480px] sm:h-[740px] lg:h-[1060px] orbit-ring-primary pointer-events-none"></div>
+            <div class="absolute w-[580px] sm:w-[880px] lg:w-[1240px] h-[580px] sm:h-[880px] lg:h-[1240px] orbit-ring-secondary pointer-events-none"></div>
+
+            <!-- 3D Orbiting Stage (Unobstructed Open Center) -->
+            <div id="solarStage" class="solar-stage relative w-0 h-0 flex items-center justify-center">
+                
+                <!-- PLANET 1: Boutique Fashion -->
+                <div class="planet-item absolute w-[260px] sm:w-[320px] lg:w-[360px] h-[450px] sm:h-[510px] lg:h-[560px] rounded-3xl bg-white border border-black/15 planet-glow-glassy cursor-pointer group shadow-2xl overflow-hidden" title="Tap to view original color">
+                    <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=900&auto=format&fit=crop&q=80" alt="Bella Chic Boutique" class="w-full h-full object-cover grayscale contrast-105 group-hover:scale-105 transition-transform duration-700">
+                </div>
+
+                <!-- PLANET 2: Bakery & Treats -->
+                <div class="planet-item absolute w-[260px] sm:w-[320px] lg:w-[360px] h-[450px] sm:h-[510px] lg:h-[560px] rounded-3xl bg-white border border-black/15 planet-glow-glassy cursor-pointer group shadow-2xl overflow-hidden" title="Tap to view original color">
+                    <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=900&auto=format&fit=crop&q=80" alt="Artisan Bakehouse" class="w-full h-full object-cover grayscale contrast-105 group-hover:scale-105 transition-transform duration-700">
+                </div>
+
+                <!-- PLANET 3: Tech & Gadgets (Pro) -->
+                <div class="planet-item absolute w-[260px] sm:w-[320px] lg:w-[360px] h-[450px] sm:h-[510px] lg:h-[560px] rounded-3xl bg-white border-2 border-black planet-glow-glassy-pro cursor-pointer group shadow-2xl overflow-hidden" title="Tap to view original color">
+                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=900&auto=format&fit=crop&q=80" alt="VoltTech Gear" class="w-full h-full object-cover grayscale contrast-105 group-hover:scale-105 transition-transform duration-700">
+                </div>
+
+                <!-- PLANET 4: Beauty & Skincare -->
+                <div class="planet-item absolute w-[260px] sm:w-[320px] lg:w-[360px] h-[450px] sm:h-[510px] lg:h-[560px] rounded-3xl bg-white border border-black/15 planet-glow-glassy cursor-pointer group shadow-2xl overflow-hidden" title="Tap to view original color">
+                    <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=900&auto=format&fit=crop&q=80" alt="Glow Essence Care" class="w-full h-full object-cover grayscale contrast-105 group-hover:scale-105 transition-transform duration-700">
+                </div>
+
+                <!-- PLANET 5: Handmade Jewelry -->
+                <div class="planet-item absolute w-[260px] sm:w-[320px] lg:w-[360px] h-[450px] sm:h-[510px] lg:h-[560px] rounded-3xl bg-white border border-black/15 planet-glow-glassy cursor-pointer group shadow-2xl overflow-hidden" title="Tap to view original color">
+                    <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=900&auto=format&fit=crop&q=80" alt="Luxe Pearl Accents" class="w-full h-full object-cover grayscale contrast-105 group-hover:scale-105 transition-transform duration-700">
+                </div>
+
+                <!-- PLANET 6: Specialty Cafe (Pro) -->
+                <div class="planet-item absolute w-[260px] sm:w-[320px] lg:w-[360px] h-[450px] sm:h-[510px] lg:h-[560px] rounded-3xl bg-white border-2 border-black planet-glow-glassy-pro cursor-pointer group shadow-2xl overflow-hidden" title="Tap to view original color">
+                    <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=900&auto=format&fit=crop&q=80" alt="BrewMaster Roasters" class="w-full h-full object-cover grayscale contrast-105 group-hover:scale-105 transition-transform duration-700">
+                </div>
+
+            </div>
+
+            <!-- 3D Planetary Orbit Interactive Controls -->
+            <div class="absolute bottom-4 inset-x-0 flex items-center justify-center gap-3 z-30 pointer-events-auto">
+                <button id="orbitPrevBtn" title="Previous Planet" class="w-10 h-10 rounded-full bg-white hover:bg-black/5 border border-black/20 text-black text-xs flex items-center justify-center shadow-md transition active:scale-95">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <button id="orbitPlayPauseBtn" title="Play / Pause Rotation" class="px-4 py-2 rounded-full bg-white hover:bg-black/5 border border-black text-black text-xs font-bold flex items-center gap-2 shadow-md transition active:scale-95">
+                    <i class="fa-solid fa-pause text-black"></i>
+                    <span>Auto-Orbit</span>
+                </button>
+                <button id="orbitNextBtn" title="Next Planet" class="w-10 h-10 rounded-full bg-white hover:bg-black/5 border border-black/20 text-black text-xs flex items-center justify-center shadow-md transition active:scale-95">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===================================================
+     HERO SECTION: HEADLINE, CTAs & PRICING HIGHLIGHTS
+     =================================================== -->
+<section class="relative overflow-hidden pt-12 pb-20 lg:pt-16 lg:pb-28 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <!-- Live Badge -->
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black text-white text-xs sm:text-sm font-semibold mb-8 shadow-sm">
+            <span class="w-2 h-2 rounded-full bg-white animate-ping"></span>
+            <span>Stop sending messy photos & answering "how much?" in DMs! Get an official website</span>
+        </div>
+
+        <!-- Main Headline -->
+        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-black tracking-tight max-w-5xl mx-auto leading-[1.1] mb-6 font-['Plus_Jakarta_Sans']">
+            Turn Your Business Into A Website in 
+            <span class="underline decoration-black">24 Hours</span>
+        </h1>
+
+        <p class="text-lg sm:text-xl text-black/70 max-w-2xl mx-auto font-normal leading-relaxed mb-6">
+            For WhatsApp vendors, Instagram sellers, TikTok shops & local merchants. Submit your products, watch the <strong class="text-black font-extrabold underline">24-hour countdown</strong> live, and receive your ready website link!
+        </p>
+
+        <!-- Social Proof Tags (Monochrome) -->
+        <div class="flex flex-wrap items-center justify-center gap-2 text-xs text-black mb-8">
+            <span class="px-3.5 py-1.5 rounded-full bg-white border border-black/20 shadow-sm font-medium"><i class="fa-brands fa-whatsapp text-black mr-1"></i> WhatsApp Stores</span>
+            <span class="px-3.5 py-1.5 rounded-full bg-white border border-black/20 shadow-sm font-medium"><i class="fa-brands fa-instagram text-black mr-1"></i> Instagram Boutiques</span>
+            <span class="px-3.5 py-1.5 rounded-full bg-white border border-black/20 shadow-sm font-medium"><i class="fa-brands fa-tiktok text-black mr-1"></i> TikTok Shops</span>
+            <span class="px-3.5 py-1.5 rounded-full bg-white border border-black/20 shadow-sm font-medium"><i class="fa-solid fa-utensils text-black mr-1"></i> Food & Bakery</span>
+            <span class="px-3.5 py-1.5 rounded-full bg-white border border-black/20 shadow-sm font-medium"><i class="fa-solid fa-shop text-black mr-1"></i> Retail & Services</span>
+        </div>
+
+        <!-- Pricing Highlight Chips -->
+        <div class="flex flex-wrap items-center justify-center gap-4 mb-10">
+            <div class="px-5 py-2.5 rounded-2xl bg-white border border-black/20 shadow-sm flex items-center gap-3">
+                <span class="w-3 h-3 rounded-full bg-black"></span>
+                <span class="text-sm font-medium text-black/70">Basic Website:</span>
+                <span class="text-lg font-black text-black">$2 <span class="text-xs text-black/50 font-normal">/month</span></span>
+                <span class="text-[11px] px-2 py-0.5 rounded bg-black text-white font-semibold">No Admin Needed</span>
+            </div>
+
+            <div class="px-5 py-2.5 rounded-2xl bg-white border-2 border-black shadow-sm flex items-center gap-3">
+                <span class="w-3 h-3 rounded-full bg-black"></span>
+                <span class="text-sm font-medium text-black/70">Pro Website:</span>
+                <span class="text-lg font-black text-black">$10 <span class="text-xs text-black/50 font-normal">/month</span></span>
+                <span class="text-[11px] px-2 py-0.5 rounded bg-black text-white font-semibold">Admin Login Included</span>
+            </div>
+        </div>
+
+        <!-- Hero CTAs -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto mb-12">
+            <a href="{{ url_for('order') }}" class="w-full sm:w-auto px-8 py-4 rounded-2xl text-base font-bold text-white bg-black hover:bg-neutral-800 shadow-xl shadow-black/20 hover:shadow-black/30 border border-black transition-all duration-200 transform hover:-translate-y-1 flex items-center justify-center gap-3">
+                <i class="fa-solid fa-wand-magic-sparkles text-white"></i>
+                <span>Create My Website Now</span>
+            </a>
+            <a href="{{ url_for('track') }}" class="w-full sm:w-auto px-6 py-4 rounded-2xl text-base font-semibold text-black bg-white hover:bg-black/5 border border-black/20 shadow-sm transition flex items-center justify-center gap-2">
+                <i class="fa-solid fa-clock-rotate-left text-black"></i>
+                <span>Track 24H Status</span>
+            </a>
+        </div>
+
+        <!-- Quick 24H Guarantee Callout -->
+        <div class="flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs sm:text-sm text-black font-medium">
+            <span class="flex items-center gap-2">
+                <i class="fa-solid fa-bolt text-black"></i> Done in 24 hours guaranteed
+            </span>
+            <span class="flex items-center gap-2">
+                <i class="fa-brands fa-whatsapp text-black"></i> 1-Click WhatsApp Checkout
+            </span>
+            <span class="flex items-center gap-2">
+                <i class="fa-solid fa-mobile-screen-button text-black"></i> 100% Mobile Optimized
+            </span>
+            <span class="flex items-center gap-2">
+                <i class="fa-solid fa-credit-card text-black"></i> No expensive dev costs
+            </span>
+        </div>
+    </div>
+</section>
+
+<!-- ===================================================
+     HOW THE 24-HOUR PROCESS WORKS (PURE BLACK & WHITE)
+     =================================================== -->
+<section id="how-it-works" class="py-20 bg-white border-y border-black/10 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2 class="text-xs uppercase tracking-widest text-black font-bold mb-3">Simple & Seamless</h2>
+            <p class="text-3xl sm:text-4xl font-extrabold text-black font-['Plus_Jakarta_Sans']">How You Get Your Website in 24 Hours</p>
+            <p class="text-black/70 text-sm mt-3">No coding, no server setups, no complicated domain settings. We handle everything.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+            <!-- Step 1 -->
+            <div class="relative p-8 rounded-3xl bg-white border border-black/20 hover:border-black transition group shadow-sm">
+                <div class="w-14 h-14 rounded-2xl bg-black text-white flex items-center justify-center text-2xl font-black mb-6 group-hover:scale-110 transition-transform">
+                    1
+                </div>
+                <h3 class="text-xl font-bold text-black mb-3">Submit Your Business Info</h3>
+                <p class="text-black/70 text-sm leading-relaxed mb-4">
+                    Fill out our simple form with your business name, WhatsApp number, logo, and product photos/prices. Choose either the <strong>$2/mo</strong> or <strong>$10/mo</strong> plan.
+                </p>
+                <div class="text-xs text-black font-semibold flex items-center gap-1.5">
+                    <i class="fa-solid fa-circle-check"></i> Takes only 2 minutes
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="relative p-8 rounded-3xl bg-white border-2 border-black shadow-lg shadow-black/5 transition group">
+                <div class="w-14 h-14 rounded-2xl bg-black text-white flex items-center justify-center text-2xl font-black mb-6 group-hover:scale-110 transition-transform">
+                    2
+                </div>
+                <div class="absolute top-6 right-6 px-3 py-1 rounded-full bg-black text-white text-xs font-bold flex items-center gap-1.5 animate-pulse">
+                    <i class="fa-solid fa-stopwatch text-white"></i> Countdown Starts
+                </div>
+                <h3 class="text-xl font-bold text-black mb-3">24-Hour Countdown Begins</h3>
+                <p class="text-black/70 text-sm leading-relaxed mb-4">
+                    You instantly receive a dedicated tracking page with a real-time countdown timer. Our team designs your store, sets up catalog items, and connects WhatsApp ordering.
+                </p>
+                <div class="text-xs text-black font-semibold flex items-center gap-1.5">
+                    <i class="fa-solid fa-circle-check"></i> Live real-time status tracker
+                </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="relative p-8 rounded-3xl bg-white border border-black/20 hover:border-black transition group shadow-sm">
+                <div class="w-14 h-14 rounded-2xl bg-black text-white flex items-center justify-center text-2xl font-black mb-6 group-hover:scale-110 transition-transform">
+                    3
+                </div>
+                <h3 class="text-xl font-bold text-black mb-3">Website Link Unlocks!</h3>
+                <p class="text-black/70 text-sm leading-relaxed mb-4">
+                    As soon as the 24 hours expire, your live website link is displayed right on your tracking page. Put it in your WhatsApp bio, Instagram bio, and start taking clean orders!
+                </p>
+                <div class="text-xs text-black font-semibold flex items-center gap-1.5">
+                    <i class="fa-solid fa-circle-check"></i> 1-click share to WhatsApp Status
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Demo Tracker Banner -->
+        <div class="mt-16 p-8 rounded-3xl bg-white border border-black/15 flex flex-col md:flex-row items-center justify-between gap-6 shadow-md">
+            <div class="space-y-1 text-center md:text-left">
+                <span class="text-xs font-bold uppercase tracking-wider text-black">Already ordered?</span>
+                <h4 class="text-xl font-bold text-black font-['Plus_Jakarta_Sans']">Check Your 24-Hour Countdown</h4>
+                <p class="text-sm text-black/70">Enter your WhatsApp number or Order ID to see your site's countdown.</p>
+            </div>
+            <form action="{{ url_for('track') }}" method="POST" class="w-full md:w-auto flex flex-col sm:flex-row gap-2 max-w-md">
+                <input type="text" name="query" placeholder="Order ID (e.g. V24-AB12) or Phone" required class="px-4 py-3 rounded-xl bg-white border border-black/20 text-black placeholder-black/40 text-sm focus:outline-none focus:border-black w-full sm:w-72">
+                <button type="submit" class="px-6 py-3 rounded-xl bg-black hover:bg-neutral-800 text-white font-bold text-sm transition flex items-center justify-center gap-2 shadow-md border border-black">
+                    <i class="fa-solid fa-magnifying-glass text-white"></i> Track
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- ===================================================
+     PRICING PLANS SECTION (PURE BLACK & WHITE)
+     =================================================== -->
+<section id="plans" class="py-24 relative bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <span class="text-xs font-bold tracking-widest text-black uppercase">Affordable For Every Vendor</span>
+            <h2 class="text-3xl sm:text-5xl font-black text-black mt-2 font-['Plus_Jakarta_Sans']">Choose Your Plan</h2>
+            <p class="text-black/70 text-sm sm:text-base mt-4">
+                Whether you just want a clean catalog with no hassle or a full store dashboard with admin login, we have the perfect price.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <!-- Plan 1: $2/mo Basic (No Admin Login) -->
+            <div class="relative rounded-3xl bg-white border border-black/20 p-8 sm:p-10 flex flex-col justify-between hover:border-black transition shadow-lg">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="px-3.5 py-1 rounded-full text-xs font-bold bg-black text-white">
+                            STARTER SHOWCASE
+                        </span>
+                        <span class="text-xs text-black/60">Most Popular for Solo Sellers</span>
+                    </div>
+
+                    <h3 class="text-2xl font-bold text-black mb-2">Basic Website (No Admin Login)</h3>
+                    <p class="text-sm text-black/70 mb-6">
+                        Best if you want a clean, professional web catalog where buyers see your items and tap "Order on WhatsApp". Zero admin headaches.
+                    </p>
+
+                    <div class="flex items-baseline gap-2 mb-8 pb-6 border-b border-black/10">
+                        <span class="text-5xl font-black text-black font-['Plus_Jakarta_Sans']">$2</span>
+                        <span class="text-black/60 text-sm font-medium">/ month</span>
+                        <span class="text-xs text-black bg-white border border-black px-2 py-0.5 rounded font-semibold ml-2">Delivered in 24 Hours</span>
+                    </div>
+
+                    <!-- Features List -->
+                    <ul class="space-y-4 text-sm text-black mb-8">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check text-black mt-1"></i>
+                            <span><strong>Custom Mobile Web Showcase:</strong> Fast-loading, sleek product catalog.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check text-black mt-1"></i>
+                            <span><strong>1-Click WhatsApp Ordering:</strong> Direct message pre-filled with item name & price.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check text-black mt-1"></i>
+                            <span><strong>Brand Profile:</strong> Business bio, location/delivery terms, social links.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check text-black mt-1"></i>
+                            <span><strong>Fast Hosting & SSL:</strong> Secure https link to put on your WhatsApp bio.</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-black/40">
+                            <i class="fa-solid fa-xmark text-black/40 mt-1"></i>
+                            <span>No Admin Dashboard (Updates sent to our team).</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <a href="{{ url_for('order', plan='basic_2') }}" class="w-full py-4 rounded-xl text-center font-bold text-white bg-black hover:bg-neutral-800 transition shadow-md shadow-black/20 border border-black">
+                    Get $2/mo Website Now
+                </a>
+            </div>
+
+            <!-- Plan 2: $10/mo Pro (With Admin Login) -->
+            <div class="relative rounded-3xl bg-white border-2 border-black p-8 sm:p-10 flex flex-col justify-between hover:shadow-2xl transition shadow-xl">
+                <div class="absolute -top-3.5 right-8 px-4 py-1 rounded-full text-xs font-black bg-black text-white uppercase tracking-wider shadow border border-black">
+                    ⭐ WITH ADMIN LOGIN
+                </div>
+
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="px-3.5 py-1 rounded-full text-xs font-bold bg-black text-white">
+                            PRO E-COMMERCE
+                        </span>
+                        <span class="text-xs text-black font-semibold">For Growing Businesses</span>
+                    </div>
+
+                    <h3 class="text-2xl font-bold text-black mb-2">Pro Website (With Admin Login)</h3>
+                    <p class="text-sm text-black/70 mb-6">
+                        Includes your own secure Admin Login Dashboard to add new items, change prices, manage out-of-stock items, and see orders anytime!
+                    </p>
+
+                    <div class="flex items-baseline gap-2 mb-8 pb-6 border-b border-black/10">
+                        <span class="text-5xl font-black text-black font-['Plus_Jakarta_Sans']">$10</span>
+                        <span class="text-black/60 text-sm font-medium">/ month</span>
+                        <span class="text-xs text-black bg-white border border-black px-2 py-0.5 rounded font-semibold ml-2">Delivered in 24 Hours</span>
+                    </div>
+
+                    <!-- Features List -->
+                    <ul class="space-y-4 text-sm text-black mb-8">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-shield-halved text-black mt-1"></i>
+                            <span><strong class="text-black">Admin Login Portal:</strong> Dedicated username & password for you.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check text-black mt-1"></i>
+                            <span><strong>Unlimited Product Management:</strong> Add, edit, or delete items on the fly.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check text-black mt-1"></i>
+                            <span><strong>Inventory & Stock Status:</strong> Mark items as In Stock or Sold Out.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check text-black mt-1"></i>
+                            <span><strong>Order Tracking & Customer Log:</strong> Review order inquiries & customer history.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check text-black mt-1"></i>
+                            <span><strong>Announcement Banner:</strong> Post sales, discounts & holiday hours.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <a href="{{ url_for('order', plan='pro_10') }}" class="w-full py-4 rounded-xl text-center font-bold text-white bg-black hover:bg-neutral-800 transition shadow-lg border border-black">
+                    Get $10/mo Pro Website Now
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===================================================
+     COMPARISON TABLE
+     =================================================== -->
+<section class="py-16 bg-white border-t border-black/10">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+        <h3 class="text-2xl font-bold text-black text-center mb-8 font-['Plus_Jakarta_Sans']">Plan Comparison At A Glance</h3>
+        
+        <div class="overflow-x-auto rounded-2xl border border-black/20 bg-white shadow-sm">
+            <table class="w-full text-left text-sm text-black">
+                <thead class="bg-white text-xs uppercase tracking-wider text-black/60 border-b border-black/15">
+                    <tr>
+                        <th class="py-4 px-6 font-bold">Feature</th>
+                        <th class="py-4 px-6 text-black font-bold">$2/mo (Basic)</th>
+                        <th class="py-4 px-6 text-black font-extrabold">$10/mo (Pro)</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-black/10">
+                    <tr>
+                        <td class="py-4 px-6 font-semibold text-black">Turnaround Time</td>
+                        <td class="py-4 px-6 font-medium">⚡ 24 Hours</td>
+                        <td class="py-4 px-6 font-medium">⚡ 24 Hours</td>
+                    </tr>
+                    <tr>
+                        <td class="py-4 px-6 font-semibold text-black">Vendor Admin Login</td>
+                        <td class="py-4 px-6 text-black/40"><i class="fa-solid fa-xmark"></i> No</td>
+                        <td class="py-4 px-6 text-black font-bold"><i class="fa-solid fa-check"></i> Yes (Private Dashboard)</td>
+                    </tr>
+                    <tr>
+                        <td class="py-4 px-6 font-semibold text-black">Product Catalog & Photos</td>
+                        <td class="py-4 px-6"><i class="fa-solid fa-check text-black"></i> Included</td>
+                        <td class="py-4 px-6"><i class="fa-solid fa-check text-black"></i> Included (Self-managed)</td>
+                    </tr>
+                    <tr>
+                        <td class="py-4 px-6 font-semibold text-black">1-Click WhatsApp Ordering</td>
+                        <td class="py-4 px-6"><i class="fa-solid fa-check text-black"></i> Included</td>
+                        <td class="py-4 px-6"><i class="fa-solid fa-check text-black"></i> Included</td>
+                    </tr>
+                    <tr>
+                        <td class="py-4 px-6 font-semibold text-black">Change Products & Prices</td>
+                        <td class="py-4 px-6">Via Support Request</td>
+                        <td class="py-4 px-6 text-black font-bold">Instantly anytime in Admin</td>
+                    </tr>
+                    <tr>
+                        <td class="py-4 px-6 font-semibold text-black">Mobile Bio Link & QR Code</td>
+                        <td class="py-4 px-6"><i class="fa-solid fa-check text-black"></i> Included</td>
+                        <td class="py-4 px-6"><i class="fa-solid fa-check text-black"></i> Included</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- ===================================================
+     FREQUENTLY ASKED QUESTIONS
+     =================================================== -->
+<section class="py-20 max-w-4xl mx-auto px-4 sm:px-6 bg-white">
+    <div class="text-center mb-12">
+        <h3 class="text-3xl font-bold text-black font-['Plus_Jakarta_Sans']">Frequently Asked Questions</h3>
+        <p class="text-black/70 text-sm mt-2">Everything you need to know about getting your WhatsApp website.</p>
+    </div>
+
+    <div class="space-y-4">
+        <div class="p-6 rounded-2xl bg-white border border-black/20 shadow-sm">
+            <h4 class="text-base font-bold text-black flex items-center gap-2">
+                <i class="fa-solid fa-circle-question text-black"></i> How does the 24-hour countdown work?
+            </h4>
+            <p class="text-black/70 text-sm mt-2 leading-relaxed">
+                As soon as you submit your business information and select your plan, you will receive a unique tracking link with a real-time 24-hour countdown. Our team uses your details to hand-craft your store. When the 24 hours expire, your live website link will automatically appear on that same tracking page!
+            </p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white border border-black/20 shadow-sm">
+            <h4 class="text-base font-bold text-black flex items-center gap-2">
+                <i class="fa-solid fa-circle-question text-black"></i> What is the difference between the $2 and $10 plan?
+            </h4>
+            <p class="text-black/70 text-sm mt-2 leading-relaxed">
+                The <strong>$2/month plan</strong> is a static, clean product catalog designed for vendors who don't want to manage logins; customers browse your items and click to send orders directly to your WhatsApp. The <strong>$10/month plan</strong> includes a private Admin Login for you, where you can log in, edit items, add new products, update prices, and change stock statuses whenever you want!
+            </p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white border border-black/20 shadow-sm">
+            <h4 class="text-base font-bold text-black flex items-center gap-2">
+                <i class="fa-solid fa-circle-question text-black"></i> How do customers order from my website?
+            </h4>
+            <p class="text-black/70 text-sm mt-2 leading-relaxed">
+                Every product has a dedicated "Order on WhatsApp" button. When a customer taps it, it automatically launches WhatsApp on their phone with a pre-written message containing the product name, price, and their order details sent straight to your number.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ===================================================
+     FINAL CTA BANNER (PURE BLACK & WHITE)
+     =================================================== -->
+<section class="py-16 bg-black text-white text-center px-4 shadow-xl border-t border-black">
+    <div class="max-w-3xl mx-auto space-y-6">
+        <h3 class="text-3xl sm:text-4xl font-extrabold text-white font-['Plus_Jakarta_Sans']">Ready to elevate your business sales?</h3>
+        <p class="text-white/80 text-base">Submit your business info right now. Your live website link will be ready in 24 hours!</p>
+        <div class="pt-2">
+            <a href="{{ url_for('order') }}" class="inline-flex items-center gap-3 px-8 py-4 rounded-2xl text-black bg-white hover:bg-neutral-100 font-bold text-base shadow-xl transition-all transform hover:-translate-y-1 border border-white">
+                <i class="fa-solid fa-rocket text-black"></i> Get Started For as Low as $2/month
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

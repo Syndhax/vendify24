@@ -1,0 +1,90 @@
+// Common script for WhatsWeb / Vendify24
+document.addEventListener('DOMContentLoaded', () => {
+    // Auto-dismiss flash notifications after 6 seconds
+    const flashes = document.querySelectorAll('.animate-fade-in');
+    flashes.forEach(f => {
+        setTimeout(() => {
+            f.style.opacity = '0';
+            f.style.transition = 'opacity 0.5s ease';
+            setTimeout(() => f.remove(), 500);
+        }, 6000);
+    });
+
+    // ===================================================
+    // FLOATING HEADER TOGGLE CONTROLLER
+    // ===================================================
+    const headerToggleBtn = document.getElementById('headerToggleBtn');
+    const headerToggleIcon = document.getElementById('headerToggleIcon');
+    const mainHeader = document.getElementById('mainHeader');
+    const headerOverlay = document.getElementById('headerOverlay');
+    const navCloseLinks = document.querySelectorAll('.nav-close-link');
+
+    function openHeader() {
+        if (!mainHeader) return;
+        mainHeader.classList.remove('-translate-y-full');
+        mainHeader.classList.add('translate-y-0');
+        if (headerOverlay) {
+            headerOverlay.classList.remove('opacity-0', 'pointer-events-none');
+            headerOverlay.classList.add('opacity-100', 'pointer-events-auto');
+        }
+        if (headerToggleIcon) {
+            headerToggleIcon.classList.remove('fa-bars');
+            headerToggleIcon.classList.add('fa-xmark');
+        }
+        if (headerToggleBtn) {
+            headerToggleBtn.setAttribute('title', 'Close Navigation Menu');
+            headerToggleBtn.classList.remove('bg-white', 'text-black');
+            headerToggleBtn.classList.add('bg-black', 'text-white');
+        }
+    }
+
+    function closeHeader() {
+        if (!mainHeader) return;
+        mainHeader.classList.remove('translate-y-0');
+        mainHeader.classList.add('-translate-y-full');
+        if (headerOverlay) {
+            headerOverlay.classList.remove('opacity-100', 'pointer-events-auto');
+            headerOverlay.classList.add('opacity-0', 'pointer-events-none');
+        }
+        if (headerToggleIcon) {
+            headerToggleIcon.classList.remove('fa-xmark');
+            headerToggleIcon.classList.add('fa-bars');
+        }
+        if (headerToggleBtn) {
+            headerToggleBtn.setAttribute('title', 'Open Navigation Menu');
+            headerToggleBtn.classList.remove('bg-black', 'text-white');
+            headerToggleBtn.classList.add('bg-white', 'text-black');
+        }
+    }
+
+    function toggleHeader() {
+        if (!mainHeader) return;
+        const isOpen = mainHeader.classList.contains('translate-y-0');
+        if (isOpen) {
+            closeHeader();
+        } else {
+            openHeader();
+        }
+    }
+
+    if (headerToggleBtn) {
+        headerToggleBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleHeader();
+        });
+    }
+
+    if (headerOverlay) {
+        headerOverlay.addEventListener('click', closeHeader);
+    }
+
+    navCloseLinks.forEach(link => {
+        link.addEventListener('click', closeHeader);
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeHeader();
+        }
+    });
+});

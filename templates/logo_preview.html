@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+
+{% block title %}Vendify24 - Professional Brand Identity Suite{% endblock %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-white">
+    <!-- Header -->
+    <div class="text-center mb-12">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-black text-white mb-3">
+            <i class="fa-solid fa-shield-halved text-white"></i> Corporate Brand Identity
+        </span>
+        <h1 class="text-3xl sm:text-5xl font-black text-black font-['Plus_Jakarta_Sans']">Vendify24 Identity Suite</h1>
+        <p class="text-black/70 text-sm sm:text-base mt-2 max-w-2xl mx-auto">
+            Engineered from your continuous "24-V" drawing into <strong class="text-black">precision Silicon Valley tech brand identity assets</strong> with flat-cut terminals, sharp miter apex, and pure Black & White styling.
+        </p>
+    </div>
+
+    <!-- Precision Vector SVGs Section -->
+    <div class="mb-14">
+        <div class="flex items-center justify-between pb-4 border-b border-black/10 mb-6">
+            <div>
+                <span class="text-xs font-bold uppercase tracking-wider text-black block">Production Vector Asset</span>
+                <h2 class="text-xl sm:text-2xl font-black text-black font-['Plus_Jakarta_Sans']">Scalable Website & App Icons</h2>
+            </div>
+            <span class="text-xs text-black font-mono font-semibold">100% Scalable Vector</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Vector Option A: Architectural Minimalist -->
+            <div class="p-8 rounded-3xl bg-white border-2 border-black flex flex-col justify-between shadow-lg shadow-black/10 group">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-black text-white">
+                            ⭐ ACTIVE APP ICON (NAVBAR & BRAND)
+                        </span>
+                        <span class="text-xs text-black font-semibold">Pure Black & White</span>
+                    </div>
+
+                    <div class="aspect-square rounded-2xl bg-white border border-black/20 flex items-center justify-center p-8 mb-6 shadow-sm group-hover:scale-[1.02] transition-transform">
+                        <img src="{{ url_for('static', filename='images/logo-icon.svg') }}" alt="Minimal Tech Vector" class="w-64 h-64 drop-shadow-xl">
+                    </div>
+
+                    <h3 class="text-xl font-black text-black mb-2">The Precision Linear 24-V</h3>
+                    <p class="text-xs text-black/70 leading-relaxed">
+                        Features uniform optical stroke weight, flat architectural cuts at 45°/90°, and a sharp miter apex for the central V in high-contrast white over an obsidian container.
+                    </p>
+                </div>
+
+                <div class="mt-6 pt-4 border-t border-black/10 flex items-center justify-between">
+                    <span class="text-xs text-black font-semibold">Active in Navbar & Favicon</span>
+                    <a href="{{ url_for('static', filename='images/logo-icon.svg') }}" target="_blank" class="px-4 py-2 rounded-xl bg-black hover:bg-neutral-800 text-white text-xs font-bold transition flex items-center gap-1.5 shadow-md border border-black">
+                        <i class="fa-solid fa-arrow-down text-white"></i> Download SVG
+                    </a>
+                </div>
+            </div>
+
+            <!-- Vector Option B: Brand Design Specification -->
+            <div class="p-8 rounded-3xl bg-white border border-black/15 flex flex-col justify-between hover:border-black/30 transition shadow-md group">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-black text-white">
+                            BRAND DESIGN SPECIFICATION
+                        </span>
+                        <span class="text-xs text-black/60">Strict Color Rule</span>
+                    </div>
+
+                    <div class="aspect-square rounded-2xl bg-white border border-black/15 flex flex-col items-center justify-center p-8 mb-6 shadow-inner text-center">
+                        <div class="w-24 h-24 rounded-3xl bg-black flex items-center justify-center text-white text-3xl font-black mb-4 border border-black shadow-lg">
+                            <span>24</span>
+                        </div>
+                        <h4 class="text-base font-bold text-black">Pure Monochrome System</h4>
+                        <p class="text-xs text-black/60 mt-1 max-w-xs">1. White (#ffffff Background)<br>2. Black (#000000 Typography & Buttons)<br>Zero other colors.</p>
+                    </div>
+
+                    <h3 class="text-xl font-black text-black mb-2">High-Contrast Minimalist Interface</h3>
+                    <p class="text-xs text-black/70 leading-relaxed">
+                        Pure light mode interface with zero color clutter. Clean, modern, trustworthy, and built for instant brand recall.
+                    </p>
+                </div>
+
+                <div class="mt-6 pt-4 border-t border-black/10 flex items-center justify-between">
+                    <span class="text-xs text-black/70 font-semibold">Ready for Production</span>
+                    <a href="{{ url_for('index') }}" class="px-4 py-2 rounded-xl bg-white hover:bg-black/5 text-black text-xs font-bold transition flex items-center gap-1.5 border border-black/20 shadow-sm">
+                        View On Homepage
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Live Website Header Preview -->
+    <div class="p-8 rounded-3xl bg-white border border-black/15 shadow-md space-y-6">
+        <h3 class="text-sm font-bold uppercase tracking-wider text-black/60">Live Header Preview in Action</h3>
+
+        <div class="p-5 rounded-2xl bg-white border border-black/15 flex items-center justify-between shadow-sm">
+            <div class="flex items-center gap-3.5">
+                <div class="w-12 h-12 rounded-2xl overflow-hidden shadow-md border border-black/20">
+                    <img src="{{ url_for('static', filename='images/logo-icon.svg') }}" class="w-full h-full object-cover">
+                </div>
+                <div>
+                    <span class="text-2xl font-black text-black font-['Plus_Jakarta_Sans'] tracking-tight flex items-center gap-0.5">
+                        Vendify<span class="font-black">24</span>
+                    </span>
+                    <p class="text-[9px] text-black/60 tracking-wider uppercase font-bold">24H Business Website Builder</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-3">
+                <a href="{{ url_for('order') }}" class="px-5 py-2.5 rounded-xl bg-black hover:bg-neutral-800 text-white text-xs font-extrabold shadow-md shadow-black/20 transition border border-black">
+                    Create Website &rarr;
+                </a>
+            </div>
+        </div>
+
+        <div class="text-center pt-2">
+            <a href="{{ url_for('index') }}" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white hover:bg-black/5 text-black text-xs font-bold transition border border-black/20 shadow-sm">
+                <i class="fa-solid fa-arrow-left"></i> Return to Homepage
+            </a>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <!-- Premium Dark Background Gradient -->
+    <linearGradient id="bgProGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B1120" />
+      <stop offset="100%" stop-color="#020617" />
+    </linearGradient>
+
+    <!-- Vibrant Tech Emerald & Teal Gradient -->
+    <linearGradient id="techEmerald" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10B981" />
+      <stop offset="60%" stop-color="#059669" />
+      <stop offset="100%" stop-color="#047857" />
+    </linearGradient>
+
+    <!-- Dynamic Cyan/Mint V-Nexus Gradient (for the front facet of the V) -->
+    <linearGradient id="vFacetGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34D399" />
+      <stop offset="50%" stop-color="#2DD4BF" />
+      <stop offset="100%" stop-color="#06B6D4" />
+    </linearGradient>
+
+    <!-- Subtle Bevel Highlight Gradient -->
+    <linearGradient id="bevelLight" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#A7F3D0" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#2DD4BF" stop-opacity="0.2" />
+    </linearGradient>
+
+    <!-- Deep Ambient Glow Filter -->
+    <filter id="proAmbientGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="12" stdDeviation="24" flood-color="#10B981" flood-opacity="0.28" />
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#34D399" flood-opacity="0.2" />
+    </filter>
+  </defs>
+
+  <!-- Luxury App Icon Squircle Container -->
+  <rect width="500" height="500" rx="112" fill="url(#bgProGrad)" stroke="#1E293B" stroke-width="2" />
+  
+  <!-- Subtle Architectural Framing Line -->
+  <rect x="24" y="24" width="452" height="452" rx="90" fill="none" stroke="#334155" stroke-width="1" stroke-opacity="0.3" />
+
+  <!-- 
+    PROFESSIONAL GEOMETRIC 24-V LIGATURE
+    Constructed with precise mathematical angles, flat-angled terminals,
+    and distinct ribbon facets that turn the sketch into a Fortune-500 tech mark.
+  -->
+  <g transform="translate(45, 45)" filter="url(#proAmbientGlow)">
+    
+    <!-- 1. The Head of the '2' (Sleek Geometric Arc with flush terminal) -->
+    <path d="M 75 140
+             C 75 75, 125 45, 195 45
+             C 260 45, 290 85, 275 145
+             C 260 190, 225 245, 175 305
+             L 125 305
+             C 178 245, 212 190, 225 145
+             C 235 105, 215 85, 190 85
+             C 145 85, 115 105, 115 140
+             Z"
+          fill="url(#techEmerald)" />
+
+    <!-- 
+      2. THE CENTRAL "V" RIBBON (The centerpiece of Vendify)
+      Left diagonal stem goes down to apex at (125, 360)
+      Right diagonal arm shoots up to (335, 75)
+    -->
+    <!-- Under-shadow of the V for depth -->
+    <polygon points="125,360 175,305 335,75 285,75" fill="#047857" opacity="0.6" />
+
+    <!-- Front Facet of the V (Razor Sharp Precision) -->
+    <path d="M 175 235 
+             L 125 360 
+             L 335 75 
+             L 375 75 
+             L 145 385 
+             C 133 400, 110 395, 105 378
+             L 85 330 
+             L 135 270 
+             Z"
+          fill="url(#vFacetGrad)" />
+
+    <!-- 3. The Vertical Stem of the '4' (Precision Column) -->
+    <path d="M 320 115
+             L 360 65
+             L 360 385
+             L 315 385
+             L 315 160
+             Z"
+          fill="url(#techEmerald)" />
+
+    <!-- 
+      4. The Horizontal Crossbar / Baseline
+      Connects the 2 and 4 into a rock-solid foundation with an overhang tip
+    -->
+    <path d="M 85 330
+             L 395 330
+             L 405 345
+             L 395 365
+             L 85 365
+             Z"
+          fill="url(#techEmerald)" opacity="0.95" />
+
+    <!-- 5. Micro Precision Highlights (Chamfer reflection edge along the V) -->
+    <path d="M 125 360 L 335 75" 
+          stroke="url(#bevelLight)" 
+          stroke-width="5" 
+          stroke-linecap="round" />
+  </g>
+</svg>
