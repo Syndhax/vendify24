@@ -208,6 +208,299 @@
         </div>
 
     </div>
+
+
+<!-- ===================================================
+     INTERACTIVE STORE BUILDER SIMULATOR
+     "Pretend you are building your website with Vendify24"
+     =================================================== -->
+<section id="builder-simulator" class="py-20 lg:py-28 bg-white border-t border-black/10 font-['Space_Grotesk']">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Section Header -->
+        <div class="text-center max-w-3xl mx-auto mb-14 sm:mb-20">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1 bg-black text-white text-xs font-bold uppercase tracking-widest mb-4">
+                <span class="w-2 h-2 bg-white animate-pulse"></span>
+                <span>Interactive Test Drive</span>
+            </div>
+            <h2 class="text-3xl sm:text-5xl font-black text-black tracking-tight leading-tight">
+                Try Creating Your Website Now
+            </h2>
+            <p class="text-base sm:text-lg text-black/70 mt-3 font-normal">
+                Experience how Vendify24 works in 30 seconds. Enter your store name, preview your products, watch your live 24-hour countdown, and get your custom website link.
+            </p>
+        </div>
+
+        <!-- Simulator Grid: Left = Step Wizard, Right = Live Device Preview -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start">
+            
+            <!-- LEFT COLUMN: The Interactive Steps (Cols 7) -->
+            <div class="lg:col-span-7 bg-white p-6 sm:p-10 border border-black/15 shadow-sm space-y-8">
+                
+                <!-- Progress Stepper Bar -->
+                <div class="grid grid-cols-4 gap-2 border-b border-black/10 pb-6 text-xs font-bold uppercase tracking-wider text-black">
+                    <button type="button" onclick="goToSimStep(1)" id="stepTab1" class="step-tab flex items-center justify-center gap-2 pb-2 border-b-2 border-black text-black font-black cursor-pointer">
+                        <span class="w-5 h-5 flex items-center justify-center bg-black text-white text-[11px]">1</span>
+                        <span class="hidden sm:inline">Account</span>
+                    </button>
+                    <button type="button" onclick="goToSimStep(2)" id="stepTab2" class="step-tab flex items-center justify-center gap-2 pb-2 text-black/40 border-b-2 border-transparent cursor-pointer">
+                        <span class="w-5 h-5 flex items-center justify-center bg-black/10 text-black text-[11px]">2</span>
+                        <span class="hidden sm:inline">Brand</span>
+                    </button>
+                    <button type="button" onclick="goToSimStep(3)" id="stepTab3" class="step-tab flex items-center justify-center gap-2 pb-2 text-black/40 border-b-2 border-transparent cursor-pointer">
+                        <span class="w-5 h-5 flex items-center justify-center bg-black/10 text-black text-[11px]">3</span>
+                        <span class="hidden sm:inline">Products</span>
+                    </button>
+                    <button type="button" onclick="goToSimStep(4)" id="stepTab4" class="step-tab flex items-center justify-center gap-2 pb-2 text-black/40 border-b-2 border-transparent cursor-pointer">
+                        <span class="w-5 h-5 flex items-center justify-center bg-black/10 text-black text-[11px]">4</span>
+                        <span class="hidden sm:inline">Launch</span>
+                    </button>
+                </div>
+
+                <!-- STEP 1: CREATE ACCOUNT -->
+                <div id="simStep1" class="sim-step space-y-6">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-black/60">Step 1 of 4</span>
+                        <h3 class="text-2xl sm:text-3xl font-black text-black tracking-tight mt-1">Create Your Vendor Account</h3>
+                        <p class="text-sm text-black/70 mt-1">Tell us who will be managing and receiving orders for this store.</p>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-black mb-1.5">Your Full Name</label>
+                            <input type="text" id="simVendorName" value="Amara Johnson" class="w-full px-4 py-3 bg-white border border-black/20 focus:border-black text-black text-sm font-medium focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-black mb-1.5">WhatsApp Phone Number</label>
+                            <input type="text" id="simWhatsapp" value="+1 (555) 382-9012" class="w-full px-4 py-3 bg-white border border-black/20 focus:border-black text-black text-sm font-medium focus:outline-none">
+                            <span class="text-[11px] text-black/60 mt-1 block">Your customer orders will arrive directly in this WhatsApp chat.</span>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-black mb-1.5">Create A Password</label>
+                            <input type="password" id="simPassword" value="vendify2026secure" class="w-full px-4 py-3 bg-white border border-black/20 focus:border-black text-black text-sm font-medium focus:outline-none">
+                        </div>
+                    </div>
+
+                    <button type="button" onclick="goToSimStep(2)" class="w-full py-4 bg-black hover:bg-neutral-800 text-white font-bold text-sm uppercase tracking-wider transition flex items-center justify-center gap-2 cursor-pointer">
+                        <span>Continue to Store Name & Details</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <!-- STEP 2: STORE IDENTITY -->
+                <div id="simStep2" class="sim-step space-y-6 hidden">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-black/60">Step 2 of 4</span>
+                        <h3 class="text-2xl sm:text-3xl font-black text-black tracking-tight mt-1">Store Name, Link & Bio</h3>
+                        <p class="text-sm text-black/70 mt-1">Choose your official store title and your custom web address.</p>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-black mb-1.5">Company / Store Name</label>
+                            <input type="text" id="simStoreName" value="Bella Luxe Boutique" oninput="updateStoreNamePreview(this.value)" class="w-full px-4 py-3 bg-white border border-black/20 focus:border-black text-black text-sm font-medium focus:outline-none">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-black mb-1.5">Your Custom Website Link</label>
+                            <div class="flex items-center border border-black/20 bg-neutral-50 px-3 py-3">
+                                <span class="text-xs text-black/60 font-mono">https://</span>
+                                <input type="text" id="simSlug" value="bellaluxe" oninput="updateSlugPreview(this.value)" class="bg-transparent border-none text-black font-bold font-mono text-xs focus:outline-none flex-1 px-1">
+                                <span class="text-xs text-black/60 font-mono">.vendify24.com</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-black mb-1.5">Store Tagline / Description</label>
+                            <textarea id="simTagline" rows="2" oninput="updateTaglinePreview(this.value)" class="w-full px-4 py-3 bg-white border border-black/20 focus:border-black text-black text-sm font-medium focus:outline-none">Curated luxury fashion, silk dresses & bespoke accessories delivered nationwide.</textarea>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-black mb-1.5">Currency</label>
+                            <div class="flex gap-2">
+                                <button type="button" onclick="setSimCurrency('$')" id="currUSD" class="sim-curr-btn px-4 py-2 border-2 border-black bg-black text-white text-xs font-bold cursor-pointer">$ USD</button>
+                                <button type="button" onclick="setSimCurrency('£')" id="currGBP" class="sim-curr-btn px-4 py-2 border border-black/20 bg-white text-black text-xs font-bold cursor-pointer">£ GBP</button>
+                                <button type="button" onclick="setSimCurrency('€')" id="currEUR" class="sim-curr-btn px-4 py-2 border border-black/20 bg-white text-black text-xs font-bold cursor-pointer">€ EUR</button>
+                                <button type="button" onclick="setSimCurrency('₦')" id="currNGN" class="sim-curr-btn px-4 py-2 border border-black/20 bg-white text-black text-xs font-bold cursor-pointer">₦ NGN</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-3 pt-2">
+                        <button type="button" onclick="goToSimStep(1)" class="w-1/3 py-4 border border-black/20 hover:border-black text-black font-bold text-xs uppercase tracking-wider transition cursor-pointer">
+                            Back
+                        </button>
+                        <button type="button" onclick="goToSimStep(3)" class="w-2/3 py-4 bg-black hover:bg-neutral-800 text-white font-bold text-sm uppercase tracking-wider transition flex items-center justify-center gap-2 cursor-pointer">
+                            <span>Continue to Products</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- STEP 3: PRODUCTS & PRICING -->
+                <div id="simStep3" class="sim-step space-y-6 hidden">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-black/60">Step 3 of 4</span>
+                        <h3 class="text-2xl sm:text-3xl font-black text-black tracking-tight mt-1">Product Categories & Prices</h3>
+                        <p class="text-sm text-black/70 mt-1">Select your category to auto-fill sample products, or customize them below.</p>
+                    </div>
+
+                    <!-- Category Preset Buttons -->
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-black mb-2">Select Your Category</label>
+                        <div class="flex flex-wrap gap-2" id="categoryButtonsContainer">
+                            <button type="button" onclick="applyCategoryPreset('Fashion')" class="cat-preset-btn px-3.5 py-1.5 border-2 border-black bg-black text-white text-xs font-bold cursor-pointer">Fashion & Apparel</button>
+                            <button type="button" onclick="applyCategoryPreset('Beauty')" class="cat-preset-btn px-3.5 py-1.5 border border-black/20 bg-white text-black text-xs font-bold cursor-pointer">Beauty & Hair</button>
+                            <button type="button" onclick="applyCategoryPreset('Bakery')" class="cat-preset-btn px-3.5 py-1.5 border border-black/20 bg-white text-black text-xs font-bold cursor-pointer">Food & Bakery</button>
+                            <button type="button" onclick="applyCategoryPreset('Jewelry')" class="cat-preset-btn px-3.5 py-1.5 border border-black/20 bg-white text-black text-xs font-bold cursor-pointer">Jewelry & Watches</button>
+                            <button type="button" onclick="applyCategoryPreset('Gadgets')" class="cat-preset-btn px-3.5 py-1.5 border border-black/20 bg-white text-black text-xs font-bold cursor-pointer">Tech & Gadgets</button>
+                        </div>
+                    </div>
+
+                    <!-- Sample Products Editor List -->
+                    <div class="space-y-3 pt-2">
+                        <label class="block text-xs font-bold uppercase tracking-wider text-black">Your Sample Products & Prices</label>
+                        <div id="simProductsList" class="space-y-2.5">
+                            <!-- Populated dynamically via JS -->
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-3 pt-4">
+                        <button type="button" onclick="goToSimStep(2)" class="w-1/3 py-4 border border-black/20 hover:border-black text-black font-bold text-xs uppercase tracking-wider transition cursor-pointer">
+                            Back
+                        </button>
+                        <button type="button" onclick="launchSimulation()" class="w-2/3 py-4 bg-black hover:bg-neutral-800 text-white font-bold text-sm uppercase tracking-wider transition flex items-center justify-center gap-2 shadow-xl cursor-pointer">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            <span>Generate 24H Website</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- STEP 4: 24-HOUR COUNTDOWN & READY WEBSITE LINK -->
+                <div id="simStep4" class="sim-step space-y-6 hidden">
+                    <div class="text-center py-2">
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1 bg-black text-white text-xs font-bold uppercase tracking-widest mb-3">
+                            <span class="w-2 h-2 rounded-full bg-white animate-ping"></span>
+                            <span>24-Hour Production Engine Active</span>
+                        </div>
+                        <h3 class="text-3xl sm:text-4xl font-black text-black tracking-tight">Your Website Is Generated!</h3>
+                        <p class="text-sm text-black/70 mt-1">Here is the exact countdown and link your customers will receive.</p>
+                    </div>
+
+                    <!-- 24-Hour Live Countdown Timer -->
+                    <div class="p-6 bg-black text-white text-center space-y-3 shadow-md">
+                        <span class="text-xs uppercase tracking-widest text-neutral-400 font-bold">Guaranteed Delivery Countdown</span>
+                        <div class="flex items-center justify-center gap-3 font-mono font-black text-4xl sm:text-6xl text-white">
+                            <div class="flex flex-col items-center">
+                                <span id="simTimerHours">23</span>
+                                <span class="text-[10px] font-sans text-neutral-400 uppercase tracking-widest">Hours</span>
+                            </div>
+                            <span class="text-neutral-500">:</span>
+                            <div class="flex flex-col items-center">
+                                <span id="simTimerMinutes">59</span>
+                                <span class="text-[10px] font-sans text-neutral-400 uppercase tracking-widest">Mins</span>
+                            </div>
+                            <span class="text-neutral-500">:</span>
+                            <div class="flex flex-col items-center">
+                                <span id="simTimerSeconds">54</span>
+                                <span class="text-[10px] font-sans text-neutral-400 uppercase tracking-widest">Secs</span>
+                            </div>
+                        </div>
+                        <div class="text-xs text-neutral-300 flex items-center justify-center gap-2 pt-1 font-medium">
+                            <i class="fa-solid fa-bolt"></i> Order received. Production underway. Delivery to WhatsApp in 24 hours.
+                        </div>
+                    </div>
+
+                    <!-- The Ready Website Link Box (Clickable, takes to signup) -->
+                    <div class="p-6 border-2 border-black bg-white space-y-3">
+                        <span class="text-xs uppercase tracking-wider text-black/60 font-bold block">Your Official Website Link:</span>
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                            <a id="simWebsiteLink" href="{{ url_for('order') }}" class="font-mono font-bold text-lg sm:text-xl text-black hover:underline flex items-center gap-2 group">
+                                <i class="fa-solid fa-link text-black group-hover:scale-110 transition-transform"></i>
+                                <span id="simWebsiteUrlText">https://bellaluxe.vendify24.com</span>
+                            </a>
+                            <a id="simWebsiteLinkBtn" href="{{ url_for('order') }}" class="text-xs font-bold px-3 py-1.5 bg-black text-white uppercase tracking-wider text-center">
+                                Click Link to Launch →
+                            </a>
+                        </div>
+                        <p class="text-xs text-black/70">
+                            Click this link or the button below to complete signup and start your real 24-hour build!
+                        </p>
+                    </div>
+
+                    <!-- Primary Action Button: Takes them to Signup / Order Page -->
+                    <div class="space-y-3 pt-2">
+                        <a id="simSignupBtn" href="{{ url_for('order') }}" class="w-full py-4 bg-black hover:bg-neutral-800 text-white font-black text-base uppercase tracking-wider transition flex items-center justify-center gap-3 shadow-2xl">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            <span>Create This Website For Real ($2/mo)</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                        <button type="button" onclick="goToSimStep(1)" class="w-full text-center text-xs font-bold text-black/60 hover:text-black uppercase tracking-wider py-1 cursor-pointer">
+                            ↺ Reset Simulation
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- RIGHT COLUMN: Real-Time Mobile Device Mockup (Cols 5) -->
+            <div class="lg:col-span-5 w-full sticky top-20">
+                <div class="border-2 border-black bg-white shadow-2xl p-4 sm:p-6 space-y-5">
+                    
+                    <!-- Phone Browser Chrome Header -->
+                    <div class="flex items-center justify-between border-b border-black/15 pb-3">
+                        <div class="flex items-center gap-1.5">
+                            <span class="w-2.5 h-2.5 rounded-full bg-black/20"></span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-black/20"></span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-black/20"></span>
+                        </div>
+                        <div class="text-[11px] font-mono text-black font-semibold truncate max-w-[200px] bg-neutral-100 px-2 py-0.5 border border-black/10">
+                            <i class="fa-solid fa-lock text-[9px] mr-1"></i>
+                            <span id="previewBarUrl">bellaluxe.vendify24.com</span>
+                        </div>
+                        <span class="text-[10px] uppercase font-bold text-black/60">PREVIEW</span>
+                    </div>
+
+                    <!-- Live Store Preview Header -->
+                    <div class="space-y-2 border-b border-black/10 pb-4">
+                        <div class="flex items-center justify-between">
+                            <span id="previewStoreName" class="font-black text-xl text-black font-['Space_Grotesk'] leading-tight">Bella Luxe Boutique</span>
+                            <span class="text-[10px] font-bold px-2 py-0.5 bg-black text-white">OFFICIAL</span>
+                        </div>
+                        <p id="previewTagline" class="text-xs text-black/70 leading-relaxed font-normal">Curated luxury fashion, silk dresses & bespoke accessories delivered nationwide.</p>
+                        <div class="flex items-center gap-2 pt-1 text-[11px] text-black font-semibold">
+                            <span><i class="fa-brands fa-whatsapp text-black"></i> WhatsApp Orders</span>
+                            <span>•</span>
+                            <span>24H Guarantee</span>
+                        </div>
+                    </div>
+
+                    <!-- Live Products Showcase Preview -->
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between text-xs font-bold uppercase tracking-wider text-black">
+                            <span>Catalog Preview</span>
+                            <span id="previewItemCount" class="text-[11px] text-black/60">3 items</span>
+                        </div>
+                        <div id="previewProductsGrid" class="space-y-2.5">
+                            <!-- Populated dynamically via JS -->
+                        </div>
+                    </div>
+
+                    <!-- Live 1-Click WhatsApp Button in Mockup -->
+                    <div class="pt-3 border-t border-black/10">
+                        <a href="{{ url_for('order') }}" class="w-full p-3.5 bg-black text-white text-xs font-bold text-center flex items-center justify-center gap-2 shadow-md hover:bg-neutral-800 transition">
+                            <i class="fa-brands fa-whatsapp text-sm text-white"></i>
+                            <span>1-Click Order on WhatsApp</span>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
 </section>
 
 
