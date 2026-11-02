@@ -231,6 +231,25 @@
             </p>
         </div>
 
+        <!-- Sticky Simulator Status Bar (Visible while in simulator) -->
+        <div id="simLockBanner" class="sticky top-20 z-30 mb-8 p-3 sm:p-4 bg-white/95 backdrop-blur-md border-2 border-black shadow-lg flex items-center justify-between transition-all duration-300">
+            <div class="flex items-center gap-3">
+                <span id="simLockIcon" class="w-3 h-3 bg-black rounded-full animate-ping"></span>
+                <div>
+                    <span id="simLockStatus" class="text-xs sm:text-sm font-bold uppercase tracking-wider text-black block">
+                        Interactive Demo Locked: Complete all 4 steps or Skip to scroll down
+                    </span>
+                    <span id="simLockHint" class="text-[11px] text-black/60 hidden sm:block">
+                        Scroll lock active — complete your store preview or click Skip Demo to proceed
+                    </span>
+                </div>
+            </div>
+            <button type="button" onclick="skipSimulator()" id="skipDemoBtn" class="px-4 py-2 bg-black hover:bg-neutral-800 text-white text-xs sm:text-sm font-bold uppercase tracking-wider transition-all duration-200 flex items-center gap-2 cursor-pointer shadow-md shrink-0">
+                <span>Skip Demo</span>
+                <i class="fa-solid fa-arrow-down"></i>
+            </button>
+        </div>
+
         <!-- Simulator Grid: Left = Step Wizard, Right = Live Device Preview -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start">
             
@@ -501,13 +520,12 @@
 
     </div>
 </section>
-</section>
 
 
 <!-- ===================================================
      HERO SECTION: HEADLINE, CTAs & PRICING HIGHLIGHTS
      =================================================== -->
-<section class="relative overflow-hidden pt-12 pb-20 lg:pt-16 lg:pb-28 bg-white">
+<section id="hero-section" class="relative overflow-hidden pt-12 pb-20 lg:pt-16 lg:pb-28 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <!-- Live Badge -->
         <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black text-white text-xs sm:text-sm font-semibold mb-8 shadow-sm">

@@ -324,6 +324,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.launchSimulation = function() {
         window.goToSimStep(4);
+        if (typeof window.unlockSimulator === 'function') {
+            window.unlockSimulator(false);
+        }
 
         const storeName = (document.getElementById('simStoreName')?.value || 'My Store').trim();
         const vendorName = (document.getElementById('simVendorName')?.value || '').trim();
@@ -362,8 +365,180 @@ document.addEventListener('DOMContentLoaded', () => {
         simCountdownInterval = setInterval(tickCountdown, 1000);
     };
 
+
+    // ===================================================
+    // BUILDER SIMULATOR STICKY SCROLL LOCK SYSTEM
+    // User cannot scroll past the simulator until they
+    // complete the 4 steps OR click "Skip Demo".
+    // ===================================================
+    let isSimulatorUnlocked = false;
+
+    try {
+        if (sessionStorage.getItem('vendify_sim_unlocked') === 'true') {
+            isSimulatorUnlocked = true;
+        }
+    } catch (e) {}
+
+    window.unlockSimulator = function(autoScroll = false) {
+        isSimulatorUnlocked = true;
+        try {
+            sessionStorage.setItem('vendify_sim_unlocked', 'true');
+        } catch (e) {}
+
+        const lockIcon = document.getElementById('simLockIcon');
+        const lockStatus = document.getElementById('simLockStatus');
+        const lockHint = document.getElementById('simLockHint');
+        const skipBtn = document.getElementById('skipDemoBtn');
+        const banner = document.getElementById('simLockBanner');
+
+        if (lockIcon) {
+            lockIcon.className = 'w-3 h-3 bg-black rounded-full';
+        }
+        if (lockStatus) {
+            lockStatus.innerHTML = '<i class="fa-solid fa-circle-check mr-1.5"></i> Website Builder Finished — Full Page Unlocked';
+        }
+        if (lockHint) {
+            lockHint.textContent = 'You can now scroll down freely through the rest of the website.';
+        }
+        if (skipBtn) {
+            skipBtn.className = 'px-4 py-2 border border-black/30 hover:border-black bg-white hover:bg-black hover:text-white text-black text-xs sm:text-sm font-bold uppercase tracking-wider transition-all duration-200 flex items-center gap-2 cursor-pointer shadow-sm shrink-0';
+            skipBtn.innerHTML = '<span>Continue</span> <i class="fa-solid fa-arrow-down"></i>';
+            skipBtn.onclick = function() {
+                const heroSection = document.getElementById('hero-section');
+                if (heroSection) {
+                    heroSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            };
+        }
+        if (banner) {
+            banner.classList.remove('border-2');
+            banner.classList.add('border', 'border-black/20');
+        }
+
+        if (autoScroll) {
+            const heroSection = document.getElementById('hero-section');
+            if (heroSection) {
+                heroSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    };
+
+    window.skipSimulator = function() {
+        window.unlockSimulator(true);
+    };
+
+    let isPulsing = false;
+    function pulseSkipHint() {
+        if (isPulsing) return;
+        isPulsing = true;
+        const banner = document.getElementById('simLockBanner');
+        const skipBtn = document.getElementById('skipDemoBtn');
+        if (banner) {
+            banner.classList.add('ring-4', 'ring-black');
+            setTimeout(() => {
+                banner.classList.remove('ring-4', 'ring-black');
+            }, 500);
+        }
+        if (skipBtn) {
+            skipBtn.classList.add('scale-105');
+            setTimeout(() => {
+                skipBtn.classList.remove('scale-105');
+                isPulsing = false;
+            }, 500);
+        } else {
+            isPulsing = false;
+        }
+    }
+
+    function getSimulatorBottomScrollLimit() {
+        const sim = document.getElementById('builder-simulator');
+        if (!sim) return null;
+        const rect = sim.getBoundingClientRect();
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const simTop = rect.top + scrollTop;
+        const simBottom = simTop + sim.offsetHeight;
+        // The maximum scrollTop allowed so simulator bottom does not leave the viewport
+        return Math.max(simTop, simBottom - window.innerHeight);
+    }
+
+    // Intercept downward mouse wheel scrolling past simulator
+    window.addEventListener('wheel', function(e) {
+        if (isSimulatorUnlocked) return;
+        const maxScroll = getSimulatorBottomScrollLimit();
+        if (maxScroll === null) return;
+
+        if (e.deltaY > 0) {
+            const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+            if (currentScroll >= maxScroll - 5) {
+                e.preventDefault();
+                window.scrollTo({ top: maxScroll, behavior: 'instant' });
+                pulseSkipHint();
+            }
+        }
+    }, { passive: false });
+
+    // Intercept mobile touch dragging
+    let simTouchStartY = 0;
+    window.addEventListener('touchstart', function(e) {
+        if (e.touches && e.touches.length > 0) {
+            simTouchStartY = e.touches[0].clientY;
+        }
+    }, { passive: true });
+
+    window.addEventListener('touchmove', function(e) {
+        if (isSimulatorUnlocked) return;
+        if (!e.touches || e.touches.length === 0) return;
+
+        const maxScroll = getSimulatorBottomScrollLimit();
+        if (maxScroll === null) return;
+
+        const deltaY = simTouchStartY - e.touches[0].clientY; // positive = dragging down to scroll down
+        if (deltaY > 0) {
+            const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+            if (currentScroll >= maxScroll - 5) {
+                if (e.cancelable) e.preventDefault();
+                window.scrollTo({ top: maxScroll, behavior: 'instant' });
+                pulseSkipHint();
+            }
+        }
+    }, { passive: false });
+
+    // Intercept keyboard down keys
+    window.addEventListener('keydown', function(e) {
+        if (isSimulatorUnlocked) return;
+        const maxScroll = getSimulatorBottomScrollLimit();
+        if (maxScroll === null) return;
+
+        const scrollKeys = ['ArrowDown', 'PageDown', ' '];
+        if (scrollKeys.includes(e.key)) {
+            const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+            if (currentScroll >= maxScroll - 5) {
+                e.preventDefault();
+                window.scrollTo({ top: maxScroll, behavior: 'instant' });
+                pulseSkipHint();
+            }
+        }
+    });
+
+    // Guard on general scroll event to snap back if browser somehow overshot
+    window.addEventListener('scroll', function() {
+        if (isSimulatorUnlocked) return;
+        const maxScroll = getSimulatorBottomScrollLimit();
+        if (maxScroll === null) return;
+
+        const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+        if (currentScroll > maxScroll + 10) {
+            window.scrollTo({ top: maxScroll, behavior: 'instant' });
+            pulseSkipHint();
+        }
+    }, { passive: true });
+
     // Initialize the simulator with Fashion preset
     if (document.getElementById('builder-simulator')) {
         renderProductsUI();
+        if (isSimulatorUnlocked) {
+            window.unlockSimulator(false);
+        }
     }
 });
+
