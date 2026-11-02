@@ -89,30 +89,36 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ===================================================
-    // PURPOSE POINTS SCROLL REVEAL CHOREOGRAPHY
-    // - State 1: When point enters viewport, only heading shows (centered).
-    // - State 2: Pinch scroll moves heading up and reveals other writings.
+    // PURPOSE POINTS STICKY SCROLL CHOREOGRAPHY
+    // - As user scrolls to point: Card pins with image + JUST THE HEADING.
+    // - As user scrolls again: Heading moves up and other writings come up!
     // ===================================================
-    const purposePoints = document.querySelectorAll('.purpose-point');
-    if (purposePoints.length > 0) {
+    const purposeTracks = document.querySelectorAll('.purpose-track');
+    if (purposeTracks.length > 0) {
         let isTicking = false;
 
-        function updatePurposePoints() {
+        function updatePurposeStickyTracks() {
             const vHeight = window.innerHeight;
-            // Point triggers reveal when top reaches ~60% of viewport
-            const revealThreshold = vHeight * 0.60;
-            // When scrolling back up, un-reveals when top drops back below 72%
-            const unrevealThreshold = vHeight * 0.72;
+            // Sticky top position: 14% on desktop, 10% on mobile
+            const isDesktop = window.innerWidth >= 1024;
+            const stickyTop = isDesktop ? vHeight * 0.14 : vHeight * 0.10;
 
-            purposePoints.forEach(point => {
-                const rect = point.getBoundingClientRect();
-                if (rect.top <= revealThreshold && rect.bottom >= 120) {
-                    if (!point.classList.contains('is-revealed')) {
-                        point.classList.add('is-revealed');
+            purposeTracks.forEach(track => {
+                const rect = track.getBoundingClientRect();
+                // How many pixels has the user scrolled while pinned?
+                const scrolledWhilePinned = stickyTop - rect.top;
+
+                // When user first reaches image, scrolledWhilePinned is ~0-80px:
+                // Only the heading is visible, as if it's the only information!
+                // When they scroll again (scrolledWhilePinned >= 100px):
+                // Heading moves up to its place, and other text comes up!
+                if (scrolledWhilePinned >= 90 && rect.bottom > 140) {
+                    if (!track.classList.contains('is-revealed')) {
+                        track.classList.add('is-revealed');
                     }
-                } else if (rect.top > unrevealThreshold) {
-                    if (point.classList.contains('is-revealed')) {
-                        point.classList.remove('is-revealed');
+                } else {
+                    if (track.classList.contains('is-revealed')) {
+                        track.classList.remove('is-revealed');
                     }
                 }
             });
@@ -121,12 +127,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         window.addEventListener('scroll', () => {
             if (!isTicking) {
-                window.requestAnimationFrame(updatePurposePoints);
+                window.requestAnimationFrame(updatePurposeStickyTracks);
                 isTicking = true;
             }
         }, { passive: true });
 
         // Run initial check on load
-        updatePurposePoints();
+        updatePurposeStickyTracks();
     }
 });

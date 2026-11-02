@@ -65,21 +65,34 @@ input:focus, select:focus, textarea:focus {
 }
 
 /* ===================================================
-   PURPOSE POINTS SCROLL REVEAL CHOREOGRAPHY
-   - State 1: When scrolling to a point, only the heading is visible, centered next to the image.
-   - State 2: Pinch scroll moves heading smoothly to its top place and reveals tag + writings.
+   STICKY SCROLL CHOREOGRAPHY FOR PURPOSE POINTS
+   - State 1: Card pins on screen, showing ONLY the image and heading (centered).
+   - State 2: When scrolling again, heading moves to its top place and other text comes up.
    =================================================== */
-.purpose-point {
+.purpose-track {
     position: relative;
-    padding-top: 3.5rem;
-    padding-bottom: 3.5rem;
-    transition: opacity 0.5s ease;
+    height: 150vh;
 }
 
-@media (min-width: 640px) {
-    .purpose-point {
-        padding-top: 5rem;
-        padding-bottom: 5rem;
+@media (max-width: 640px) {
+    .purpose-track {
+        height: 140vh;
+    }
+}
+
+.purpose-sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 10vh;
+    background-color: #ffffff;
+    z-index: 10;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+}
+
+@media (min-width: 1024px) {
+    .purpose-sticky {
+        top: 14vh;
     }
 }
 
@@ -92,19 +105,19 @@ input:focus, select:focus, textarea:focus {
 
 @media (min-width: 1024px) {
     .purpose-text-col {
-        min-height: 480px;
+        min-height: 520px;
     }
 }
 
 /* Category Badge (Tag above heading) */
 .purpose-tag {
     opacity: 0;
-    transform: translateY(14px);
-    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateY(16px);
+    transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
     will-change: opacity, transform;
 }
 
-/* Heading: Initially resting in the optical center of the card */
+/* Heading: Initially resting in the optical center of the card as the ONLY info */
 .purpose-heading {
     transform: translateY(45px);
     transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
@@ -113,31 +126,31 @@ input:focus, select:focus, textarea:focus {
 
 @media (min-width: 1024px) {
     .purpose-heading {
-        transform: translateY(72px);
+        transform: translateY(85px);
     }
 }
 
 /* Other Writings (Paragraphs): Hidden in State 1 */
 .purpose-body {
     opacity: 0;
-    transform: translateY(24px);
+    transform: translateY(40px);
     pointer-events: none;
-    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1), transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
     will-change: opacity, transform;
 }
 
-/* State 2 (Revealed on pinch scroll) */
-.purpose-point.is-revealed .purpose-heading {
+/* State 2 (Revealed when user scrolls again) */
+.purpose-track.is-revealed .purpose-heading {
     transform: translateY(0);
 }
 
-.purpose-point.is-revealed .purpose-tag {
+.purpose-track.is-revealed .purpose-tag {
     opacity: 1;
     transform: translateY(0);
     transition-delay: 0.08s;
 }
 
-.purpose-point.is-revealed .purpose-body {
+.purpose-track.is-revealed .purpose-body {
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
