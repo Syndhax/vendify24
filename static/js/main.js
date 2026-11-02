@@ -87,4 +87,46 @@ document.addEventListener('DOMContentLoaded', () => {
             closeHeader();
         }
     });
+
+    // ===================================================
+    // PURPOSE POINTS SCROLL REVEAL CHOREOGRAPHY
+    // - State 1: When point enters viewport, only heading shows (centered).
+    // - State 2: Pinch scroll moves heading up and reveals other writings.
+    // ===================================================
+    const purposePoints = document.querySelectorAll('.purpose-point');
+    if (purposePoints.length > 0) {
+        let isTicking = false;
+
+        function updatePurposePoints() {
+            const vHeight = window.innerHeight;
+            // Point triggers reveal when top reaches ~60% of viewport
+            const revealThreshold = vHeight * 0.60;
+            // When scrolling back up, un-reveals when top drops back below 72%
+            const unrevealThreshold = vHeight * 0.72;
+
+            purposePoints.forEach(point => {
+                const rect = point.getBoundingClientRect();
+                if (rect.top <= revealThreshold && rect.bottom >= 120) {
+                    if (!point.classList.contains('is-revealed')) {
+                        point.classList.add('is-revealed');
+                    }
+                } else if (rect.top > unrevealThreshold) {
+                    if (point.classList.contains('is-revealed')) {
+                        point.classList.remove('is-revealed');
+                    }
+                }
+            });
+            isTicking = false;
+        }
+
+        window.addEventListener('scroll', () => {
+            if (!isTicking) {
+                window.requestAnimationFrame(updatePurposePoints);
+                isTicking = true;
+            }
+        }, { passive: true });
+
+        // Run initial check on load
+        updatePurposePoints();
+    }
 });
