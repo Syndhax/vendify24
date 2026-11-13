@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Vent Collection - Launch Your Business Website in 24 Hours{% endblock %}</title>
+    <title>{% block title %}Vent Collection - Curated Vintage Materials & Bespoke Custom T-Shirts{% endblock %}</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -54,7 +54,7 @@
                         <span class="text-xl font-extrabold tracking-tight text-black flex items-center gap-0.5 font-['Plus_Jakarta_Sans']">
                             Vent <span class="font-black">Collection</span>
                         </span>
-                        <p class="text-[10px] text-black/60 tracking-wider uppercase font-semibold">24H Website Builder</p>
+                        <p class="text-[10px] text-black/60 tracking-wider uppercase font-semibold">Vintage & Custom Studio</p>
                     </div>
                 </a>
             </div>
@@ -63,42 +63,48 @@
             <div class="p-4 mx-4 mt-4 rounded-2xl bg-black text-white text-xs shadow-sm">
                 <div class="flex items-center gap-1.5 font-bold mb-1">
                     <span class="w-2 h-2 rounded-full bg-white animate-ping"></span>
-                    <span>⚡ 24H DELIVERY GUARANTEE</span>
+                    <span>⚡ 24H STUDIO CRAFTING & DISPATCH</span>
                 </div>
                 <p class="text-white/80 leading-relaxed text-[11px]">
-                    Turn your business into an official website in 24 hours. From <strong class="text-white underline">$2/month</strong>.
+                    Rare handpicked vintage materials and bespoke custom t-shirts customized in 24 hours.
                 </p>
             </div>
 
             <!-- Vertical Navigation Menu -->
             <nav class="p-4 space-y-1 text-sm font-bold text-black/80">
+                <a href="{{ url_for('index') }}#purpose" class="nav-close-link flex items-center justify-between p-3 rounded-xl hover:bg-black/5 hover:text-black transition">
+                    <span class="flex items-center gap-3">
+                        <i class="fa-solid fa-vest text-black/60 w-5"></i> Why Vent Vintage
+                    </span>
+                    <i class="fa-solid fa-chevron-right text-xs text-black/30"></i>
+                </a>
+                <a href="{{ url_for('index') }}#builder-simulator" class="nav-close-link flex items-center justify-between p-3 rounded-xl hover:bg-black/5 hover:text-black transition">
+                    <span class="flex items-center gap-3">
+                        <i class="fa-solid fa-shirt text-black/60 w-5"></i> Custom T-Shirt Studio
+                    </span>
+                    <i class="fa-solid fa-chevron-right text-xs text-black/30"></i>
+                </a>
                 <a href="{{ url_for('index') }}#plans" class="nav-close-link flex items-center justify-between p-3 rounded-xl hover:bg-black/5 hover:text-black transition">
                     <span class="flex items-center gap-3">
-                        <i class="fa-solid fa-tag text-black/60 w-5"></i> Pricing Plans
+                        <i class="fa-solid fa-tag text-black/60 w-5"></i> Drops & Custom Pricing
                     </span>
                     <i class="fa-solid fa-chevron-right text-xs text-black/30"></i>
                 </a>
                 <a href="{{ url_for('index') }}#how-it-works" class="nav-close-link flex items-center justify-between p-3 rounded-xl hover:bg-black/5 hover:text-black transition">
                     <span class="flex items-center gap-3">
-                        <i class="fa-solid fa-list-check text-black/60 w-5"></i> How It Works
-                    </span>
-                    <i class="fa-solid fa-chevron-right text-xs text-black/30"></i>
-                </a>
-                <a href="{{ url_for('index') }}#demo" class="nav-close-link flex items-center justify-between p-3 rounded-xl hover:bg-black/5 hover:text-black transition">
-                    <span class="flex items-center gap-3">
-                        <i class="fa-solid fa-store text-black/60 w-5"></i> Live Demo Store
+                        <i class="fa-solid fa-list-check text-black/60 w-5"></i> How We Craft In 24H
                     </span>
                     <i class="fa-solid fa-chevron-right text-xs text-black/30"></i>
                 </a>
                 <a href="{{ url_for('track') }}" class="nav-close-link flex items-center justify-between p-3 rounded-xl hover:bg-black/5 hover:text-black transition">
                     <span class="flex items-center gap-3">
-                        <i class="fa-solid fa-clock-rotate-left text-black/60 w-5"></i> Track Website Status
+                        <i class="fa-solid fa-clock-rotate-left text-black/60 w-5"></i> Track Studio Order
                     </span>
                     <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-black text-white font-bold">24H</span>
                 </a>
                 <a href="{{ url_for('admin_dashboard') }}" class="nav-close-link flex items-center justify-between p-3 rounded-xl hover:bg-black/5 hover:text-black transition">
                     <span class="flex items-center gap-3">
-                        <i class="fa-solid fa-shield-halved text-black/60 w-5"></i> Platform Admin
+                        <i class="fa-solid fa-shield-halved text-black/60 w-5"></i> Studio Admin Portal
                     </span>
                     <i class="fa-solid fa-lock text-xs text-black/40"></i>
                 </a>
@@ -109,14 +115,14 @@
         <div class="p-5 border-t border-black/10 space-y-2.5 bg-white">
             <a href="{{ url_for('order') }}" class="nav-close-link w-full flex items-center justify-center gap-2 py-3.5 px-4 text-sm font-bold text-white bg-black hover:bg-neutral-800 rounded-xl shadow-lg border border-black transition active:scale-98">
                 <i class="fa-solid fa-rocket text-white"></i>
-                <span>Create Website Now</span>
+                <span>Customize T-Shirt / Order Now</span>
             </a>
             <a href="{{ url_for('track') }}" class="nav-close-link w-full flex items-center justify-center gap-2 py-2.5 px-4 text-xs font-semibold text-black bg-white hover:bg-black/5 border border-black/20 rounded-xl transition">
                 <i class="fa-solid fa-hourglass-half text-black"></i>
                 <span>Check Order Status</span>
             </a>
             <p class="text-center text-[10px] text-black/50 pt-1">
-                Built for WhatsApp, Instagram & Local Businesses
+                Archival Vintage Materials & Bespoke Custom Apparel
             </p>
         </div>
     </aside>
@@ -152,14 +158,14 @@
                         <span class="text-xl font-extrabold text-black font-['Plus_Jakarta_Sans']">Vent <span class="font-black">Collection</span></span>
                     </div>
                     <p class="text-black/70 text-sm max-w-md leading-relaxed">
-                        Helping WhatsApp vendors, Instagram sellers, TikTok creators, boutique owners, and local businesses get professional, mobile-ready websites in 24 hours. Take direct orders, showcase products, and grow your sales with zero tech headaches.
+                        Vent Collection is an archival fashion and custom apparel company. We source handpicked vintage materials, rare one-of-a-kind streetwear pieces, and craft bespoke customized t-shirts and hoodies with express 24-hour turnaround.
                     </p>
                     <div class="flex items-center gap-3 pt-2">
                         <span class="inline-flex items-center gap-2 text-xs font-semibold px-3 py-1.5 rounded-lg bg-black text-white border border-black shadow-sm">
-                            <i class="fa-solid fa-check text-white"></i> $2/mo Basic (No Admin)
+                            <i class="fa-solid fa-check text-white"></i> Authentic Handpicked Vintage
                         </span>
                         <span class="inline-flex items-center gap-2 text-xs font-semibold px-3 py-1.5 rounded-lg bg-white text-black border border-black shadow-sm">
-                            <i class="fa-solid fa-check text-black"></i> $10/mo Pro (With Admin Login)
+                            <i class="fa-solid fa-check text-black"></i> Bespoke Custom T-Shirts
                         </span>
                     </div>
                 </div>
@@ -188,7 +194,7 @@
             </div>
 
             <div class="border-t border-black/10 pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-black/60 gap-4">
-                <p>&copy; 2026 Vent Collection. All rights reserved. Built for vendors & independent businesses worldwide.</p>
+                <p>&copy; 2026 Vent Collection. All rights reserved. Curated Vintage Materials & Bespoke Custom Apparel.</p>
                 <div class="flex items-center gap-4">
                     <span class="flex items-center gap-1.5 text-black font-medium"><i class="fa-solid fa-shield-halved text-black"></i> SSL Secured</span>
                     <span>•</span>

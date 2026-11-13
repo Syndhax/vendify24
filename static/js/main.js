@@ -140,58 +140,58 @@ document.addEventListener('DOMContentLoaded', () => {
     // INTERACTIVE STORE BUILDER SIMULATOR CONTROLLER
     // ===================================================
     let currentSimCurrency = '$';
-    let currentSimCategory = 'Fashion';
+    let currentSimCategory = 'CustomTees';
     let simCountdownInterval = null;
 
     const simPresets = {
-        'Fashion': {
-            name: 'Bella Luxe Boutique',
-            slug: 'bellaluxe',
-            tagline: 'Curated luxury fashion, silk dresses & bespoke accessories delivered nationwide.',
+        'CustomTees': {
+            name: 'Vent Bespoke Custom T-Shirt',
+            slug: 'customtee',
+            tagline: 'Heavyweight 240GSM cotton with custom puff print, screen print, or embroidery.',
             products: [
-                { name: 'Silk Slip Evening Dress', price: '48.00', img: 'https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=300&auto=format&fit=crop&q=80' },
-                { name: 'Handcrafted Leather Tote', price: '95.00', img: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=300&auto=format&fit=crop&q=80' },
-                { name: 'Minimalist Trench Coat', price: '110.00', img: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=300&auto=format&fit=crop&q=80' }
+                { name: 'Custom Heavyweight Boxy Tee', price: '28.00', img: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=300&auto=format&fit=crop&q=80' },
+                { name: 'Bespoke Vintage Washed Graphic Tee', price: '32.00', img: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=300&auto=format&fit=crop&q=80' },
+                { name: 'Custom High-Density Puff Print Tee', price: '35.00', img: 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=300&auto=format&fit=crop&q=80' }
             ]
         },
-        'Beauty': {
-            name: 'Aura Glow Cosmetics',
-            slug: 'auraglow',
-            tagline: 'Clean skincare, hydration elixirs & cruelty-free beauty essentials.',
+        'VintageTees': {
+            name: 'Vent Archival Graphic Tees',
+            slug: 'vintagetees',
+            tagline: 'Authentic 90s single-stitch band tees, retro championship & streetwear graphics.',
             products: [
-                { name: 'Matte Velvet Lip Kit', price: '24.00', img: 'https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=300&auto=format&fit=crop&q=80' },
-                { name: 'Vitamin C Radiance Serum', price: '38.00', img: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=300&auto=format&fit=crop&q=80' },
-                { name: 'Flawless Setting Powder', price: '29.00', img: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=300&auto=format&fit=crop&q=80' }
+                { name: '1994 World Tour Archival Band Tee', price: '45.00', img: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=300&auto=format&fit=crop&q=80' },
+                { name: 'Rare 90s Championship Graphic Tee', price: '42.00', img: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=300&auto=format&fit=crop&q=80' },
+                { name: 'Faded Sunburst Heavyweight Vintage Tee', price: '38.00', img: 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=300&auto=format&fit=crop&q=80' }
             ]
         },
-        'Bakery': {
-            name: 'Golden Crust Artisan Bakery',
-            slug: 'goldencrust',
-            tagline: 'Freshly baked sourdough, delicate pastries & custom celebration cakes.',
+        'VintageDenim': {
+            name: 'Vent Heritage Denim & Jackets',
+            slug: 'vintagedenim',
+            tagline: 'Hand-distressed 90s selvedge denim, washed canvas coats & heritage trucker jackets.',
             products: [
-                { name: 'Red Velvet Cupcake Box (6)', price: '18.00', img: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=300&auto=format&fit=crop&q=80' },
-                { name: 'Artisan Sourdough Loaf', price: '12.00', img: 'https://images.unsplash.com/photo-1589367920969-ab8e050bbb04?w=300&auto=format&fit=crop&q=80' },
-                { name: 'Triple Chocolate Ganache Cake', price: '45.00', img: 'https://images.unsplash.com/photo-1535141192574-5d4897c13136?w=300&auto=format&fit=crop&q=80' }
+                { name: 'Hand-Distressed 90s Washed Denim', price: '68.00', img: 'https://images.unsplash.com/photo-1576995853123-5a10305d93c0?w=300&auto=format&fit=crop&q=80' },
+                { name: 'Archival Washed Detroit Work Jacket', price: '85.00', img: 'https://images.unsplash.com/photo-1551028719-00167b16eac5?w=300&auto=format&fit=crop&q=80' },
+                { name: 'Vintage Heavyweight Sherpa Trucker', price: '78.00', img: 'https://images.unsplash.com/photo-1576995853123-5a10305d93c0?w=300&auto=format&fit=crop&q=80' }
             ]
         },
-        'Jewelry': {
-            name: 'Celeste Fine Jewelry',
-            slug: 'celestejewels',
-            tagline: 'Timeless 18k gold vermeil, pearls & minimalist luxury accessories.',
+        'CustomHoodies': {
+            name: 'Vent Custom Streetwear Hoodies',
+            slug: 'customhoodies',
+            tagline: '450GSM French terry oversized hoodies with custom chest embroidery and back graphics.',
             products: [
-                { name: '18k Gold Plated Link Chain', price: '65.00', img: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=300&auto=format&fit=crop&q=80' },
-                { name: 'Baroque Pearl Drop Earrings', price: '42.00', img: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=300&auto=format&fit=crop&q=80' },
-                { name: 'Minimalist Chrono Watch', price: '88.00', img: 'https://images.unsplash.com/photo-1524805444758-089113d48a6d?w=300&auto=format&fit=crop&q=80' }
+                { name: 'Custom High-Density Embroidered Hoodie', price: '58.00', img: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=300&auto=format&fit=crop&q=80' },
+                { name: 'Bespoke Vintage Washed Pullover', price: '64.00', img: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=300&auto=format&fit=crop&q=80' },
+                { name: 'Custom French Terry Boxy Zip-Up', price: '62.00', img: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=300&auto=format&fit=crop&q=80' }
             ]
         },
-        'Gadgets': {
-            name: 'VoltGear Tech Lab',
-            slug: 'voltgear',
-            tagline: 'High performance audio gear, fast wireless charging & smart accessories.',
+        'VintageMaterials': {
+            name: 'Vent Archival Materials & Goods',
+            slug: 'vintagematerials',
+            tagline: 'Rare deadstock textiles, vintage sourced patches, washed canvas tote bags & caps.',
             products: [
-                { name: 'Wireless Noise-Cancelling Pods', price: '55.00', img: 'https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=300&auto=format&fit=crop&q=80' },
-                { name: 'MagSafe Fast PowerBank 10k', price: '39.00', img: 'https://images.unsplash.com/photo-1609081219090-a6d81d3085bf?w=300&auto=format&fit=crop&q=80' },
-                { name: 'Smart Fitness Tracker Band', price: '49.00', img: 'https://images.unsplash.com/photo-1575311373937-040b8e1fd5b6?w=300&auto=format&fit=crop&q=80' }
+                { name: 'Archival Washed Canvas Studio Tote', price: '24.00', img: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=300&auto=format&fit=crop&q=80' },
+                { name: 'Vintage Distressed Enzyme-Wash Cap', price: '22.00', img: 'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=300&auto=format&fit=crop&q=80' },
+                { name: 'Rare Archival Fabric & Patch Bundle', price: '18.00', img: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=300&auto=format&fit=crop&q=80' }
             ]
         }
     };
@@ -261,7 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     function renderProductsUI() {
-        const preset = simPresets[currentSimCategory] || simPresets['Fashion'];
+        const preset = simPresets[currentSimCategory] || simPresets['CustomTees'];
         const listContainer = document.getElementById('simProductsList');
         const gridContainer = document.getElementById('previewProductsGrid');
 
@@ -533,7 +533,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, { passive: true });
 
-    // Initialize the simulator with Fashion preset
+    // Initialize the simulator with CustomTees preset
     if (document.getElementById('builder-simulator')) {
         renderProductsUI();
         if (isSimulatorUnlocked) {
