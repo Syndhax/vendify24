@@ -1,4 +1,4 @@
-# Vendify24 (vendify24.com) - 24-Hour Business Website Builder
+# Vent Collection (ventcollection.com) - 24-Hour Business Website Builder
 
 > Turn any vendor or small business into a sleek, mobile-optimized website in **24 hours**, starting at just **$2/month** (without admin login) and **$10/month** (with admin login). Built for WhatsApp vendors, Instagram sellers, TikTok shops, boutiques, bakers, and local merchants worldwide.
 

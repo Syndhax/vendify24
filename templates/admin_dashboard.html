@@ -348,7 +348,7 @@
         document.getElementById('simulateResetForm').action = `/admin/order/${ord.id}/simulate-time`;
         
         const cleanPhone = ord.whatsapp_number.replace(/\D/g, '');
-        const message = encodeURIComponent(`Hello ${ord.vendor_name}! Regarding your ${ord.business_name} website from Vendify24:`);
+        const message = encodeURIComponent(`Hello ${ord.vendor_name}! Regarding your ${ord.business_name} website from Vent Collection:`);
         document.getElementById('modalWhatsAppChatBtn').href = `https://wa.me/${cleanPhone}?text=${message}`;
 
         document.getElementById('manageModal').classList.remove('hidden');

@@ -58,7 +58,7 @@ def init_db():
     if not cursor.fetchone():
         cursor.execute("INSERT INTO settings (key, value) VALUES ('admin_password', 'admin123')")
         cursor.execute("INSERT INTO settings (key, value) VALUES ('platform_whatsapp', '+1234567890')")
-        cursor.execute("INSERT INTO settings (key, value) VALUES ('site_name', 'Vendify24')")
+        cursor.execute("INSERT INTO settings (key, value) VALUES ('site_name', 'Vent Collection')")
 
     conn.commit()
     conn.close()

@@ -3,7 +3,7 @@ import json
 from app import app
 from db import init_db
 
-class TestVendify24Platform(unittest.TestCase):
+class TestVentCollectionPlatform(unittest.TestCase):
     def setUp(self):
         app.config['TESTING'] = True
         app.config['WTF_CSRF_ENABLED'] = False

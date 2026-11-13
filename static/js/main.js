@@ -1,4 +1,4 @@
-// Common script for WhatsWeb / Vendify24
+// Common script for Vent Collection
 document.addEventListener('DOMContentLoaded', () => {
     // Auto-dismiss flash notifications after 6 seconds
     const flashes = document.querySelectorAll('.animate-fade-in');
@@ -236,7 +236,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.updateSlugPreview = function(val) {
         const slug = (val || 'mybusiness').toLowerCase().replace(/[^a-z0-9]/g, '');
-        const host = `${slug || 'mybusiness'}.vendify24.com`;
+        const host = `${slug || 'mybusiness'}.ventcollection.com`;
         const previewBarUrl = document.getElementById('previewBarUrl');
         const simWebsiteUrlText = document.getElementById('simWebsiteUrlText');
         if (previewBarUrl) previewBarUrl.textContent = host;
@@ -374,7 +374,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let isSimulatorUnlocked = false;
 
     try {
-        if (sessionStorage.getItem('vendify_sim_unlocked') === 'true') {
+        if (sessionStorage.getItem('ventcollection_sim_unlocked') === 'true') {
             isSimulatorUnlocked = true;
         }
     } catch (e) {}
@@ -382,7 +382,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.unlockSimulator = function(autoScroll = false) {
         isSimulatorUnlocked = true;
         try {
-            sessionStorage.setItem('vendify_sim_unlocked', 'true');
+            sessionStorage.setItem('ventcollection_sim_unlocked', 'true');
         } catch (e) {}
 
         const lockIcon = document.getElementById('simLockIcon');
