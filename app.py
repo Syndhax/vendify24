@@ -422,7 +422,8 @@ def preview_vendor_admin(order_id):
     return render_template('vendor_admin.html', store=order_data)
 
 if __name__ == '__main__':
+    port = int(os.environ.get('PORT', 5000))
     print("Starting Vent Collection Platform...")
-    print("Customer Site: http://127.0.0.1:5000")
-    print("Admin Portal: http://127.0.0.1:5000/admin (Password: admin123)")
-    app.run(host='0.0.0.0', port=5000, debug=False)
+    print(f"Customer Site: http://127.0.0.1:{port}")
+    print(f"Admin Portal: http://127.0.0.1:{port}/admin (Password: admin123)")
+    app.run(host='127.0.0.1', port=port, debug=False)
