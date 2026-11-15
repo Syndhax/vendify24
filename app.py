@@ -63,6 +63,11 @@ def parse_order_row(row):
 def index():
     return render_template('index.html')
 
+@app.route('/collection')
+@app.route('/vintage')
+def vintage_gallery():
+    return render_template('vintage.html')
+
 @app.route('/logo-preview')
 def logo_preview():
     return render_template('logo_preview.html')

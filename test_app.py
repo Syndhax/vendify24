@@ -17,6 +17,18 @@ class TestVentCollectionPlatform(unittest.TestCase):
         self.assertIn(b'$10', response.data)
         self.assertIn(b'24 Hours', response.data)
 
+    def test_vintage_collection_page(self):
+        response = self.client.get('/vintage')
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b'Vintage Collection', response.data)
+        self.assertIn(b'Order on WhatsApp', response.data)
+        self.assertIn(b'1994 World Tour Vintage Tee', response.data)
+
+        # Also test alias /collection
+        response_alias = self.client.get('/collection')
+        self.assertEqual(response_alias.status_code, 200)
+        self.assertIn(b'Vintage Collection', response_alias.data)
+
     def test_order_page_get(self):
         response = self.client.get('/order?plan=basic_2')
         self.assertEqual(response.status_code, 200)

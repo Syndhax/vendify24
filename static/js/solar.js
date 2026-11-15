@@ -161,21 +161,14 @@ document.addEventListener('DOMContentLoaded', () => {
             planet.classList.remove('show-color');
         });
 
-        // Click / tap support for mobile and trackpads
+        // Click / tap takes user directly to Apple-inspired Vintage Collection page
         planet.addEventListener('click', (e) => {
-            // If the user was dragging the orbit, do not trigger color reveal
+            // If user was dragging the orbit, do not navigate
             if (dragDistance > 6) return;
 
             e.stopPropagation();
-            const wasRevealed = planet.classList.contains('show-color');
-
-            // Reset all planets to black and white
-            planets.forEach(p => p.classList.remove('show-color'));
-
-            // Toggle original color on tapped planet
-            if (!wasRevealed) {
-                planet.classList.add('show-color');
-            }
+            const href = planet.getAttribute('data-href') || '/vintage';
+            window.location.href = href;
         });
     });
 

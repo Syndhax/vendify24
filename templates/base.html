@@ -72,6 +72,12 @@
 
             <!-- Vertical Navigation Menu -->
             <nav class="p-4 space-y-1 text-sm font-bold text-black/80">
+                <a href="{{ url_for('vintage_gallery') }}" class="nav-close-link flex items-center justify-between p-3 rounded-xl bg-black text-white hover:bg-neutral-800 transition">
+                    <span class="flex items-center gap-3">
+                        <i class="fa-solid fa-shirt text-white w-5"></i> Vintage Collection (Apple View)
+                    </span>
+                    <span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-white text-black">New</span>
+                </a>
                 <a href="{{ url_for('index') }}#purpose" class="nav-close-link flex items-center justify-between p-3 rounded-xl hover:bg-black/5 hover:text-black transition">
                     <span class="flex items-center gap-3">
                         <i class="fa-solid fa-vest text-black/60 w-5"></i> Why Vent Vintage
