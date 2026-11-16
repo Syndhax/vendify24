@@ -187,17 +187,17 @@ function selectPolo(index) {
     currentPoloIndex = index;
     const polo = VENT_POLOS[index];
 
-    // 1. Update Grid Cards Styling
+    // 1. Update Grid Cards Styling inside the Black Expanding Canvas
     const cards = document.querySelectorAll("#poloGridCards .polo-card");
     cards.forEach((card, idx) => {
         const badge = card.querySelector(".polo-active-badge");
         if (idx === index) {
-            card.classList.remove("border-black/15");
-            card.classList.add("border-2", "border-black", "shadow-lg", "ring-4", "ring-black/10");
+            card.classList.remove("border-white/15");
+            card.classList.add("border-2", "border-white", "shadow-lg", "ring-2", "ring-white/30");
             if (badge) badge.classList.remove("hidden");
         } else {
-            card.classList.remove("border-2", "border-black", "shadow-lg", "ring-4", "ring-black/10");
-            card.classList.add("border-black/15");
+            card.classList.remove("border-2", "border-white", "shadow-lg", "ring-2", "ring-white/30");
+            card.classList.add("border-white/15");
             if (badge) badge.classList.add("hidden");
         }
     });
