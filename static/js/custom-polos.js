@@ -192,12 +192,12 @@ function selectPolo(index) {
     cards.forEach((card, idx) => {
         const badge = card.querySelector(".polo-active-badge");
         if (idx === index) {
-            card.classList.remove("border-white/15");
-            card.classList.add("border-2", "border-white", "shadow-lg", "ring-2", "ring-white/30");
+            card.classList.remove("border-white/20");
+            card.classList.add("border-2", "border-white", "shadow-lg", "ring-2", "ring-emerald-400");
             if (badge) badge.classList.remove("hidden");
         } else {
-            card.classList.remove("border-2", "border-white", "shadow-lg", "ring-2", "ring-white/30");
-            card.classList.add("border-white/15");
+            card.classList.remove("border-2", "border-white", "shadow-lg", "ring-2", "ring-emerald-400");
+            card.classList.add("border-white/20");
             if (badge) badge.classList.add("hidden");
         }
     });
