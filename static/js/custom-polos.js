@@ -1,6 +1,6 @@
 // ===================================================
 // VENT COLLECTION - APPLE-INSPIRED V-STUDIO SHOWCASE
-// Ultra-refined product interaction & live dynamic V preview
+// Horizontal Product Card Carousel & Dynamic V-Studio
 // ===================================================
 
 const VENT_POLOS = [
@@ -30,7 +30,7 @@ const VENT_POLOS = [
         badge: "Single-Stitch Hem · 90s Heritage",
         fabric: "100% Washed Vintage Cotton",
         desc: "Authentic single-stitch construction sourced from 90s deadstock archives with natural vintage fade and super soft washed drape.",
-        img: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=900&auto=format&fit=crop&q=80",
+        img: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=900&auto=format&fit=crop&q=80",
         colors: [
             { name: "Washed Ivory", hex: "#edece8" },
             { name: "Faded Black", hex: "#222222" },
@@ -46,7 +46,7 @@ const VENT_POLOS = [
         badge: "240GSM Heavyweight Combed Cotton",
         fabric: "240GSM Ring-Spun Cotton",
         desc: "Tailored boxy streetwear silhouette with high-density screen printing and custom woven neck label. Hand-finished in our Lagos studio.",
-        img: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=900&auto=format&fit=crop&q=80",
+        img: "https://images.unsplash.com/photo-1562157873-818bc0726f68?w=900&auto=format&fit=crop&q=80",
         colors: [
             { name: "Pitch Black", hex: "#0a0a0a" },
             { name: "Pure White", hex: "#ffffff" },
@@ -87,14 +87,14 @@ const VENT_POLOS = [
     },
     {
         id: "VENT-PIECE-06",
-        title: "British Racing Green Club Polo",
+        title: "British Racing Heritage Club Polo",
         category: "Heritage Club Series",
         price: "₦25,000",
         usd: "$29",
         badge: "Gold Bullion Thread Embroidery",
         fabric: "260GSM Combed Honeycomb",
         desc: "Deep British Racing Green piqué with hand-guided monogram crest available on the left chest or collar point. Reinforced placket.",
-        img: "https://images.unsplash.com/photo-1626497764746-6dc36546b388?w=900&auto=format&fit=crop&q=80",
+        img: "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?w=900&auto=format&fit=crop&q=80",
         colors: [
             { name: "Racing Green", hex: "#064e3b" },
             { name: "Navy Blue", hex: "#1e3a8a" },
@@ -144,22 +144,32 @@ function selectPolo(index) {
     currentPoloIndex = index;
     const polo = VENT_POLOS[index];
 
-    // 1. Update Grid Cards Styling
-    const cards = document.querySelectorAll("#poloGridCards .polo-card");
+    // 1. Update Carousel Cards Styling
+    const cards = document.querySelectorAll("#poloCarouselTrack .polo-card");
     cards.forEach((card, idx) => {
         const badge = card.querySelector(".polo-active-badge");
         if (idx === index) {
-            card.classList.remove("border-transparent", "opacity-80");
-            card.classList.add("border-white", "opacity-100", "shadow-xl", "ring-2", "ring-[#0071e3]", "scale-[1.02]");
+            card.classList.remove("border-white/10", "opacity-80");
+            card.classList.add("border-white/40", "opacity-100", "shadow-2xl", "ring-2", "ring-[#0071e3]", "ring-offset-2", "ring-offset-black", "scale-[1.02]");
             if (badge) badge.classList.remove("hidden");
         } else {
-            card.classList.remove("border-white", "opacity-100", "shadow-xl", "ring-2", "ring-[#0071e3]", "scale-[1.02]");
-            card.classList.add("border-transparent", "opacity-80");
+            card.classList.remove("border-white/40", "opacity-100", "shadow-2xl", "ring-2", "ring-[#0071e3]", "ring-offset-2", "ring-offset-black", "scale-[1.02]");
+            card.classList.add("border-white/10", "opacity-80");
             if (badge) badge.classList.add("hidden");
         }
     });
 
-    // 2. Smooth Cross-Fade on the Left V-Studio Stage
+    // 2. Update Carousel Dots
+    const dots = document.querySelectorAll("#carouselDots .carousel-dot");
+    dots.forEach((dot, idx) => {
+        if (idx === index) {
+            dot.className = "carousel-dot w-6 h-2 rounded-full bg-white transition-all duration-300";
+        } else {
+            dot.className = "carousel-dot w-2 h-2 rounded-full bg-white/20 hover:bg-white/40 transition-all duration-300";
+        }
+    });
+
+    // 3. Smooth Cross-Fade on the Left V-Studio Stage
     const spotlightImg = document.getElementById("spotlightImg");
     if (spotlightImg) {
         spotlightImg.style.opacity = "0.2";
@@ -171,36 +181,41 @@ function selectPolo(index) {
         }, 150);
     }
 
-    // 3. Update Text Info
+    // 4. Update Text Info
     const elId = document.getElementById("spotlightPoloId");
     const elTitle = document.getElementById("spotlightTitle");
     const elCategory = document.getElementById("spotlightCategory");
     const elPrice = document.getElementById("spotlightPrice");
     const elUsd = document.getElementById("spotlightUsd");
     const elBadge = document.getElementById("spotlightBadge");
-    const elDesc = document.getElementById("spotlightDesc");
 
     if (elId) elId.textContent = polo.id;
     if (elTitle) elTitle.textContent = polo.title;
-    if (elCategory) elCategory.textContent = polo.category;
+    if (elCategory) elCategory.textContent = `${polo.category} · Handcrafted in 24 Hours`;
     if (elPrice) elPrice.textContent = polo.price;
     if (elUsd) elUsd.textContent = `(${polo.usd} USD)`;
     if (elBadge) elBadge.textContent = polo.badge;
-    if (elDesc) elDesc.textContent = polo.desc;
 
-    // 4. Render Colorway Swatches
+    // 5. Render Colorway Swatches
     renderColorwaySwatches(polo.colors);
 
-    // 5. Update WhatsApp Order Link
+    // 6. Update WhatsApp Order Link
     updatePoloWhatsAppLink();
+}
 
-    // 6. Smooth Scroll on Mobile
-    if (window.innerWidth < 1024) {
-        const stage = document.getElementById("imageClickedStage");
-        if (stage) {
-            stage.scrollIntoView({ behavior: "smooth", block: "nearest" });
-        }
-    }
+function scrollPoloCarousel(direction) {
+    const track = document.getElementById("poloCarouselTrack");
+    if (!track) return;
+    const cardWidth = 240; // width + gap
+    track.scrollBy({ left: direction * cardWidth, behavior: "smooth" });
+}
+
+function scrollToPoloCard(index) {
+    const track = document.getElementById("poloCarouselTrack");
+    const cards = document.querySelectorAll("#poloCarouselTrack .polo-card");
+    if (!track || !cards[index]) return;
+    selectPolo(index);
+    cards[index].scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
 }
 
 function renderColorwaySwatches(colors) {
@@ -265,6 +280,43 @@ function updatePoloWhatsAppLink() {
     }
 }
 
+// Drag-to-scroll implementation on carousel track
+function setupCarouselDrag() {
+    const track = document.getElementById("poloCarouselTrack");
+    if (!track) return;
+
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+    let moved = false;
+
+    track.addEventListener("mousedown", (e) => {
+        isDown = true;
+        moved = false;
+        track.classList.add("cursor-grabbing");
+        startX = e.pageX - track.offsetLeft;
+        scrollLeft = track.scrollLeft;
+    });
+
+    track.addEventListener("mouseleave", () => {
+        isDown = false;
+        track.classList.remove("cursor-grabbing");
+    });
+
+    track.addEventListener("mouseup", () => {
+        isDown = false;
+        track.classList.remove("cursor-grabbing");
+    });
+
+    track.addEventListener("mousemove", (e) => {
+        if (!isDown) return;
+        const x = e.pageX - track.offsetLeft;
+        const walk = (x - startX) * 1.5;
+        if (Math.abs(walk) > 5) moved = true;
+        track.scrollLeft = scrollLeft - walk;
+    });
+}
+
 // Initialize on DOM ready
 document.addEventListener("DOMContentLoaded", () => {
     const customInput = document.getElementById("poloCustomTextInput");
@@ -281,6 +333,8 @@ document.addEventListener("DOMContentLoaded", () => {
             updatePoloWhatsAppLink();
         });
     }
+
+    setupCarouselDrag();
 
     // Select initial piece #0
     selectPolo(0);
