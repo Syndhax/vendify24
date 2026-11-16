@@ -13,8 +13,8 @@ class TestVentCollectionPlatform(unittest.TestCase):
     def test_homepage(self):
         response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b'$2', response.data)
-        self.assertIn(b'$10', response.data)
+        self.assertIn(b'Vent Collection', response.data)
+        self.assertIn(b'Vintage Materials', response.data)
         self.assertIn(b'24 Hours', response.data)
         # Custom Polos section matching sketch (3x3 grid + image clicked stage)
         self.assertIn(b'custom-polos', response.data)
