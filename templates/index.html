@@ -88,62 +88,30 @@
         <div id="imageClickedStage" class="relative w-full flex flex-col lg:flex-row items-stretch overflow-hidden border-t border-b border-neutral-200/80 shadow-xl bg-white lg:h-[520px] xl:h-[540px]">
             
             <!-- LEFT COLUMN: THE V-STUDIO PREVIEW (APPLE WARM-GRAY #f5f5f7) -->
-            <div class="lg:w-[42%] xl:w-[40%] bg-[#f5f5f7] text-[#1d1d1f] p-5 sm:p-6 lg:p-7 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-neutral-200/80 relative z-20 h-full">
+            <div class="lg:w-[42%] xl:w-[40%] bg-[#f5f5f7] text-[#1d1d1f] p-6 sm:p-8 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-neutral-200/80 relative z-20 h-full">
 
-                <!-- THE ICONIC "V" STUDIO DISPLAY CARD -->
-                <div class="relative w-full max-w-[260px] sm:max-w-[280px] aspect-square mx-auto flex items-center justify-center p-3 bg-white rounded-2xl shadow-md border border-neutral-200/60 overflow-hidden group">
-                    
-                    <!-- Ambient Apple-Style "V" Typographic Watermark -->
-                    <div class="absolute inset-0 pointer-events-none flex items-center justify-center">
-                        <span class="text-[200px] font-black text-black/[0.04] select-none font-['Plus_Jakarta_Sans'] leading-none -translate-y-2">V</span>
-                    </div>
-
-                    <!-- High-Resolution Clicked Shirt Image -->
-                    <img id="spotlightImg" src="https://images.unsplash.com/photo-1586363104862-3a5e2ab60d99?w=900&auto=format&fit=crop&q=80" alt="Selected Custom Apparel Piece" class="w-full h-full object-cover rounded-xl drop-shadow-sm transition-all duration-300">
+                <!-- FLOATING HERO APPAREL PRESENTATION (BORDERLESS APPLE DESIGN) -->
+                <div class="relative w-full flex-1 flex items-center justify-center py-2 sm:py-4">
+                    <img id="spotlightImg" src="https://images.unsplash.com/photo-1586363104862-3a5e2ab60d99?w=900&auto=format&fit=crop&q=80" alt="Selected Custom Apparel Piece" class="max-h-[280px] sm:max-h-[320px] w-auto max-w-[90%] object-contain rounded-2xl drop-shadow-xl transition-all duration-500">
                 </div>
 
-                <!-- Controls & Order Button Under V Display -->
-                <div class="mt-3 pt-3 border-t border-neutral-200/80 space-y-2.5">
-                    <div class="flex items-start justify-between gap-3">
-                        <div>
-                            <h3 id="spotlightTitle" class="text-base sm:text-lg font-bold text-[#1d1d1f] tracking-tight font-['Plus_Jakarta_Sans'] leading-tight">
-                                Archival Heavyweight Piqué Polo
-                            </h3>
-                            <p id="spotlightCategory" class="text-[11px] text-neutral-500 font-normal mt-0.5">
-                                Archival Piqué Series · Hand-Crafted in 24 Hours
-                            </p>
-                        </div>
-                        <div class="text-right whitespace-nowrap">
-                            <span id="spotlightPrice" class="text-lg sm:text-xl font-bold text-[#1d1d1f]">₦24,500</span>
-                            <span id="spotlightUsd" class="block text-[10px] text-neutral-400 font-semibold">($28 USD)</span>
-                        </div>
+                <!-- MINIMALIST PRODUCT TITLE, PRICE & SIGNATURE APPLE BLUE CTA -->
+                <div class="pt-4 space-y-3">
+                    <div class="flex items-center justify-between gap-4">
+                        <h3 id="spotlightTitle" class="text-xl sm:text-2xl font-extrabold text-[#1d1d1f] tracking-tight font-['Plus_Jakarta_Sans']">
+                            Archival Heavyweight Piqué Polo
+                        </h3>
+                        <span id="spotlightPrice" class="text-xl sm:text-2xl font-extrabold text-[#1d1d1f] tracking-tight whitespace-nowrap">
+                            ₦24,500
+                        </span>
                     </div>
 
-                    <!-- Apple-Style Monogram Input -->
-                    <div class="flex items-center gap-2">
-                        <span class="text-[10px] font-semibold text-neutral-500 whitespace-nowrap uppercase tracking-wider">Monogram:</span>
-                        <input type="text" id="poloCustomTextInput" value="VENT 94" maxlength="16" placeholder="CUSTOM TEXT (E.G. VENT 94)" class="w-full px-3 py-1.5 rounded-lg bg-white border border-neutral-300 focus:border-[#0071e3] focus:ring-1 focus:ring-[#0071e3] font-semibold text-xs text-neutral-900 uppercase tracking-wider outline-none transition-all shadow-sm">
-                    </div>
-
-                    <!-- Segmented Size Selector & Swatches -->
-                    <div class="flex items-center justify-between gap-2">
-                        <div class="flex items-center gap-1" id="sizeSelectorPills">
-                            <button type="button" onclick="selectSize('S')" class="polo-size-btn px-2 py-0.5 rounded-full text-[10px] font-medium bg-neutral-100 text-neutral-700 hover:bg-neutral-200 transition-all">S</button>
-                            <button type="button" onclick="selectSize('M')" class="polo-size-btn px-2 py-0.5 rounded-full text-[10px] font-medium bg-neutral-100 text-neutral-700 hover:bg-neutral-200 transition-all">M</button>
-                            <button type="button" onclick="selectSize('L')" class="polo-size-btn px-2 py-0.5 rounded-full text-[10px] font-bold bg-black text-white shadow-sm transition-all">L</button>
-                            <button type="button" onclick="selectSize('XL')" class="polo-size-btn px-2 py-0.5 rounded-full text-[10px] font-medium bg-neutral-100 text-neutral-700 hover:bg-neutral-200 transition-all">XL</button>
-                            <button type="button" onclick="selectSize('XXL')" class="polo-size-btn px-2 py-0.5 rounded-full text-[10px] font-medium bg-neutral-100 text-neutral-700 hover:bg-neutral-200 transition-all">XXL</button>
-                        </div>
-                        <div class="flex items-center gap-1.5" id="colorwaySwatches"></div>
-                    </div>
-
-                    <!-- Apple Signature Solid Blue Pill CTA Button -->
-                    <div>
-                        <a id="spotlightWhatsAppBtn" href="https://wa.me/2348000000000?text=Hello%20Vent%20Collection,%20I%20want%20to%20order%20the%20Archival%20Heavyweight%20Piqu%C3%A9%20Polo%20(N24,500)%20in%20Size%20L,%20Color:%20Onyx%20Black,%20Custom%20Text:%20VENT%2094" target="_blank" class="w-full py-2.5 px-5 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white font-semibold text-xs flex items-center justify-center gap-2 shadow-sm transition-all duration-300">
+                    <div class="flex items-center justify-between gap-3 pt-1">
+                        <a id="spotlightWhatsAppBtn" href="https://wa.me/2348000000000?text=Hello%20Vent%20Collection,%20I%20want%20to%20order%20the%20Archival%20Heavyweight%20Piqu%C3%A9%20Polo%20(N24,500)%20in%20Colorway:%20Onyx%20Black." target="_blank" class="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white font-semibold text-xs shadow-sm hover:shadow transition-all duration-300">
                             <i class="fa-brands fa-whatsapp text-sm"></i>
                             <span>Order on WhatsApp</span>
-                            <i class="fa-solid fa-arrow-right text-[10px] ml-0.5"></i>
                         </a>
+                        <div class="flex items-center gap-1.5" id="colorwaySwatches"></div>
                     </div>
                 </div>
 
@@ -160,17 +128,10 @@
                         <div class="polo-card group relative flex-shrink-0 w-[200px] sm:w-[220px] snap-start bg-[#161617] hover:bg-[#1d1d1f] rounded-2xl p-3 border border-white/40 ring-2 ring-[#0071e3] ring-offset-2 ring-offset-black scale-[1.02] shadow-2xl transition-all duration-300 cursor-pointer flex flex-col justify-between" data-polo-index="0" onclick="selectPolo(0)">
                             <div class="relative w-full aspect-[4/5] max-h-[220px] rounded-xl overflow-hidden bg-neutral-900 mb-2.5">
                                 <img src="https://images.unsplash.com/photo-1586363104862-3a5e2ab60d99?w=900&auto=format&fit=crop&q=80" alt="Archival Heavyweight Piqué Polo" class="polo-grid-img w-full h-full object-cover group-hover:scale-105 transition-all duration-500">
-                                <span class="polo-active-badge absolute top-2 right-2 px-2 py-0.5 rounded-full bg-[#0071e3] text-white text-[9px] font-bold tracking-wider shadow">
-                                    Active
-                                </span>
                             </div>
-                            <div>
+                            <div class="flex items-center justify-between gap-2 mt-1">
                                 <h4 class="font-semibold text-xs text-white truncate group-hover:text-blue-400 transition-colors">Archival Heavyweight Piqué</h4>
-                                <p class="text-[10px] text-neutral-400 truncate mt-0.5">260GSM Honeycomb Cotton</p>
-                                <div class="flex items-center justify-between mt-1.5 pt-1.5 border-t border-white/5">
-                                    <span class="text-xs font-bold text-white">₦24,500</span>
-                                    <span class="text-[10px] text-white/50 font-medium">$28</span>
-                                </div>
+                                <span class="text-xs font-bold text-white whitespace-nowrap">₦24,500</span>
                             </div>
                         </div>
 
@@ -178,17 +139,10 @@
                         <div class="polo-card group relative flex-shrink-0 w-[200px] sm:w-[220px] snap-start bg-[#161617] hover:bg-[#1d1d1f] rounded-2xl p-3 border border-white/10 opacity-80 hover:opacity-100 transition-all duration-300 cursor-pointer flex flex-col justify-between" data-polo-index="1" onclick="selectPolo(1)">
                             <div class="relative w-full aspect-[4/5] max-h-[220px] rounded-xl overflow-hidden bg-neutral-900 mb-2.5">
                                 <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=900&auto=format&fit=crop&q=80" alt="Single-Stitch 90s Vintage Tee" class="polo-grid-img w-full h-full object-cover group-hover:scale-105 transition-all duration-500">
-                                <span class="polo-active-badge hidden absolute top-2 right-2 px-2 py-0.5 rounded-full bg-[#0071e3] text-white text-[9px] font-bold tracking-wider shadow">
-                                    Active
-                                </span>
                             </div>
-                            <div>
+                            <div class="flex items-center justify-between gap-2 mt-1">
                                 <h4 class="font-semibold text-xs text-white truncate group-hover:text-blue-400 transition-colors">90s Vintage Graphic Tee</h4>
-                                <p class="text-[10px] text-neutral-400 truncate mt-0.5">Single-Stitch Hem · 90s Heritage</p>
-                                <div class="flex items-center justify-between mt-1.5 pt-1.5 border-t border-white/5">
-                                    <span class="text-xs font-bold text-white">₦22,000</span>
-                                    <span class="text-[10px] text-white/50 font-medium">$26</span>
-                                </div>
+                                <span class="text-xs font-bold text-white whitespace-nowrap">₦22,000</span>
                             </div>
                         </div>
 
@@ -196,17 +150,10 @@
                         <div class="polo-card group relative flex-shrink-0 w-[200px] sm:w-[220px] snap-start bg-[#161617] hover:bg-[#1d1d1f] rounded-2xl p-3 border border-white/10 opacity-80 hover:opacity-100 transition-all duration-300 cursor-pointer flex flex-col justify-between" data-polo-index="2" onclick="selectPolo(2)">
                             <div class="relative w-full aspect-[4/5] max-h-[220px] rounded-xl overflow-hidden bg-neutral-900 mb-2.5">
                                 <img src="https://images.unsplash.com/photo-1562157873-818bc0726f68?w=900&auto=format&fit=crop&q=80" alt="Bespoke Custom Studio Tee" class="polo-grid-img w-full h-full object-cover group-hover:scale-105 transition-all duration-500">
-                                <span class="polo-active-badge hidden absolute top-2 right-2 px-2 py-0.5 rounded-full bg-[#0071e3] text-white text-[9px] font-bold tracking-wider shadow">
-                                    Active
-                                </span>
                             </div>
-                            <div>
+                            <div class="flex items-center justify-between gap-2 mt-1">
                                 <h4 class="font-semibold text-xs text-white truncate group-hover:text-blue-400 transition-colors">Bespoke Custom Studio Tee</h4>
-                                <p class="text-[10px] text-neutral-400 truncate mt-0.5">240GSM Ring-Spun Cotton</p>
-                                <div class="flex items-center justify-between mt-1.5 pt-1.5 border-t border-white/5">
-                                    <span class="text-xs font-bold text-white">₦26,500</span>
-                                    <span class="text-[10px] text-white/50 font-medium">$30</span>
-                                </div>
+                                <span class="text-xs font-bold text-white whitespace-nowrap">₦26,500</span>
                             </div>
                         </div>
 
@@ -214,17 +161,10 @@
                         <div class="polo-card group relative flex-shrink-0 w-[200px] sm:w-[220px] snap-start bg-[#161617] hover:bg-[#1d1d1f] rounded-2xl p-3 border border-white/10 opacity-80 hover:opacity-100 transition-all duration-300 cursor-pointer flex flex-col justify-between" data-polo-index="3" onclick="selectPolo(3)">
                             <div class="relative w-full aspect-[4/5] max-h-[220px] rounded-xl overflow-hidden bg-neutral-900 mb-2.5">
                                 <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=900&auto=format&fit=crop&q=80" alt="Signature White Minimalist Studio Tee" class="polo-grid-img w-full h-full object-cover group-hover:scale-105 transition-all duration-500">
-                                <span class="polo-active-badge hidden absolute top-2 right-2 px-2 py-0.5 rounded-full bg-[#0071e3] text-white text-[9px] font-bold tracking-wider shadow">
-                                    Active
-                                </span>
                             </div>
-                            <div>
+                            <div class="flex items-center justify-between gap-2 mt-1">
                                 <h4 class="font-semibold text-xs text-white truncate group-hover:text-blue-400 transition-colors">Signature Puff Studio Tee</h4>
-                                <p class="text-[10px] text-neutral-400 truncate mt-0.5">220GSM Luxury Jersey Cotton</p>
-                                <div class="flex items-center justify-between mt-1.5 pt-1.5 border-t border-white/5">
-                                    <span class="text-xs font-bold text-white">₦21,000</span>
-                                    <span class="text-[10px] text-white/50 font-medium">$24</span>
-                                </div>
+                                <span class="text-xs font-bold text-white whitespace-nowrap">₦21,000</span>
                             </div>
                         </div>
 
@@ -232,35 +172,21 @@
                         <div class="polo-card group relative flex-shrink-0 w-[200px] sm:w-[220px] snap-start bg-[#161617] hover:bg-[#1d1d1f] rounded-2xl p-3 border border-white/10 opacity-80 hover:opacity-100 transition-all duration-300 cursor-pointer flex flex-col justify-between" data-polo-index="4" onclick="selectPolo(4)">
                             <div class="relative w-full aspect-[4/5] max-h-[220px] rounded-xl overflow-hidden bg-neutral-900 mb-2.5">
                                 <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=900&auto=format&fit=crop&q=80" alt="Retro Stripe Textured Knit Polo" class="polo-grid-img w-full h-full object-cover group-hover:scale-105 transition-all duration-500">
-                                <span class="polo-active-badge hidden absolute top-2 right-2 px-2 py-0.5 rounded-full bg-[#0071e3] text-white text-[9px] font-bold tracking-wider shadow">
-                                    Active
-                                </span>
                             </div>
-                            <div>
+                            <div class="flex items-center justify-between gap-2 mt-1">
                                 <h4 class="font-semibold text-xs text-white truncate group-hover:text-blue-400 transition-colors">Retro Stripe Knit Polo</h4>
-                                <p class="text-[10px] text-neutral-400 truncate mt-0.5">Fine-Gauge Mercerized Knit</p>
-                                <div class="flex items-center justify-between mt-1.5 pt-1.5 border-t border-white/5">
-                                    <span class="text-xs font-bold text-white">₦28,000</span>
-                                    <span class="text-[10px] text-white/50 font-medium">$32</span>
-                                </div>
+                                <span class="text-xs font-bold text-white whitespace-nowrap">₦28,000</span>
                             </div>
                         </div>
 
                         <!-- PIECE 6 (British Racing Heritage Polo) -->
                         <div class="polo-card group relative flex-shrink-0 w-[200px] sm:w-[220px] snap-start bg-[#161617] hover:bg-[#1d1d1f] rounded-2xl p-3 border border-white/10 opacity-80 hover:opacity-100 transition-all duration-300 cursor-pointer flex flex-col justify-between" data-polo-index="5" onclick="selectPolo(5)">
                             <div class="relative w-full aspect-[4/5] max-h-[220px] rounded-xl overflow-hidden bg-neutral-900 mb-2.5">
-                                <img src="https://images.unsplash.com/photo-1598033129183-c4f50c736f10?w=900&auto=format&fit=crop&q=80" alt="British Racing Heritage Club Polo" class="polo-grid-img w-full h-full object-cover group-hover:scale-105 transition-all duration-500">
-                                <span class="polo-active-badge hidden absolute top-2 right-2 px-2 py-0.5 rounded-full bg-[#0071e3] text-white text-[9px] font-bold tracking-wider shadow">
-                                    Active
-                                </span>
+                                <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=900&auto=format&fit=crop&q=80" alt="British Racing Heritage Club Polo" class="polo-grid-img w-full h-full object-cover group-hover:scale-105 transition-all duration-500">
                             </div>
-                            <div>
+                            <div class="flex items-center justify-between gap-2 mt-1">
                                 <h4 class="font-semibold text-xs text-white truncate group-hover:text-blue-400 transition-colors">British Racing Club Polo</h4>
-                                <p class="text-[10px] text-neutral-400 truncate mt-0.5">Gold Bullion Crest Embroidery</p>
-                                <div class="flex items-center justify-between mt-1.5 pt-1.5 border-t border-white/5">
-                                    <span class="text-xs font-bold text-white">₦25,000</span>
-                                    <span class="text-[10px] text-white/50 font-medium">$29</span>
-                                </div>
+                                <span class="text-xs font-bold text-white whitespace-nowrap">₦25,000</span>
                             </div>
                         </div>
 
@@ -268,17 +194,10 @@
                         <div class="polo-card group relative flex-shrink-0 w-[200px] sm:w-[220px] snap-start bg-[#161617] hover:bg-[#1d1d1f] rounded-2xl p-3 border border-white/10 opacity-80 hover:opacity-100 transition-all duration-300 cursor-pointer flex flex-col justify-between" data-polo-index="6" onclick="selectPolo(6)">
                             <div class="relative w-full aspect-[4/5] max-h-[220px] rounded-xl overflow-hidden bg-neutral-900 mb-2.5">
                                 <img src="https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=900&auto=format&fit=crop&q=80" alt="Raw-Hem Drop-Shoulder Boxy Tee" class="polo-grid-img w-full h-full object-cover group-hover:scale-105 transition-all duration-500">
-                                <span class="polo-active-badge hidden absolute top-2 right-2 px-2 py-0.5 rounded-full bg-[#0071e3] text-white text-[9px] font-bold tracking-wider shadow">
-                                    Active
-                                </span>
                             </div>
-                            <div>
+                            <div class="flex items-center justify-between gap-2 mt-1">
                                 <h4 class="font-semibold text-xs text-white truncate group-hover:text-blue-400 transition-colors">Raw-Hem Boxy Streetwear</h4>
-                                <p class="text-[10px] text-neutral-400 truncate mt-0.5">280GSM Heavy Piqué Jersey</p>
-                                <div class="flex items-center justify-between mt-1.5 pt-1.5 border-t border-white/5">
-                                    <span class="text-xs font-bold text-white">₦24,000</span>
-                                    <span class="text-[10px] text-white/50 font-medium">$28</span>
-                                </div>
+                                <span class="text-xs font-bold text-white whitespace-nowrap">₦24,000</span>
                             </div>
                         </div>
 
@@ -286,17 +205,10 @@
                         <div class="polo-card group relative flex-shrink-0 w-[200px] sm:w-[220px] snap-start bg-[#161617] hover:bg-[#1d1d1f] rounded-2xl p-3 border border-white/10 opacity-80 hover:opacity-100 transition-all duration-300 cursor-pointer flex flex-col justify-between" data-polo-index="7" onclick="selectPolo(7)">
                             <div class="relative w-full aspect-[4/5] max-h-[220px] rounded-xl overflow-hidden bg-neutral-900 mb-2.5">
                                 <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=900&auto=format&fit=crop&q=80" alt="Stealth Noir Luxury Custom Polo" class="polo-grid-img w-full h-full object-cover group-hover:scale-105 transition-all duration-500">
-                                <span class="polo-active-badge hidden absolute top-2 right-2 px-2 py-0.5 rounded-full bg-[#0071e3] text-white text-[9px] font-bold tracking-wider shadow">
-                                    Active
-                                </span>
                             </div>
-                            <div>
+                            <div class="flex items-center justify-between gap-2 mt-1">
                                 <h4 class="font-semibold text-xs text-white truncate group-hover:text-blue-400 transition-colors">Stealth Noir Luxury Polo</h4>
-                                <p class="text-[10px] text-neutral-400 truncate mt-0.5">270GSM Mercerized Triple-Black</p>
-                                <div class="flex items-center justify-between mt-1.5 pt-1.5 border-t border-white/5">
-                                    <span class="text-xs font-bold text-white">₦27,000</span>
-                                    <span class="text-[10px] text-white/50 font-medium">$31</span>
-                                </div>
+                                <span class="text-xs font-bold text-white whitespace-nowrap">₦27,000</span>
                             </div>
                         </div>
 

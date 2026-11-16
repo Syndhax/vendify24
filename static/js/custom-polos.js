@@ -94,7 +94,7 @@ const VENT_POLOS = [
         badge: "Gold Bullion Thread Embroidery",
         fabric: "260GSM Combed Honeycomb",
         desc: "Deep British Racing Green piqué with hand-guided monogram crest available on the left chest or collar point. Reinforced placket.",
-        img: "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?w=900&auto=format&fit=crop&q=80",
+        img: "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=900&auto=format&fit=crop&q=80",
         colors: [
             { name: "Racing Green", hex: "#064e3b" },
             { name: "Navy Blue", hex: "#1e3a8a" },
@@ -268,10 +268,7 @@ function updatePoloWhatsAppLink() {
     const polo = VENT_POLOS[currentPoloIndex];
     if (!polo) return;
 
-    const customTextInput = document.getElementById("poloCustomTextInput");
-    const customText = customTextInput ? customTextInput.value.trim() : "VENT 94";
-
-    const message = `Hello Vent Collection, I would like to order the ${polo.title} (${polo.price}) in Size: ${currentSize}, Colorway: ${currentColorName}, Custom Monogram: "${customText}". Please confirm turnaround time and payment options.`;
+    const message = `Hello Vent Collection, I would like to order the ${polo.title} (${polo.price}) in Colorway: ${currentColorName}. Please confirm available sizes and custom delivery.`;
     const encoded = encodeURIComponent(message);
 
     const btn = document.getElementById("spotlightWhatsAppBtn");
