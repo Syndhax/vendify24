@@ -18,7 +18,7 @@ class TestVentCollectionPlatform(unittest.TestCase):
         self.assertIn(b'24 Hours', response.data)
         # Custom Polos section matching sketch (3x3 grid + image clicked stage)
         self.assertIn(b'custom-polos', response.data)
-        self.assertIn(b'Customised Polos', response.data)
+        self.assertIn(b'Customise your shirt with vent', response.data)
         self.assertIn(b'imageClickedStage', response.data)
         self.assertIn(b'Archival Heavyweight Piqu', response.data)
         self.assertIn(b'custom-polos.js', response.data)
