@@ -159,5 +159,39 @@ class TestVentCollectionPlatform(unittest.TestCase):
         self.assertIn(b'Emerald Silk Midi Dress', res.data)
         self.assertIn(b'Order On WhatsApp', res.data)
 
+    def test_user_auth_and_sidebar_toggle(self):
+        # 1. Unauthenticated user visits homepage: sidebar should show "Sign In / Sign Up"
+        res_guest = self.client.get('/')
+        self.assertEqual(res_guest.status_code, 200)
+        self.assertIn(b'Sign In / Sign Up', res_guest.data)
+        self.assertIn(b'openAuthModal', res_guest.data)
+
+        # 2. User signs up via /api/auth
+        signup_res = self.client.post('/api/auth', json={
+            'action': 'signup',
+            'name': 'Alexander McQueen',
+            'email': 'alex@example.com',
+            'phone': '+2348123456789',
+            'password': 'ventpassword123'
+        })
+        self.assertEqual(signup_res.status_code, 200)
+        signup_data = json.loads(signup_res.data)
+        self.assertTrue(signup_data['success'])
+        self.assertEqual(signup_data['name'], 'Alexander McQueen')
+
+        # 3. Authenticated user visits homepage: sidebar now shows "Order on WhatsApp" and the user's name
+        res_auth = self.client.get('/')
+        self.assertEqual(res_auth.status_code, 200)
+        self.assertIn(b'Order on WhatsApp', res_auth.data)
+        self.assertIn(b'Alexander McQueen', res_auth.data)
+        self.assertIn(b'/logout', res_auth.data)
+
+        # 4. User logs out
+        logout_res = self.client.get('/logout', follow_redirects=True)
+        self.assertEqual(logout_res.status_code, 200)
+        
+        # 5. Homepage reverts to "Sign In / Sign Up"
+        self.assertIn(b'Sign In / Sign Up', logout_res.data)
+
 if __name__ == '__main__':
     unittest.main()

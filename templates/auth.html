@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block title %}Sign In / Sign Up - Vent Collection Atelier{% endblock %}
+
+{% block content %}
+<section class="min-h-[75vh] flex items-center justify-center py-16 px-4 bg-white font-['Space_Grotesk']">
+    <div class="w-full max-w-md bg-white border border-neutral-200/90 rounded-3xl p-8 sm:p-10 shadow-2xl relative">
+        
+        <!-- Brand Header -->
+        <div class="text-center mb-8">
+            <div class="w-12 h-12 rounded-2xl overflow-hidden border border-black/15 shadow-sm mx-auto mb-3 flex items-center justify-center bg-white">
+                <img src="{{ url_for('static', filename='images/logo-icon.svg') }}" alt="Vent Collection" class="w-full h-full object-cover">
+            </div>
+            <h1 class="text-2xl font-black text-black font-['Plus_Jakarta_Sans'] tracking-tight">Vent Collection</h1>
+            <p class="text-xs text-neutral-400 uppercase tracking-widest font-semibold mt-1">Atelier Membership</p>
+        </div>
+
+        <!-- Tab Switcher -->
+        <div class="flex items-center p-1 bg-neutral-100 rounded-2xl mb-6">
+            <button type="button" id="tabSignInBtn" onclick="switchAuthTab('signin')" class="flex-1 py-2 text-xs font-bold rounded-xl transition-all duration-200 {% if tab != 'signup' %}bg-white text-black shadow-xs{% else %}text-neutral-500 hover:text-black{% endif %}">
+                Sign In
+            </button>
+            <button type="button" id="tabSignUpBtn" onclick="switchAuthTab('signup')" class="flex-1 py-2 text-xs font-bold rounded-xl transition-all duration-200 {% if tab == 'signup' %}bg-white text-black shadow-xs{% else %}text-neutral-500 hover:text-black{% endif %}">
+                Create Account
+            </button>
+        </div>
+
+        <!-- Sign In Form -->
+        <form id="signInForm" action="{{ url_for('auth') }}" method="POST" class="space-y-4 {% if tab == 'signup' %}hidden{% endif %}">
+            <input type="hidden" name="action" value="signin">
+            <div>
+                <label class="block text-xs font-bold text-neutral-700 uppercase tracking-wider mb-1.5">Email Address</label>
+                <input type="email" name="email" value="{{ email or '' }}" required placeholder="your@email.com" class="w-full px-4 py-3 rounded-xl border border-neutral-200 focus:border-black focus:outline-none text-sm transition-colors">
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-neutral-700 uppercase tracking-wider mb-1.5">Password</label>
+                <input type="password" name="password" required placeholder="••••••••" class="w-full px-4 py-3 rounded-xl border border-neutral-200 focus:border-black focus:outline-none text-sm transition-colors">
+            </div>
+            <button type="submit" class="w-full py-3.5 px-4 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white font-semibold text-xs tracking-wide shadow-sm hover:shadow transition-all duration-300 mt-2">
+                Sign In to Vent Atelier
+            </button>
+        </form>
+
+        <!-- Sign Up Form -->
+        <form id="signUpForm" action="{{ url_for('auth') }}" method="POST" class="space-y-4 {% if tab != 'signup' %}hidden{% endif %}">
+            <input type="hidden" name="action" value="signup">
+            <div>
+                <label class="block text-xs font-bold text-neutral-700 uppercase tracking-wider mb-1.5">Full Name</label>
+                <input type="text" name="name" value="{{ name or '' }}" required placeholder="e.g. David Cole" class="w-full px-4 py-3 rounded-xl border border-neutral-200 focus:border-black focus:outline-none text-sm transition-colors">
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-neutral-700 uppercase tracking-wider mb-1.5">Email Address</label>
+                <input type="email" name="email" value="{{ email or '' }}" required placeholder="your@email.com" class="w-full px-4 py-3 rounded-xl border border-neutral-200 focus:border-black focus:outline-none text-sm transition-colors">
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-neutral-700 uppercase tracking-wider mb-1.5">Phone / WhatsApp (Optional)</label>
+                <input type="tel" name="phone" value="{{ phone or '' }}" placeholder="+234..." class="w-full px-4 py-3 rounded-xl border border-neutral-200 focus:border-black focus:outline-none text-sm transition-colors">
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-neutral-700 uppercase tracking-wider mb-1.5">Password</label>
+                <input type="password" name="password" required placeholder="Choose a password" class="w-full px-4 py-3 rounded-xl border border-neutral-200 focus:border-black focus:outline-none text-sm transition-colors">
+            </div>
+            <button type="submit" class="w-full py-3.5 px-4 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white font-semibold text-xs tracking-wide shadow-sm hover:shadow transition-all duration-300 mt-2">
+                Create Account & Unlock Orders
+            </button>
+        </form>
+
+        <!-- Back to Storefront -->
+        <div class="mt-6 pt-6 border-t border-neutral-100 text-center">
+            <a href="{{ url_for('index') }}" class="text-xs text-neutral-500 hover:text-black font-medium transition-colors flex items-center justify-center gap-1.5">
+                <i class="fa-solid fa-arrow-left text-[10px]"></i>
+                <span>Return to Storefront</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<script>
+function switchAuthTab(tab) {
+    const signInForm = document.getElementById('signInForm');
+    const signUpForm = document.getElementById('signUpForm');
+    const tabSignInBtn = document.getElementById('tabSignInBtn');
+    const tabSignUpBtn = document.getElementById('tabSignUpBtn');
+
+    if (tab === 'signup') {
+        signInForm.classList.add('hidden');
+        signUpForm.classList.remove('hidden');
+        tabSignUpBtn.className = "flex-1 py-2 text-xs font-bold rounded-xl transition-all duration-200 bg-white text-black shadow-xs";
+        tabSignInBtn.className = "flex-1 py-2 text-xs font-bold rounded-xl transition-all duration-200 text-neutral-500 hover:text-black";
+    } else {
+        signUpForm.classList.add('hidden');
+        signInForm.classList.remove('hidden');
+        tabSignInBtn.className = "flex-1 py-2 text-xs font-bold rounded-xl transition-all duration-200 bg-white text-black shadow-xs";
+        tabSignUpBtn.className = "flex-1 py-2 text-xs font-bold rounded-xl transition-all duration-200 text-neutral-500 hover:text-black";
+    }
+}
+</script>
+{% endblock %}

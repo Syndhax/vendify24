@@ -84,12 +84,28 @@
             </nav>
         </div>
 
-        <!-- Sidebar Bottom: Minimal WhatsApp Action & Note -->
+        <!-- Sidebar Bottom: Minimal Auth or WhatsApp Action & Note -->
         <div class="p-5 border-t border-neutral-100 space-y-2.5">
-            <a href="https://wa.me/2348000000000?text=Hello%20Vent%20Collection,%20I%20have%20an%20inquiry%20about%20your%20pieces." target="_blank" class="w-full flex items-center justify-center gap-2 py-2.5 px-4 text-xs font-semibold text-white bg-[#0071e3] hover:bg-[#0077ed] rounded-full shadow-sm hover:shadow transition-all duration-300">
-                <i class="fa-brands fa-whatsapp text-sm"></i>
-                <span>Order on WhatsApp</span>
-            </a>
+            {% if current_user %}
+                <div class="space-y-2">
+                    <div class="flex items-center justify-between px-1 text-[11px] text-neutral-500 font-medium">
+                        <span class="truncate flex items-center gap-1.5 text-neutral-800 font-semibold">
+                            <i class="fa-solid fa-circle-user text-neutral-400 text-xs"></i>
+                            <span class="truncate">{{ current_user.name }}</span>
+                        </span>
+                        <a href="{{ url_for('user_logout') }}" class="text-neutral-400 hover:text-black transition-colors" title="Sign Out">Sign Out</a>
+                    </div>
+                    <a href="https://wa.me/2348000000000?text=Hello%20Vent%20Collection,%20I%20am%20{{ current_user.name }}%20and%20I%20want%20to%20order%20from%20the%20Vent%20Collection%20Studio." target="_blank" class="w-full flex items-center justify-center gap-2 py-2.5 px-4 text-xs font-semibold text-white bg-[#0071e3] hover:bg-[#0077ed] rounded-full shadow-sm hover:shadow transition-all duration-300">
+                        <i class="fa-brands fa-whatsapp text-sm"></i>
+                        <span>Order on WhatsApp</span>
+                    </a>
+                </div>
+            {% else %}
+                <button type="button" onclick="openAuthModal('signin')" class="w-full flex items-center justify-center gap-2 py-2.5 px-4 text-xs font-semibold text-white bg-[#0071e3] hover:bg-[#0077ed] rounded-full shadow-sm hover:shadow transition-all duration-300 cursor-pointer">
+                    <i class="fa-solid fa-user text-xs"></i>
+                    <span>Sign In / Sign Up</span>
+                </button>
+            {% endif %}
             <p class="text-center text-[10px] text-neutral-400 font-medium tracking-wider uppercase">
                 Vent Atelier · Lagos
             </p>
@@ -147,6 +163,77 @@
             </div>
         </div>
     </footer>
+
+    <!-- Auth Modal (Sign In / Sign Up) -->
+    <div id="authModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300">
+        <div id="authModalBackdrop" class="absolute inset-0" onclick="closeAuthModal()"></div>
+        <div class="relative w-full max-w-md bg-white rounded-3xl p-6 sm:p-8 shadow-2xl border border-neutral-100 z-10 font-['Space_Grotesk'] transform scale-95 transition-transform duration-300" id="authModalCard">
+            <!-- Close Button -->
+            <button type="button" onclick="closeAuthModal()" class="absolute top-5 right-5 w-8 h-8 rounded-full bg-neutral-100 hover:bg-neutral-200 text-neutral-500 hover:text-black flex items-center justify-center transition-colors">
+                <i class="fa-solid fa-xmark text-sm"></i>
+            </button>
+
+            <!-- Brand Header -->
+            <div class="text-center mb-6">
+                <div class="w-10 h-10 rounded-xl overflow-hidden border border-black/15 shadow-sm mx-auto mb-2.5 flex items-center justify-center bg-white">
+                    <img src="{{ url_for('static', filename='images/logo-icon.svg') }}" alt="Vent Collection" class="w-full h-full object-cover">
+                </div>
+                <h3 class="text-xl font-black text-black font-['Plus_Jakarta_Sans'] tracking-tight">Vent Collection</h3>
+                <p class="text-[11px] text-neutral-400 uppercase tracking-widest font-semibold mt-0.5">Atelier Membership</p>
+            </div>
+
+            <!-- Tab Switcher -->
+            <div class="flex items-center p-1 bg-neutral-100 rounded-2xl mb-5">
+                <button type="button" id="modalTabSignIn" onclick="switchModalAuthTab('signin')" class="flex-1 py-2 text-xs font-bold rounded-xl transition-all duration-200 bg-white text-black shadow-xs">
+                    Sign In
+                </button>
+                <button type="button" id="modalTabSignUp" onclick="switchModalAuthTab('signup')" class="flex-1 py-2 text-xs font-bold rounded-xl transition-all duration-200 text-neutral-500 hover:text-black">
+                    Create Account
+                </button>
+            </div>
+
+            <!-- Error/Status Alert Box -->
+            <div id="authModalAlert" class="hidden mb-4 p-3 rounded-xl text-xs font-medium"></div>
+
+            <!-- Sign In Form -->
+            <form id="modalSignInForm" onsubmit="handleModalAuthSubmit(event, 'signin')" class="space-y-3.5">
+                <div>
+                    <label class="block text-[11px] font-bold text-neutral-700 uppercase tracking-wider mb-1">Email Address</label>
+                    <input type="email" id="modalSignInEmail" required placeholder="your@email.com" class="w-full px-3.5 py-2.5 rounded-xl border border-neutral-200 focus:border-black focus:outline-none text-xs transition-colors">
+                </div>
+                <div>
+                    <label class="block text-[11px] font-bold text-neutral-700 uppercase tracking-wider mb-1">Password</label>
+                    <input type="password" id="modalSignInPassword" required placeholder="••••••••" class="w-full px-3.5 py-2.5 rounded-xl border border-neutral-200 focus:border-black focus:outline-none text-xs transition-colors">
+                </div>
+                <button type="submit" id="modalSignInSubmitBtn" class="w-full py-3 px-4 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white font-semibold text-xs tracking-wide shadow-sm hover:shadow transition-all duration-300 mt-1 cursor-pointer">
+                    Sign In to Vent Atelier
+                </button>
+            </form>
+
+            <!-- Sign Up Form -->
+            <form id="modalSignUpForm" onsubmit="handleModalAuthSubmit(event, 'signup')" class="space-y-3.5 hidden">
+                <div>
+                    <label class="block text-[11px] font-bold text-neutral-700 uppercase tracking-wider mb-1">Full Name</label>
+                    <input type="text" id="modalSignUpName" required placeholder="e.g. David Cole" class="w-full px-3.5 py-2.5 rounded-xl border border-neutral-200 focus:border-black focus:outline-none text-xs transition-colors">
+                </div>
+                <div>
+                    <label class="block text-[11px] font-bold text-neutral-700 uppercase tracking-wider mb-1">Email Address</label>
+                    <input type="email" id="modalSignUpEmail" required placeholder="your@email.com" class="w-full px-3.5 py-2.5 rounded-xl border border-neutral-200 focus:border-black focus:outline-none text-xs transition-colors">
+                </div>
+                <div>
+                    <label class="block text-[11px] font-bold text-neutral-700 uppercase tracking-wider mb-1">Phone / WhatsApp (Optional)</label>
+                    <input type="tel" id="modalSignUpPhone" placeholder="+234..." class="w-full px-3.5 py-2.5 rounded-xl border border-neutral-200 focus:border-black focus:outline-none text-xs transition-colors">
+                </div>
+                <div>
+                    <label class="block text-[11px] font-bold text-neutral-700 uppercase tracking-wider mb-1">Password</label>
+                    <input type="password" id="modalSignUpPassword" required placeholder="Choose a password" class="w-full px-3.5 py-2.5 rounded-xl border border-neutral-200 focus:border-black focus:outline-none text-xs transition-colors">
+                </div>
+                <button type="submit" id="modalSignUpSubmitBtn" class="w-full py-3 px-4 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white font-semibold text-xs tracking-wide shadow-sm hover:shadow transition-all duration-300 mt-1 cursor-pointer">
+                    Create Account & Unlock Orders
+                </button>
+            </form>
+        </div>
+    </div>
 
     <!-- Scripts -->
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>

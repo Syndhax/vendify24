@@ -4,6 +4,7 @@ import random
 import string
 from datetime import datetime, timedelta, timezone
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify, flash
+from werkzeug.security import generate_password_hash, check_password_hash
 from db import get_db, init_db
 
 app = Flask(__name__)
@@ -12,6 +13,16 @@ app.config['TEMPLATES_AUTO_RELOAD'] = True
 
 # Initialize DB on start
 init_db()
+
+@app.context_processor
+def inject_user():
+    if 'user_id' in session:
+        return {'current_user': {
+            'id': session['user_id'],
+            'name': session.get('user_name', 'Customer'),
+            'email': session.get('user_email', '')
+        }}
+    return {'current_user': None}
 
 def generate_order_id():
     """Generates a memorable order ID like V24-8492"""
@@ -67,6 +78,131 @@ def index():
 @app.route('/vintage')
 def vintage_gallery():
     return render_template('vintage.html')
+
+@app.route('/auth', methods=['GET', 'POST'])
+@app.route('/login', methods=['GET', 'POST'])
+@app.route('/signup', methods=['GET', 'POST'])
+def auth():
+    if 'user_id' in session:
+        return redirect(url_for('index'))
+    
+    tab = 'signup' if request.path == '/signup' else request.args.get('tab', 'signin')
+    
+    if request.method == 'POST':
+        action = request.form.get('action', 'signin')
+        conn = get_db()
+        cursor = conn.cursor()
+        
+        if action == 'signup':
+            name = request.form.get('name', '').strip()
+            email = request.form.get('email', '').strip().lower()
+            password = request.form.get('password', '')
+            phone = request.form.get('phone', '').strip()
+            
+            if not name or not email or not password:
+                flash("Please fill in all required fields (Name, Email, Password).", "error")
+                return render_template('auth.html', tab='signup', name=name, email=email, phone=phone)
+            
+            cursor.execute("SELECT id FROM users WHERE email = ?", (email,))
+            if cursor.fetchone():
+                flash("An account with this email already exists. Please sign in.", "error")
+                return render_template('auth.html', tab='signin', email=email)
+            
+            pw_hash = generate_password_hash(password)
+            now_str = datetime.now(timezone.utc).isoformat()
+            cursor.execute(
+                "INSERT INTO users (name, email, phone, password_hash, created_at) VALUES (?, ?, ?, ?, ?)",
+                (name, email, phone, pw_hash, now_str)
+            )
+            conn.commit()
+            user_id = cursor.lastrowid
+            
+            session['user_id'] = user_id
+            session['user_name'] = name
+            session['user_email'] = email
+            
+            flash(f"Welcome to Vent Atelier, {name}!", "success")
+            next_url = request.args.get('next') or url_for('index')
+            return redirect(next_url)
+            
+        else: # signin
+            email = request.form.get('email', '').strip().lower()
+            password = request.form.get('password', '')
+            
+            if not email or not password:
+                flash("Please provide both email and password.", "error")
+                return render_template('auth.html', tab='signin', email=email)
+            
+            cursor.execute("SELECT id, name, email, password_hash FROM users WHERE email = ?", (email,))
+            user = cursor.fetchone()
+            
+            if not user or not check_password_hash(user['password_hash'], password):
+                flash("Invalid email or password. Please try again.", "error")
+                return render_template('auth.html', tab='signin', email=email)
+            
+            session['user_id'] = user['id']
+            session['user_name'] = user['name']
+            session['user_email'] = user['email']
+            
+            flash(f"Welcome back, {user['name']}!", "success")
+            next_url = request.args.get('next') or url_for('index')
+            return redirect(next_url)
+
+    return render_template('auth.html', tab=tab)
+
+@app.route('/logout')
+def user_logout():
+    session.pop('user_id', None)
+    session.pop('user_name', None)
+    session.pop('user_email', None)
+    flash("You have been signed out.", "info")
+    return redirect(request.referrer or url_for('index'))
+
+@app.route('/api/auth', methods=['POST'])
+def api_auth():
+    data = request.get_json(silent=True) or request.form
+    action = data.get('action', 'signin')
+    conn = get_db()
+    cursor = conn.cursor()
+    
+    if action == 'signup':
+        name = data.get('name', '').strip()
+        email = data.get('email', '').strip().lower()
+        password = data.get('password', '')
+        phone = data.get('phone', '').strip()
+        
+        if not name or not email or not password:
+            return jsonify({'success': False, 'message': 'Please provide Name, Email, and Password.'}), 400
+        
+        cursor.execute("SELECT id FROM users WHERE email = ?", (email,))
+        if cursor.fetchone():
+            return jsonify({'success': False, 'message': 'Email already registered. Please sign in.'}), 400
+        
+        pw_hash = generate_password_hash(password)
+        now_str = datetime.now(timezone.utc).isoformat()
+        cursor.execute(
+            "INSERT INTO users (name, email, phone, password_hash, created_at) VALUES (?, ?, ?, ?, ?)",
+            (name, email, phone, pw_hash, now_str)
+        )
+        conn.commit()
+        user_id = cursor.lastrowid
+        session['user_id'] = user_id
+        session['user_name'] = name
+        session['user_email'] = email
+        return jsonify({'success': True, 'name': name, 'message': f'Welcome to Vent, {name}!'})
+    else:
+        email = data.get('email', '').strip().lower()
+        password = data.get('password', '')
+        if not email or not password:
+            return jsonify({'success': False, 'message': 'Email and Password required.'}), 400
+        cursor.execute("SELECT id, name, email, password_hash FROM users WHERE email = ?", (email,))
+        user = cursor.fetchone()
+        if not user or not check_password_hash(user['password_hash'], password):
+            return jsonify({'success': False, 'message': 'Invalid email or password.'}), 401
+        session['user_id'] = user['id']
+        session['user_name'] = user['name']
+        session['user_email'] = user['email']
+        return jsonify({'success': True, 'name': user['name'], 'message': f'Welcome back, {user["name"]}!'})
 
 @app.route('/logo-preview')
 def logo_preview():

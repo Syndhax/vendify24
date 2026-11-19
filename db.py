@@ -53,6 +53,17 @@ def init_db():
     )
     ''')
 
+    cursor.execute('''
+    CREATE TABLE IF NOT EXISTS users (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL,
+        email TEXT UNIQUE NOT NULL,
+        phone TEXT DEFAULT '',
+        password_hash TEXT NOT NULL,
+        created_at TEXT NOT NULL
+    )
+    ''')
+
     # Seed default admin password if not present
     cursor.execute("SELECT value FROM settings WHERE key = 'admin_password'")
     if not cursor.fetchone():
