@@ -47,18 +47,22 @@
         <div id="sidebarNavView" class="flex flex-col justify-between h-full min-h-full">
             <!-- Sidebar Top: Brand Mark & Navigation -->
             <div class="p-6">
-                <div class="flex items-center gap-2.5 pb-6 border-b border-neutral-100 pr-12">
-                    <div class="w-8 h-8 rounded-lg overflow-hidden border border-black/15 shadow-xs flex-shrink-0">
+                <a href="{{ url_for('index') }}" class="nav-close-link flex items-center gap-2.5 pb-6 border-b border-neutral-100 pr-12 group">
+                    <div class="w-8 h-8 rounded-lg overflow-hidden border border-black/15 shadow-xs flex-shrink-0 group-hover:scale-105 transition-transform">
                         <img src="{{ url_for('static', filename='images/logo-icon.svg') }}" alt="Vent Collection" class="w-full h-full object-cover">
                     </div>
                     <div>
                         <span class="text-base font-extrabold text-black tracking-tight font-['Plus_Jakarta_Sans'] leading-none block">Vent</span>
                         <span class="text-[9px] uppercase font-bold tracking-widest text-neutral-400 block mt-0.5">Atelier</span>
                     </div>
-                </div>
+                </a>
 
                 <!-- Sleek Minimalist Navigation Menu -->
                 <nav class="pt-6 space-y-1">
+                    <a href="{{ url_for('index') }}" class="nav-close-link group flex items-center justify-between py-2.5 px-3 rounded-lg text-sm font-semibold text-neutral-800 hover:text-black hover:bg-neutral-100 transition-all duration-200">
+                        <span>Home</span>
+                        <i class="fa-solid fa-chevron-right text-[10px] text-neutral-300 group-hover:text-black group-hover:translate-x-0.5 transition-all"></i>
+                    </a>
                     <a href="{{ url_for('vintage_gallery') }}" class="nav-close-link group flex items-center justify-between py-2.5 px-3 rounded-lg text-sm font-semibold text-neutral-800 hover:text-black hover:bg-neutral-100 transition-all duration-200">
                         <span>Vintage Drops</span>
                         <i class="fa-solid fa-chevron-right text-[10px] text-neutral-300 group-hover:text-black group-hover:translate-x-0.5 transition-all"></i>
