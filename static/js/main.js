@@ -21,8 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function openHeader() {
         if (!mainHeader) return;
-        mainHeader.classList.remove('translate-x-full');
-        mainHeader.classList.add('translate-x-0');
+        mainHeader.style.transform = 'translateX(0)';
         if (headerOverlay) {
             headerOverlay.classList.remove('opacity-0', 'pointer-events-none');
             headerOverlay.classList.add('opacity-100', 'pointer-events-auto');
@@ -33,15 +32,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         if (headerToggleBtn) {
             headerToggleBtn.setAttribute('title', 'Close Navigation Sidebar');
-            headerToggleBtn.classList.remove('bg-white', 'text-black');
-            headerToggleBtn.classList.add('bg-black', 'text-white');
+            headerToggleBtn.classList.remove('bg-white');
+            headerToggleBtn.classList.add('bg-neutral-100');
         }
     }
 
     function closeHeader() {
         if (!mainHeader) return;
-        mainHeader.classList.remove('translate-x-0');
-        mainHeader.classList.add('translate-x-full');
+        mainHeader.style.transform = 'translateX(100%)';
         if (headerOverlay) {
             headerOverlay.classList.remove('opacity-100', 'pointer-events-auto');
             headerOverlay.classList.add('opacity-0', 'pointer-events-none');
@@ -52,18 +50,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         if (headerToggleBtn) {
             headerToggleBtn.setAttribute('title', 'Open Navigation Sidebar');
-            headerToggleBtn.classList.remove('bg-black', 'text-white');
-            headerToggleBtn.classList.add('bg-white', 'text-black');
+            headerToggleBtn.classList.remove('bg-neutral-100');
+            headerToggleBtn.classList.add('bg-white');
         }
     }
 
     function toggleHeader() {
         if (!mainHeader) return;
-        const isOpen = mainHeader.classList.contains('translate-x-0');
-        if (isOpen) {
-            closeHeader();
-        } else {
+        const isClosed = !mainHeader.style.transform || mainHeader.style.transform === 'translateX(100%)';
+        if (isClosed) {
             openHeader();
+        } else {
+            closeHeader();
         }
     }
 
