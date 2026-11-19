@@ -79,6 +79,11 @@ def index():
 def vintage_gallery():
     return render_template('vintage.html')
 
+@app.route('/custom-studio')
+@app.route('/polos')
+def custom_studio():
+    return render_template('custom_studio.html')
+
 @app.route('/auth', methods=['GET', 'POST'])
 @app.route('/login', methods=['GET', 'POST'])
 @app.route('/signup', methods=['GET', 'POST'])
