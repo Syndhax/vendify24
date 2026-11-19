@@ -1,5 +1,6 @@
 import unittest
 import json
+from datetime import datetime
 from app import app
 from db import init_db
 
@@ -164,13 +165,16 @@ class TestVentCollectionPlatform(unittest.TestCase):
         res_guest = self.client.get('/')
         self.assertEqual(res_guest.status_code, 200)
         self.assertIn(b'Sign In / Sign Up', res_guest.data)
-        self.assertIn(b'openAuthModal', res_guest.data)
+        self.assertIn(b'showSidebarAuthView', res_guest.data)
+        self.assertIn(b'sidebarAuthView', res_guest.data)
+        self.assertIn(b'sidebarNavView', res_guest.data)
 
         # 2. User signs up via /api/auth
+        test_email = f"test_{int(datetime.now().timestamp())}@example.com"
         signup_res = self.client.post('/api/auth', json={
             'action': 'signup',
             'name': 'Alexander McQueen',
-            'email': 'alex@example.com',
+            'email': test_email,
             'phone': '+2348123456789',
             'password': 'ventpassword123'
         })
