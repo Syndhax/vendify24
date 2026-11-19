@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Vintage Collection - Vent Collection (Apple-Inspired Archival Showcase){% endblock %}
+{% block title %}Vintage Collection - Vent Collection Atelier{% endblock %}
 
 {% block content %}
 <!-- ===================================================
@@ -26,13 +26,13 @@
         <!-- Horizontal Category Pills -->
         <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
             <button type="button" onclick="filterVintage('all')" class="cat-pill active text-xs font-semibold px-4 py-2 rounded-full bg-black text-white cursor-pointer transition-all duration-200 shrink-0">
-                All Pieces (14)
+                All Pieces (18)
             </button>
             <button type="button" onclick="filterVintage('tees')" class="cat-pill text-xs font-medium px-4 py-2 rounded-full bg-[#f5f5f7] text-[#1d1d1f] hover:bg-black/10 cursor-pointer transition-all duration-200 shrink-0">
                 Vintage Tees
             </button>
             <button type="button" onclick="filterVintage('custom')" class="cat-pill text-xs font-medium px-4 py-2 rounded-full bg-[#f5f5f7] text-[#1d1d1f] hover:bg-black/10 cursor-pointer transition-all duration-200 shrink-0">
-                Custom T-Shirts
+                Custom Apparel
             </button>
             <button type="button" onclick="filterVintage('denim')" class="cat-pill text-xs font-medium px-4 py-2 rounded-full bg-[#f5f5f7] text-[#1d1d1f] hover:bg-black/10 cursor-pointer transition-all duration-200 shrink-0">
                 Denim & Jackets
@@ -57,390 +57,551 @@
 </div>
 
 <!-- ===================================================
-     APPLE-STYLE HERO HEADER
+     HERO HEADER
      =================================================== -->
-<section class="pt-12 pb-10 sm:pt-16 sm:pb-14 text-center px-4 max-w-4xl mx-auto font-['Plus_Jakarta_Sans']">
-    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/5 text-[#1d1d1f] text-xs font-semibold uppercase tracking-widest mb-3">
+<section class="pt-12 pb-8 sm:pt-16 sm:pb-12 text-center px-4 max-w-4xl mx-auto font-['Plus_Jakarta_Sans']">
+    <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-black/5 text-[#1d1d1f] text-xs font-semibold uppercase tracking-widest mb-3">
         <i class="fa-solid fa-gem text-black"></i>
         <span>Vent Archival Studio & Custom Workshop</span>
     </div>
-    <h1 class="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#1d1d1f] leading-tight">
-        Vintage Collection.
+    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#1d1d1f] leading-tight">
+        Vintage Drops.
     </h1>
-    <p class="text-lg sm:text-xl text-[#86868b] font-normal mt-3 max-w-2xl mx-auto leading-relaxed">
-        Rare handpicked vintage finds, authentic heritage materials, and bespoke custom t-shirts customized in 24 hours.
+    <p class="text-base sm:text-lg text-[#86868b] font-normal mt-3 max-w-2xl mx-auto leading-relaxed">
+        Handpicked authentic vintage materials, rare one-of-a-kind streetwear pieces, and bespoke custom apparel crafted with 24-hour studio precision.
     </p>
 </section>
 
 <!-- ===================================================
-     APPLE 2-COLUMN PROMOTIONAL GRID (THE EXACT DESIGN)
+     3-PER-ROW EXACT BOX SIZE CLOTHING SHOWCASE GRID
+     Matching the exact portrait box size and ratio from the homepage showcase:
+     - 3 boxes per row on desktop (lg:grid-cols-3)
+     - High vertical portrait aspect ratio (h-[470px] sm:h-[510px] lg:h-[540px])
+     - Smooth rounded-3xl borders, shadow, and grayscale image reveal
+     - Scrolling down reveals more rows of 3!
      =================================================== -->
-<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
-    <div id="vintageGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-28">
+    <div id="vintageGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 lg:gap-8">
 
-        <!-- CARD 1: DARK CARD (Like Apple Watch in screenshot) -->
-        <div class="vintage-item group relative rounded-3xl overflow-hidden bg-[#000000] text-[#f5f5f7] p-8 sm:p-12 flex flex-col justify-between min-h-[580px] sm:min-h-[640px] shadow-sm hover:shadow-2xl transition-all duration-300" data-cat="tees">
-            <!-- Top Text Info -->
-            <div class="z-10 text-center flex flex-col items-center">
-                <span class="text-[11px] font-bold uppercase tracking-widest text-neutral-400 mb-1">
-                    1 of 1 ARCHIVAL DROP
-                </span>
-                <h3 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white mb-2">
-                    1994 World Tour Vintage Tee
+        <!-- 1: 1994 World Tour Vintage Band Tee -->
+        <div class="vintage-item group relative h-[470px] sm:h-[510px] lg:h-[540px] rounded-3xl overflow-hidden bg-white border border-black/15 shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer" data-cat="tees" onclick="quickView('1994 World Tour Vintage Tee', '75', 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=900&auto=format&fit=crop&q=80', 'Authentic 1994 single-stitch heavyweight cotton. Faded sunburst wash, flawless vintage patina, tag intact.', 'L (Pit to Pit: 22\", Length: 29\")', '9.5/10 Excellent Vintage')">
+            <span class="absolute top-4 left-4 z-20 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[10px] font-bold tracking-widest uppercase border border-white/20">
+                1 of 1 Drop
+            </span>
+            <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=900&auto=format&fit=crop&q=80" alt="1994 World Tour Vintage Tee" class="w-full h-full object-cover grayscale contrast-105 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500">
+            <div class="absolute inset-x-0 bottom-0 z-10 p-5 sm:p-6 bg-gradient-to-t from-black/90 via-black/55 to-transparent flex flex-col justify-end text-white">
+                <h3 class="text-xl sm:text-2xl font-black font-['Plus_Jakarta_Sans'] tracking-tight text-white mb-1 drop-shadow-sm leading-snug">
+                    1994 World Tour Tee
                 </h3>
-                <p class="text-sm sm:text-base text-neutral-300 max-w-md font-normal leading-relaxed mb-2">
-                    Authentic single-stitch 90s band tee. Distressed patina with original concert tour backprint.
+                <p class="text-xs text-neutral-300 line-clamp-1 mb-2 font-normal">
+                    Single-stitch 90s concert tour tee with authentic sun-faded patina.
                 </p>
-                <div class="text-xs font-mono text-neutral-400 mb-5">
-                    $75 • Size L (Pit-to-Pit: 22" • Length: 29")
+                <div class="flex items-center justify-between text-xs font-mono text-neutral-300 mb-3">
+                    <span class="font-bold text-white text-base">$75</span>
+                    <span class="text-[11px] text-neutral-300">Size L • Single Stitch</span>
                 </div>
-                <!-- Apple Pill Buttons -->
-                <div class="flex items-center gap-3">
-                    <button type="button" onclick="openOrderModal('1994 World Tour Vintage Tee', '75', 'tees', 'Single-stitch authentic 90s cotton, Size L')" class="bg-[#0071e3] hover:bg-[#0077ed] text-white text-xs sm:text-sm font-medium px-5 py-2.5 rounded-full flex items-center gap-2 transition cursor-pointer">
-                        <i class="fa-brands fa-whatsapp text-white"></i>
+                <div class="flex items-center gap-2 pt-1">
+                    <button type="button" onclick="event.stopPropagation(); openOrderModal('1994 World Tour Vintage Tee', '75', 'tees', 'Single-stitch authentic 90s cotton, Size L')" class="flex-1 py-2.5 px-3 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white text-xs font-semibold flex items-center justify-center gap-1.5 shadow-sm transition">
+                        <i class="fa-brands fa-whatsapp text-sm"></i>
                         <span>Order on WhatsApp</span>
                     </button>
-                    <button type="button" onclick="quickView('1994 World Tour Vintage Tee', '75', 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=900&auto=format&fit=crop&q=80', 'Authentic 1994 single-stitch heavyweight cotton. Faded sunburst wash, flawless vintage patina, tag intact.', 'L (Pit to Pit: 22\", Length: 29\")', '9.5/10 Excellent Vintage')" class="text-[#2997ff] border border-[#2997ff]/40 hover:border-[#2997ff] text-xs sm:text-sm font-medium px-5 py-2.5 rounded-full transition cursor-pointer">
-                        Quick View
+                    <button type="button" onclick="event.stopPropagation(); quickView('1994 World Tour Vintage Tee', '75', 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=900&auto=format&fit=crop&q=80', 'Authentic 1994 single-stitch heavyweight cotton. Faded sunburst wash, flawless vintage patina, tag intact.', 'L (Pit to Pit: 22\", Length: 29\")', '9.5/10 Excellent Vintage')" class="py-2.5 px-3.5 rounded-full bg-white/20 hover:bg-white text-white hover:text-black backdrop-blur-md border border-white/30 text-xs font-semibold transition" title="Quick View">
+                        <i class="fa-solid fa-expand text-xs"></i>
                     </button>
                 </div>
-            </div>
-            <!-- Product Photo -->
-            <div class="w-full h-[320px] sm:h-[360px] overflow-hidden rounded-2xl mt-6 relative">
-                <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=900&auto=format&fit=crop&q=80" alt="1994 World Tour Vintage Tee" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
             </div>
         </div>
 
-        <!-- CARD 2: LIGHT CARD (Like iPad in screenshot) -->
-        <div class="vintage-item group relative rounded-3xl overflow-hidden bg-[#f5f5f7] text-[#1d1d1f] p-8 sm:p-12 flex flex-col justify-between min-h-[580px] sm:min-h-[640px] shadow-sm hover:shadow-2xl transition-all duration-300" data-cat="custom">
-            <!-- Top Text Info -->
-            <div class="z-10 text-center flex flex-col items-center">
-                <span class="text-[11px] font-bold uppercase tracking-widest text-[#86868b] mb-1">
-                    BESPOKE CUSTOM APPAREL
-                </span>
-                <h3 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#1d1d1f] mb-2">
-                    Heavyweight Boxy Custom Tee
+        <!-- 2: Bespoke Heavyweight Boxy Custom Tee -->
+        <div class="vintage-item group relative h-[470px] sm:h-[510px] lg:h-[540px] rounded-3xl overflow-hidden bg-white border border-black/15 shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer" data-cat="custom" onclick="quickView('Heavyweight Boxy Custom Tee', '28', 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=900&auto=format&fit=crop&q=80', '240GSM combed luxury cotton. Custom embroidery or screenprint delivered in 24 hours.', 'Sizes S to XXL Available', '10/10 Brand New Custom')">
+            <span class="absolute top-4 left-4 z-20 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[10px] font-bold tracking-widest uppercase border border-white/20">
+                Custom Atelier
+            </span>
+            <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=900&auto=format&fit=crop&q=80" alt="Heavyweight Boxy Custom Tee" class="w-full h-full object-cover grayscale contrast-105 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500">
+            <div class="absolute inset-x-0 bottom-0 z-10 p-5 sm:p-6 bg-gradient-to-t from-black/90 via-black/55 to-transparent flex flex-col justify-end text-white">
+                <h3 class="text-xl sm:text-2xl font-black font-['Plus_Jakarta_Sans'] tracking-tight text-white mb-1 drop-shadow-sm leading-snug">
+                    Heavyweight Boxy Tee
                 </h3>
-                <p class="text-sm sm:text-base text-[#515154] max-w-md font-normal leading-relaxed mb-2">
-                    240GSM combed organic cotton. Screen-printed, puff print, or embroidered to your exact vision in 24 hours.
+                <p class="text-xs text-neutral-300 line-clamp-1 mb-2 font-normal">
+                    240GSM combed cotton, screen-printed or embroidered in 24 hours.
                 </p>
-                <div class="text-xs font-mono text-[#86868b] mb-5">
-                    From $28 • Custom Made to Order • Sizes S - XXL
+                <div class="flex items-center justify-between text-xs font-mono text-neutral-300 mb-3">
+                    <span class="font-bold text-white text-base">From $28</span>
+                    <span class="text-[11px] text-neutral-300">Sizes S - XXL</span>
                 </div>
-                <!-- Apple Pill Buttons -->
-                <div class="flex items-center gap-3">
-                    <button type="button" onclick="openOrderModal('Heavyweight Boxy Custom Tee', '28', 'custom', 'Bespoke custom t-shirt with your artwork/text')" class="bg-[#0071e3] hover:bg-[#0077ed] text-white text-xs sm:text-sm font-medium px-5 py-2.5 rounded-full flex items-center gap-2 transition cursor-pointer">
-                        <i class="fa-brands fa-whatsapp text-white"></i>
+                <div class="flex items-center gap-2 pt-1">
+                    <button type="button" onclick="event.stopPropagation(); openOrderModal('Heavyweight Boxy Custom Tee', '28', 'custom', 'Bespoke custom t-shirt with your artwork/text')" class="flex-1 py-2.5 px-3 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white text-xs font-semibold flex items-center justify-center gap-1.5 shadow-sm transition">
+                        <i class="fa-brands fa-whatsapp text-sm"></i>
                         <span>Order on WhatsApp</span>
                     </button>
-                    <a href="{{ url_for('order') }}" class="text-[#0071e3] border border-[#0071e3]/40 hover:border-[#0071e3] text-xs sm:text-sm font-medium px-5 py-2.5 rounded-full transition cursor-pointer">
-                        Customize
+                    <a href="{{ url_for('order') }}" onclick="event.stopPropagation();" class="py-2.5 px-3.5 rounded-full bg-white/20 hover:bg-white text-white hover:text-black backdrop-blur-md border border-white/30 text-xs font-semibold transition" title="Customise">
+                        <i class="fa-solid fa-paintbrush text-xs"></i>
                     </a>
                 </div>
             </div>
-            <!-- Product Photo -->
-            <div class="w-full h-[320px] sm:h-[360px] overflow-hidden rounded-2xl mt-6 relative">
-                <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=900&auto=format&fit=crop&q=80" alt="Heavyweight Boxy Custom Tee" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+        </div>
+
+        <!-- 3: 1992 Detroit Heritage Duck Jacket -->
+        <div class="vintage-item group relative h-[470px] sm:h-[510px] lg:h-[540px] rounded-3xl overflow-hidden bg-white border border-black/15 shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer" data-cat="denim" onclick="quickView('1992 Detroit Heritage Duck Jacket', '120', 'https://images.unsplash.com/photo-1551028719-00167b16eac5?w=900&auto=format&fit=crop&q=80', 'Heavyweight 12oz duck canvas with corduroy collar, heavy metal zipper, and authentic distress wear from 1992.', 'XL (Chest: 50\", Length: 28\")', '9.0/10 Authentic Heritage Vintage')">
+            <span class="absolute top-4 left-4 z-20 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[10px] font-bold tracking-widest uppercase border border-white/20">
+                Archival Outerwear
+            </span>
+            <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=900&auto=format&fit=crop&q=80" alt="1992 Detroit Heritage Jacket" class="w-full h-full object-cover grayscale contrast-105 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500">
+            <div class="absolute inset-x-0 bottom-0 z-10 p-5 sm:p-6 bg-gradient-to-t from-black/90 via-black/55 to-transparent flex flex-col justify-end text-white">
+                <h3 class="text-xl sm:text-2xl font-black font-['Plus_Jakarta_Sans'] tracking-tight text-white mb-1 drop-shadow-sm leading-snug">
+                    1992 Detroit Jacket
+                </h3>
+                <p class="text-xs text-neutral-300 line-clamp-1 mb-2 font-normal">
+                    Heavy duck canvas work jacket with corduroy collar and blanket lining.
+                </p>
+                <div class="flex items-center justify-between text-xs font-mono text-neutral-300 mb-3">
+                    <span class="font-bold text-white text-base">$120</span>
+                    <span class="text-[11px] text-neutral-300">Size XL • Duck Canvas</span>
+                </div>
+                <div class="flex items-center gap-2 pt-1">
+                    <button type="button" onclick="event.stopPropagation(); openOrderModal('1992 Detroit Heritage Jacket', '120', 'denim', 'Authentic 1992 canvas jacket, Size XL')" class="flex-1 py-2.5 px-3 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white text-xs font-semibold flex items-center justify-center gap-1.5 shadow-sm transition">
+                        <i class="fa-brands fa-whatsapp text-sm"></i>
+                        <span>Order on WhatsApp</span>
+                    </button>
+                    <button type="button" onclick="event.stopPropagation(); quickView('1992 Detroit Heritage Jacket', '120', 'https://images.unsplash.com/photo-1551028719-00167b16eac5?w=900&auto=format&fit=crop&q=80', 'Heavyweight 12oz duck canvas with corduroy collar, heavy metal zipper, and authentic distress wear from 1992.', 'XL (Chest: 50\", Length: 28\")', '9.0/10 Authentic Heritage Vintage')" class="py-2.5 px-3.5 rounded-full bg-white/20 hover:bg-white text-white hover:text-black backdrop-blur-md border border-white/30 text-xs font-semibold transition" title="Quick View">
+                        <i class="fa-solid fa-expand text-xs"></i>
+                    </button>
+                </div>
             </div>
         </div>
 
-        <!-- CARD 3: DARK CARD (Vintage Denim & Workwear) -->
-        <div class="vintage-item group relative rounded-3xl overflow-hidden bg-[#000000] text-[#f5f5f7] p-8 sm:p-12 flex flex-col justify-between min-h-[580px] sm:min-h-[640px] shadow-sm hover:shadow-2xl transition-all duration-300" data-cat="denim">
-            <div class="z-10 text-center flex flex-col items-center">
-                <span class="text-[11px] font-bold uppercase tracking-widest text-neutral-400 mb-1">
-                    ARCHIVAL WORKWEAR
-                </span>
-                <h3 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white mb-2">
-                    1992 Detroit Heritage Jacket
+        <!-- 4: 90s Selvedge Distressed Denim -->
+        <div class="vintage-item group relative h-[470px] sm:h-[510px] lg:h-[540px] rounded-3xl overflow-hidden bg-white border border-black/15 shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer" data-cat="denim" onclick="quickView('90s Selvedge Distressed Denim', '88', 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=900&auto=format&fit=crop&q=80', 'Heavyweight 14oz red-line selvedge denim. Hand-distressed natural whiskers, clean copper rivets, classic 5-pocket styling.', 'W32 x L32 (Rise: 11.5\")', '9.5/10 Prime Archival Condition')">
+            <span class="absolute top-4 left-4 z-20 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[10px] font-bold tracking-widest uppercase border border-white/20">
+                Selvedge Denim
+            </span>
+            <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=900&auto=format&fit=crop&q=80" alt="90s Selvedge Distressed Denim" class="w-full h-full object-cover grayscale contrast-105 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500">
+            <div class="absolute inset-x-0 bottom-0 z-10 p-5 sm:p-6 bg-gradient-to-t from-black/90 via-black/55 to-transparent flex flex-col justify-end text-white">
+                <h3 class="text-xl sm:text-2xl font-black font-['Plus_Jakarta_Sans'] tracking-tight text-white mb-1 drop-shadow-sm leading-snug">
+                    90s Selvedge Denim
                 </h3>
-                <p class="text-sm sm:text-base text-neutral-300 max-w-md font-normal leading-relaxed mb-2">
-                    Heavy canvas work jacket with corduroy collar and blanket lining. Naturally faded vintage work patina.
+                <p class="text-xs text-neutral-300 line-clamp-1 mb-2 font-normal">
+                    Straight-leg cut with authentic honeycombing and vintage whiskers.
                 </p>
-                <div class="text-xs font-mono text-neutral-400 mb-5">
-                    $120 • Size XL • Blanket Lined Heavy Duck
+                <div class="flex items-center justify-between text-xs font-mono text-neutral-300 mb-3">
+                    <span class="font-bold text-white text-base">$88</span>
+                    <span class="text-[11px] text-neutral-300">W32 • L32</span>
                 </div>
-                <div class="flex items-center gap-3">
-                    <button type="button" onclick="openOrderModal('1992 Detroit Heritage Jacket', '120', 'denim', 'Authentic 1992 canvas jacket, Size XL')" class="bg-[#0071e3] hover:bg-[#0077ed] text-white text-xs sm:text-sm font-medium px-5 py-2.5 rounded-full flex items-center gap-2 transition cursor-pointer">
-                        <i class="fa-brands fa-whatsapp text-white"></i>
+                <div class="flex items-center gap-2 pt-1">
+                    <button type="button" onclick="event.stopPropagation(); openOrderModal('90s Selvedge Distressed Denim', '88', 'denim', 'Authentic 90s straight leg denim, W32 L32')" class="flex-1 py-2.5 px-3 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white text-xs font-semibold flex items-center justify-center gap-1.5 shadow-sm transition">
+                        <i class="fa-brands fa-whatsapp text-sm"></i>
                         <span>Order on WhatsApp</span>
                     </button>
-                    <button type="button" onclick="quickView('1992 Detroit Heritage Jacket', '120', 'https://images.unsplash.com/photo-1551028719-00167b16eac5?w=900&auto=format&fit=crop&q=80', 'Heavyweight 12oz duck canvas with corduroy collar, heavy metal zipper, and authentic distress wear from 1992.', 'XL (Chest: 50\", Length: 28\")', '9.0/10 Authentic Heritage Vintage')" class="text-[#2997ff] border border-[#2997ff]/40 hover:border-[#2997ff] text-xs sm:text-sm font-medium px-5 py-2.5 rounded-full transition cursor-pointer">
-                        Quick View
+                    <button type="button" onclick="event.stopPropagation(); quickView('90s Selvedge Distressed Denim', '88', 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=900&auto=format&fit=crop&q=80', 'Heavyweight 14oz red-line selvedge denim. Hand-distressed natural whiskers, clean copper rivets, classic 5-pocket styling.', 'W32 x L32 (Rise: 11.5\")', '9.5/10 Prime Archival Condition')" class="py-2.5 px-3.5 rounded-full bg-white/20 hover:bg-white text-white hover:text-black backdrop-blur-md border border-white/30 text-xs font-semibold transition" title="Quick View">
+                        <i class="fa-solid fa-expand text-xs"></i>
                     </button>
                 </div>
-            </div>
-            <div class="w-full h-[320px] sm:h-[360px] overflow-hidden rounded-2xl mt-6 relative">
-                <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=900&auto=format&fit=crop&q=80" alt="1992 Detroit Heritage Jacket" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
             </div>
         </div>
 
-        <!-- CARD 4: LIGHT CARD (Archival Selvedge Denim) -->
-        <div class="vintage-item group relative rounded-3xl overflow-hidden bg-[#f5f5f7] text-[#1d1d1f] p-8 sm:p-12 flex flex-col justify-between min-h-[580px] sm:min-h-[640px] shadow-sm hover:shadow-2xl transition-all duration-300" data-cat="denim">
-            <div class="z-10 text-center flex flex-col items-center">
-                <span class="text-[11px] font-bold uppercase tracking-widest text-[#86868b] mb-1">
-                    HAND-SOURCED ARCHIVAL DENIM
-                </span>
-                <h3 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#1d1d1f] mb-2">
-                    90s Selvedge Distressed Denim
+        <!-- 5: 450GSM French Terry Custom Hoodie -->
+        <div class="vintage-item group relative h-[470px] sm:h-[510px] lg:h-[540px] rounded-3xl overflow-hidden bg-white border border-black/15 shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer" data-cat="hoodies" onclick="quickView('450GSM French Terry Custom Hoodie', '58', 'https://images.unsplash.com/photo-1509967419530-da38b4704bc6?w=900&auto=format&fit=crop&q=80', 'Ultra-heavyweight 450GSM fleece. Boxy drop-shoulder cut with custom embroidery or puff print.', 'Sizes S to XXL', '10/10 Atelier Custom Made')">
+            <span class="absolute top-4 left-4 z-20 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[10px] font-bold tracking-widest uppercase border border-white/20">
+                Heavy Fleece
+            </span>
+            <img src="https://images.unsplash.com/photo-1509967419530-da38b4704bc6?w=900&auto=format&fit=crop&q=80" alt="450GSM French Terry Hoodie" class="w-full h-full object-cover grayscale contrast-105 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500">
+            <div class="absolute inset-x-0 bottom-0 z-10 p-5 sm:p-6 bg-gradient-to-t from-black/90 via-black/55 to-transparent flex flex-col justify-end text-white">
+                <h3 class="text-xl sm:text-2xl font-black font-['Plus_Jakarta_Sans'] tracking-tight text-white mb-1 drop-shadow-sm leading-snug">
+                    450GSM Boxy Hoodie
                 </h3>
-                <p class="text-sm sm:text-base text-[#515154] max-w-md font-normal leading-relaxed mb-2">
-                    Classic straight-leg cut with authentic honeycombing, whiskers, and natural vintage fray.
+                <p class="text-xs text-neutral-300 line-clamp-1 mb-2 font-normal">
+                    Ultra-heavy French terry with custom chest embroidery and puff graphic.
                 </p>
-                <div class="text-xs font-mono text-[#86868b] mb-5">
-                    $88 • Waist 32 • Inseam 32 • 100% Cotton
+                <div class="flex items-center justify-between text-xs font-mono text-neutral-300 mb-3">
+                    <span class="font-bold text-white text-base">From $58</span>
+                    <span class="text-[11px] text-neutral-300">Sizes S - XXL</span>
                 </div>
-                <div class="flex items-center gap-3">
-                    <button type="button" onclick="openOrderModal('90s Selvedge Distressed Denim', '88', 'denim', 'Authentic 90s straight leg denim, W32 L32')" class="bg-[#0071e3] hover:bg-[#0077ed] text-white text-xs sm:text-sm font-medium px-5 py-2.5 rounded-full flex items-center gap-2 transition cursor-pointer">
-                        <i class="fa-brands fa-whatsapp text-white"></i>
+                <div class="flex items-center gap-2 pt-1">
+                    <button type="button" onclick="event.stopPropagation(); openOrderModal('450GSM French Terry Custom Hoodie', '58', 'hoodies', 'Custom embroidered oversized boxy hoodie')" class="flex-1 py-2.5 px-3 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white text-xs font-semibold flex items-center justify-center gap-1.5 shadow-sm transition">
+                        <i class="fa-brands fa-whatsapp text-sm"></i>
                         <span>Order on WhatsApp</span>
                     </button>
-                    <button type="button" onclick="quickView('90s Selvedge Distressed Denim', '88', 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=900&auto=format&fit=crop&q=80', 'Heavyweight 14oz red-line selvedge denim. Hand-distressed natural whiskers, clean copper rivets, classic 5-pocket styling.', 'W32 x L32 (Rise: 11.5\")', '9.5/10 Prime Archival Condition')" class="text-[#0071e3] border border-[#0071e3]/40 hover:border-[#0071e3] text-xs sm:text-sm font-medium px-5 py-2.5 rounded-full transition cursor-pointer">
-                        Quick View
-                    </button>
-                </div>
-            </div>
-            <div class="w-full h-[320px] sm:h-[360px] overflow-hidden rounded-2xl mt-6 relative">
-                <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=900&auto=format&fit=crop&q=80" alt="90s Selvedge Distressed Denim" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-            </div>
-        </div>
-
-        <!-- CARD 5: DARK CARD (Custom Streetwear Hoodies) -->
-        <div class="vintage-item group relative rounded-3xl overflow-hidden bg-[#000000] text-[#f5f5f7] p-8 sm:p-12 flex flex-col justify-between min-h-[580px] sm:min-h-[640px] shadow-sm hover:shadow-2xl transition-all duration-300" data-cat="hoodies">
-            <div class="z-10 text-center flex flex-col items-center">
-                <span class="text-[11px] font-bold uppercase tracking-widest text-neutral-400 mb-1">
-                    BESPOKE FLEECE
-                </span>
-                <h3 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white mb-2">
-                    450GSM French Terry Hoodie
-                </h3>
-                <p class="text-sm sm:text-base text-neutral-300 max-w-md font-normal leading-relaxed mb-2">
-                    Ultra-heavyweight boxy hoodie with custom chest embroidery and high-density puff graphic.
-                </p>
-                <div class="text-xs font-mono text-neutral-400 mb-5">
-                    From $58 • Custom Made to Order • Washed Black & Charcoal
-                </div>
-                <div class="flex items-center gap-3">
-                    <button type="button" onclick="openOrderModal('450GSM French Terry Custom Hoodie', '58', 'hoodies', 'Custom embroidered oversized boxy hoodie')" class="bg-[#0071e3] hover:bg-[#0077ed] text-white text-xs sm:text-sm font-medium px-5 py-2.5 rounded-full flex items-center gap-2 transition cursor-pointer">
-                        <i class="fa-brands fa-whatsapp text-white"></i>
-                        <span>Order on WhatsApp</span>
-                    </button>
-                    <a href="{{ url_for('order') }}" class="text-[#2997ff] border border-[#2997ff]/40 hover:border-[#2997ff] text-xs sm:text-sm font-medium px-5 py-2.5 rounded-full transition cursor-pointer">
-                        Customize
+                    <a href="{{ url_for('order') }}" onclick="event.stopPropagation();" class="py-2.5 px-3.5 rounded-full bg-white/20 hover:bg-white text-white hover:text-black backdrop-blur-md border border-white/30 text-xs font-semibold transition" title="Customise">
+                        <i class="fa-solid fa-paintbrush text-xs"></i>
                     </a>
                 </div>
             </div>
-            <div class="w-full h-[320px] sm:h-[360px] overflow-hidden rounded-2xl mt-6 relative">
-                <img src="https://images.unsplash.com/photo-1509967419530-da38b4704bc6?w=900&auto=format&fit=crop&q=80" alt="450GSM French Terry Hoodie" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+        </div>
+
+        <!-- 6: 1991 Nevermind Faded Grunge Band Tee -->
+        <div class="vintage-item group relative h-[470px] sm:h-[510px] lg:h-[540px] rounded-3xl overflow-hidden bg-white border border-black/15 shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer" data-cat="tees" onclick="quickView('1991 Nevermind Faded Grunge Tee', '95', 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=900&auto=format&fit=crop&q=80', 'Original 1991 single-stitch release. Natural fabric fading, soft hand feel, zero holes or tears. Museum grade vintage.', 'XL (Pit to Pit: 23.5\", Length: 30\")', '9.8/10 Collector Grade')">
+            <span class="absolute top-4 left-4 z-20 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[10px] font-bold tracking-widest uppercase border border-white/20">
+                1 of 1 Drop
+            </span>
+            <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=900&auto=format&fit=crop&q=80" alt="1991 Nevermind Faded Grunge Tee" class="w-full h-full object-cover grayscale contrast-105 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500">
+            <div class="absolute inset-x-0 bottom-0 z-10 p-5 sm:p-6 bg-gradient-to-t from-black/90 via-black/55 to-transparent flex flex-col justify-end text-white">
+                <h3 class="text-xl sm:text-2xl font-black font-['Plus_Jakarta_Sans'] tracking-tight text-white mb-1 drop-shadow-sm leading-snug">
+                    1991 Nevermind Tee
+                </h3>
+                <p class="text-xs text-neutral-300 line-clamp-1 mb-2 font-normal">
+                    Original album tour release with authentic vintage enzyme wash.
+                </p>
+                <div class="flex items-center justify-between text-xs font-mono text-neutral-300 mb-3">
+                    <span class="font-bold text-white text-base">$95</span>
+                    <span class="text-[11px] text-neutral-300">Size XL • Collector</span>
+                </div>
+                <div class="flex items-center gap-2 pt-1">
+                    <button type="button" onclick="event.stopPropagation(); openOrderModal('1991 Nevermind Faded Grunge Tee', '95', 'tees', 'Rare 1991 vintage tee, Size XL')" class="flex-1 py-2.5 px-3 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white text-xs font-semibold flex items-center justify-center gap-1.5 shadow-sm transition">
+                        <i class="fa-brands fa-whatsapp text-sm"></i>
+                        <span>Order on WhatsApp</span>
+                    </button>
+                    <button type="button" onclick="event.stopPropagation(); quickView('1991 Nevermind Faded Grunge Tee', '95', 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=900&auto=format&fit=crop&q=80', 'Original 1991 single-stitch release. Natural fabric fading, soft hand feel, zero holes or tears. Museum grade vintage.', 'XL (Pit to Pit: 23.5\", Length: 30\")', '9.8/10 Collector Grade')" class="py-2.5 px-3.5 rounded-full bg-white/20 hover:bg-white text-white hover:text-black backdrop-blur-md border border-white/30 text-xs font-semibold transition" title="Quick View">
+                        <i class="fa-solid fa-expand text-xs"></i>
+                    </button>
+                </div>
             </div>
         </div>
 
-        <!-- CARD 6: LIGHT CARD (Rare Nirvana Grunge Tee) -->
-        <div class="vintage-item group relative rounded-3xl overflow-hidden bg-[#f5f5f7] text-[#1d1d1f] p-8 sm:p-12 flex flex-col justify-between min-h-[580px] sm:min-h-[640px] shadow-sm hover:shadow-2xl transition-all duration-300" data-cat="tees">
-            <div class="z-10 text-center flex flex-col items-center">
-                <span class="text-[11px] font-bold uppercase tracking-widest text-[#86868b] mb-1">
-                    GRUNGE ARCHIVE DROP
-                </span>
-                <h3 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#1d1d1f] mb-2">
-                    1991 Nevermind Faded Grunge Tee
+        <!-- 7: Kuroki Okayama Selvedge Denim Yardage -->
+        <div class="vintage-item group relative h-[470px] sm:h-[510px] lg:h-[540px] rounded-3xl overflow-hidden bg-white border border-black/15 shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer" data-cat="fabrics" onclick="quickView('Kuroki Selvedge Denim Yardage', '45', 'https://images.unsplash.com/photo-1578587018452-892bacefd3f2?w=900&auto=format&fit=crop&q=80', 'Woven on vintage shuttle looms in Okayama, Japan. 100% long-staple cotton, deep indigo dip, classic red-line edge.', 'Width: 31\" (Sold per yard)', '10/10 Brand New Deadstock')">
+            <span class="absolute top-4 left-4 z-20 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[10px] font-bold tracking-widest uppercase border border-white/20">
+                Sourced Materials
+            </span>
+            <img src="https://images.unsplash.com/photo-1578587018452-892bacefd3f2?w=900&auto=format&fit=crop&q=80" alt="Kuroki Selvedge Denim Yardage" class="w-full h-full object-cover grayscale contrast-105 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500">
+            <div class="absolute inset-x-0 bottom-0 z-10 p-5 sm:p-6 bg-gradient-to-t from-black/90 via-black/55 to-transparent flex flex-col justify-end text-white">
+                <h3 class="text-xl sm:text-2xl font-black font-['Plus_Jakarta_Sans'] tracking-tight text-white mb-1 drop-shadow-sm leading-snug">
+                    Okayama Selvedge Roll
                 </h3>
-                <p class="text-sm sm:text-base text-[#515154] max-w-md font-normal leading-relaxed mb-2">
-                    Authentic 1991 album release tee with vintage enzyme fading and original collar single-stitch.
+                <p class="text-xs text-neutral-300 line-clamp-1 mb-2 font-normal">
+                    Authentic shuttle-loom selvedge raw denim roll for custom bespoke tailoring.
                 </p>
-                <div class="text-xs font-mono text-[#86868b] mb-5">
-                    $95 • Size XL • 1 of 1 Collector Piece
+                <div class="flex items-center justify-between text-xs font-mono text-neutral-300 mb-3">
+                    <span class="font-bold text-white text-base">$45 / Yd</span>
+                    <span class="text-[11px] text-neutral-300">14.5oz Raw Indigo</span>
                 </div>
-                <div class="flex items-center gap-3">
-                    <button type="button" onclick="openOrderModal('1991 Nevermind Faded Grunge Tee', '95', 'tees', 'Rare 1991 vintage tee, Size XL')" class="bg-[#0071e3] hover:bg-[#0077ed] text-white text-xs sm:text-sm font-medium px-5 py-2.5 rounded-full flex items-center gap-2 transition cursor-pointer">
-                        <i class="fa-brands fa-whatsapp text-white"></i>
+                <div class="flex items-center gap-2 pt-1">
+                    <button type="button" onclick="event.stopPropagation(); openOrderModal('Kuroki Selvedge Denim Yardage', '45', 'fabrics', 'Archival raw selvedge denim fabric, per yard')" class="flex-1 py-2.5 px-3 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white text-xs font-semibold flex items-center justify-center gap-1.5 shadow-sm transition">
+                        <i class="fa-brands fa-whatsapp text-sm"></i>
                         <span>Order on WhatsApp</span>
                     </button>
-                    <button type="button" onclick="quickView('1991 Nevermind Faded Grunge Tee', '95', 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=900&auto=format&fit=crop&q=80', 'Original 1991 single-stitch release. Natural fabric fading, soft hand feel, zero holes or tears. Museum grade vintage.', 'XL (Pit to Pit: 23.5\", Length: 30\")', '9.8/10 Collector Grade')" class="text-[#0071e3] border border-[#0071e3]/40 hover:border-[#0071e3] text-xs sm:text-sm font-medium px-5 py-2.5 rounded-full transition cursor-pointer">
-                        Quick View
+                    <button type="button" onclick="event.stopPropagation(); quickView('Kuroki Selvedge Denim Yardage', '45', 'https://images.unsplash.com/photo-1578587018452-892bacefd3f2?w=900&auto=format&fit=crop&q=80', 'Woven on vintage shuttle looms in Okayama, Japan. 100% long-staple cotton, deep indigo dip, classic red-line edge.', 'Width: 31\" (Sold per yard)', '10/10 Brand New Deadstock')" class="py-2.5 px-3.5 rounded-full bg-white/20 hover:bg-white text-white hover:text-black backdrop-blur-md border border-white/30 text-xs font-semibold transition" title="Quick View">
+                        <i class="fa-solid fa-expand text-xs"></i>
                     </button>
                 </div>
-            </div>
-            <div class="w-full h-[320px] sm:h-[360px] overflow-hidden rounded-2xl mt-6 relative">
-                <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=900&auto=format&fit=crop&q=80" alt="1991 Nevermind Faded Grunge Tee" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
             </div>
         </div>
 
-        <!-- CARD 7: DARK CARD (Sourced Japanese Selvedge Raw Denim Roll) -->
-        <div class="vintage-item group relative rounded-3xl overflow-hidden bg-[#000000] text-[#f5f5f7] p-8 sm:p-12 flex flex-col justify-between min-h-[580px] sm:min-h-[640px] shadow-sm hover:shadow-2xl transition-all duration-300" data-cat="fabrics">
-            <div class="z-10 text-center flex flex-col items-center">
-                <span class="text-[11px] font-bold uppercase tracking-widest text-neutral-400 mb-1">
-                    VINTAGE MATERIALS SOURCING
-                </span>
-                <h3 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white mb-2">
-                    Kuroki Selvedge Denim Yardage
+        <!-- 8: 1996 Chicago Bulls Championship Graphic Tee -->
+        <div class="vintage-item group relative h-[470px] sm:h-[510px] lg:h-[540px] rounded-3xl overflow-hidden bg-white border border-black/15 shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer" data-cat="tees" onclick="quickView('1996 Bulls Championship Tee', '75', 'https://images.unsplash.com/photo-1516762689617-e1cffcef479d?w=900&auto=format&fit=crop&q=80', 'Official 1996 licensed print on vintage heavyweight cotton. Single-stitch hems, gently cracked graphic with authentic 90s vintage character.', 'L (Pit to Pit: 22\", Length: 29.5\")', '9.4/10 Great Vintage')">
+            <span class="absolute top-4 left-4 z-20 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[10px] font-bold tracking-widest uppercase border border-white/20">
+                1 of 1 Drop
+            </span>
+            <img src="https://images.unsplash.com/photo-1516762689617-e1cffcef479d?w=900&auto=format&fit=crop&q=80" alt="1996 Bulls Championship Tee" class="w-full h-full object-cover grayscale contrast-105 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500">
+            <div class="absolute inset-x-0 bottom-0 z-10 p-5 sm:p-6 bg-gradient-to-t from-black/90 via-black/55 to-transparent flex flex-col justify-end text-white">
+                <h3 class="text-xl sm:text-2xl font-black font-['Plus_Jakarta_Sans'] tracking-tight text-white mb-1 drop-shadow-sm leading-snug">
+                    1996 Bulls Championship
                 </h3>
-                <p class="text-sm sm:text-base text-neutral-300 max-w-md font-normal leading-relaxed mb-2">
-                    Authentic deadstock shuttle-loom selvedge raw denim roll. For custom reworks, tailoring, or DIY design.
+                <p class="text-xs text-neutral-300 line-clamp-1 mb-2 font-normal">
+                    Original licensed 90s graphic tee with authentic single-stitch hems.
                 </p>
-                <div class="text-xs font-mono text-neutral-400 mb-5">
-                    $45 / Yard • 14.5oz Indigo Raw • Red-Line ID
+                <div class="flex items-center justify-between text-xs font-mono text-neutral-300 mb-3">
+                    <span class="font-bold text-white text-base">$75</span>
+                    <span class="text-[11px] text-neutral-300">Size L • Single Stitch</span>
                 </div>
-                <div class="flex items-center gap-3">
-                    <button type="button" onclick="openOrderModal('Kuroki Selvedge Denim Yardage', '45', 'fabrics', 'Archival raw selvedge denim fabric, per yard')" class="bg-[#0071e3] hover:bg-[#0077ed] text-white text-xs sm:text-sm font-medium px-5 py-2.5 rounded-full flex items-center gap-2 transition cursor-pointer">
-                        <i class="fa-brands fa-whatsapp text-white"></i>
+                <div class="flex items-center gap-2 pt-1">
+                    <button type="button" onclick="event.stopPropagation(); openOrderModal('1996 Bulls Championship Tee', '75', 'tees', '1996 vintage championship tee, Size L')" class="flex-1 py-2.5 px-3 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white text-xs font-semibold flex items-center justify-center gap-1.5 shadow-sm transition">
+                        <i class="fa-brands fa-whatsapp text-sm"></i>
                         <span>Order on WhatsApp</span>
                     </button>
-                    <button type="button" onclick="quickView('Kuroki Selvedge Denim Yardage', '45', 'https://images.unsplash.com/photo-1578587018452-892bacefd3f2?w=900&auto=format&fit=crop&q=80', 'Woven on vintage shuttle looms in Okayama, Japan. 100% long-staple cotton, deep indigo dip, classic red-line edge.', 'Width: 31\" (Sold per yard)', '10/10 Brand New Deadstock')" class="text-[#2997ff] border border-[#2997ff]/40 hover:border-[#2997ff] text-xs sm:text-sm font-medium px-5 py-2.5 rounded-full transition cursor-pointer">
-                        Quick View
+                    <button type="button" onclick="event.stopPropagation(); quickView('1996 Bulls Championship Tee', '75', 'https://images.unsplash.com/photo-1516762689617-e1cffcef479d?w=900&auto=format&fit=crop&q=80', 'Official 1996 licensed print on vintage heavyweight cotton. Single-stitch hems, gently cracked graphic with authentic 90s vintage character.', 'L (Pit to Pit: 22\", Length: 29.5\")', '9.4/10 Great Vintage')" class="py-2.5 px-3.5 rounded-full bg-white/20 hover:bg-white text-white hover:text-black backdrop-blur-md border border-white/30 text-xs font-semibold transition" title="Quick View">
+                        <i class="fa-solid fa-expand text-xs"></i>
                     </button>
                 </div>
-            </div>
-            <div class="w-full h-[320px] sm:h-[360px] overflow-hidden rounded-2xl mt-6 relative">
-                <img src="https://images.unsplash.com/photo-1578587018452-892bacefd3f2?w=900&auto=format&fit=crop&q=80" alt="Kuroki Selvedge Denim Yardage" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
             </div>
         </div>
 
-        <!-- CARD 8: LIGHT CARD (1996 Chicago Bulls Championship Tee) -->
-        <div class="vintage-item group relative rounded-3xl overflow-hidden bg-[#f5f5f7] text-[#1d1d1f] p-8 sm:p-12 flex flex-col justify-between min-h-[580px] sm:min-h-[640px] shadow-sm hover:shadow-2xl transition-all duration-300" data-cat="tees">
-            <div class="z-10 text-center flex flex-col items-center">
-                <span class="text-[11px] font-bold uppercase tracking-widest text-[#86868b] mb-1">
-                    90S SPORTS HERITAGE
-                </span>
-                <h3 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#1d1d1f] mb-2">
-                    1996 Bulls Championship Tee
+        <!-- 9: Deadstock Military Waxed Duck Canvas -->
+        <div class="vintage-item group relative h-[470px] sm:h-[510px] lg:h-[540px] rounded-3xl overflow-hidden bg-white border border-black/15 shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer" data-cat="fabrics" onclick="quickView('Deadstock Military Duck Canvas', '40', 'https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?w=900&auto=format&fit=crop&q=80', 'Heavy 18oz cotton canvas with heritage paraffin wax treatment. Develops incredible crease marks and patina over time.', 'Width: 54\" (Sold per yard)', '10/10 Deadstock Condition')">
+            <span class="absolute top-4 left-4 z-20 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[10px] font-bold tracking-widest uppercase border border-white/20">
+                Archival Textile
+            </span>
+            <img src="https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?w=900&auto=format&fit=crop&q=80" alt="Deadstock Military Duck Canvas" class="w-full h-full object-cover grayscale contrast-105 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500">
+            <div class="absolute inset-x-0 bottom-0 z-10 p-5 sm:p-6 bg-gradient-to-t from-black/90 via-black/55 to-transparent flex flex-col justify-end text-white">
+                <h3 class="text-xl sm:text-2xl font-black font-['Plus_Jakarta_Sans'] tracking-tight text-white mb-1 drop-shadow-sm leading-snug">
+                    Waxed Duck Canvas
                 </h3>
-                <p class="text-sm sm:text-base text-[#515154] max-w-md font-normal leading-relaxed mb-2">
-                    Rare commemorative championship graphic tee. Single-stitch sleeves and authentic vintage fade.
+                <p class="text-xs text-neutral-300 line-clamp-1 mb-2 font-normal">
+                    18oz paraffin-waxed archival canvas. Water-resistant heritage material.
                 </p>
-                <div class="text-xs font-mono text-[#86868b] mb-5">
-                    $75 • Size L • Heavyweight Vintage Cotton
+                <div class="flex items-center justify-between text-xs font-mono text-neutral-300 mb-3">
+                    <span class="font-bold text-white text-base">$40 / Yd</span>
+                    <span class="text-[11px] text-neutral-300">18oz Waxed Olive</span>
                 </div>
-                <div class="flex items-center gap-3">
-                    <button type="button" onclick="openOrderModal('1996 Bulls Championship Tee', '75', 'tees', '1996 vintage championship tee, Size L')" class="bg-[#0071e3] hover:bg-[#0077ed] text-white text-xs sm:text-sm font-medium px-5 py-2.5 rounded-full flex items-center gap-2 transition cursor-pointer">
-                        <i class="fa-brands fa-whatsapp text-white"></i>
+                <div class="flex items-center gap-2 pt-1">
+                    <button type="button" onclick="event.stopPropagation(); openOrderModal('Deadstock Military Duck Canvas', '40', 'fabrics', '18oz waxed archival canvas material, per yard')" class="flex-1 py-2.5 px-3 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white text-xs font-semibold flex items-center justify-center gap-1.5 shadow-sm transition">
+                        <i class="fa-brands fa-whatsapp text-sm"></i>
                         <span>Order on WhatsApp</span>
                     </button>
-                    <button type="button" onclick="quickView('1996 Bulls Championship Tee', '75', 'https://images.unsplash.com/photo-1516762689617-e1cffcef479d?w=900&auto=format&fit=crop&q=80', 'Official 1996 licensed print on vintage heavyweight cotton. Single-stitch hems, gently cracked graphic with authentic 90s vintage character.', 'L (Pit to Pit: 22\", Length: 29.5\")', '9.4/10 Great Vintage')" class="text-[#0071e3] border border-[#0071e3]/40 hover:border-[#0071e3] text-xs sm:text-sm font-medium px-5 py-2.5 rounded-full transition cursor-pointer">
-                        Quick View
+                    <button type="button" onclick="event.stopPropagation(); quickView('Deadstock Military Duck Canvas', '40', 'https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?w=900&auto=format&fit=crop&q=80', 'Heavy 18oz cotton canvas with heritage paraffin wax treatment. Develops incredible crease marks and patina over time.', 'Width: 54\" (Sold per yard)', '10/10 Deadstock Condition')" class="py-2.5 px-3.5 rounded-full bg-white/20 hover:bg-white text-white hover:text-black backdrop-blur-md border border-white/30 text-xs font-semibold transition" title="Quick View">
+                        <i class="fa-solid fa-expand text-xs"></i>
                     </button>
                 </div>
-            </div>
-            <div class="w-full h-[320px] sm:h-[360px] overflow-hidden rounded-2xl mt-6 relative">
-                <img src="https://images.unsplash.com/photo-1516762689617-e1cffcef479d?w=900&auto=format&fit=crop&q=80" alt="1996 Bulls Championship Tee" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
             </div>
         </div>
 
-        <!-- CARD 9: DARK CARD (Deadstock Heavyweight Military Duck Canvas) -->
-        <div class="vintage-item group relative rounded-3xl overflow-hidden bg-[#000000] text-[#f5f5f7] p-8 sm:p-12 flex flex-col justify-between min-h-[580px] sm:min-h-[640px] shadow-sm hover:shadow-2xl transition-all duration-300" data-cat="fabrics">
-            <div class="z-10 text-center flex flex-col items-center">
-                <span class="text-[11px] font-bold uppercase tracking-widest text-neutral-400 mb-1">
-                    DEADSTOCK FABRIC SOURCING
-                </span>
-                <h3 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white mb-2">
-                    Deadstock Military Duck Canvas
+        <!-- 10: Enzyme Washed Archival Cap -->
+        <div class="vintage-item group relative h-[470px] sm:h-[510px] lg:h-[540px] rounded-3xl overflow-hidden bg-white border border-black/15 shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer" data-cat="accessories" onclick="quickView('Enzyme Washed Archival Cap', '24', 'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=900&auto=format&fit=crop&q=80', '100% heavy cotton twill treated with stone enzyme wash. Soft crown, curved brim, antique brass buckle enclosure.', 'One Size Fits All (Adjustable)', 'New / Vintage Washed')">
+            <span class="absolute top-4 left-4 z-20 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[10px] font-bold tracking-widest uppercase border border-white/20">
+                Custom Headwear
+            </span>
+            <img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=900&auto=format&fit=crop&q=80" alt="Enzyme Washed Archival Cap" class="w-full h-full object-cover grayscale contrast-105 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500">
+            <div class="absolute inset-x-0 bottom-0 z-10 p-5 sm:p-6 bg-gradient-to-t from-black/90 via-black/55 to-transparent flex flex-col justify-end text-white">
+                <h3 class="text-xl sm:text-2xl font-black font-['Plus_Jakarta_Sans'] tracking-tight text-white mb-1 drop-shadow-sm leading-snug">
+                    Archival Washed Cap
                 </h3>
-                <p class="text-sm sm:text-base text-neutral-300 max-w-md font-normal leading-relaxed mb-2">
-                    18oz paraffin-waxed archival canvas. Water-resistant, indestructible heritage material for bags & jackets.
+                <p class="text-xs text-neutral-300 line-clamp-1 mb-2 font-normal">
+                    Unstructured 6-panel dad cap with antique brass clasp and 3D embroidery.
                 </p>
-                <div class="text-xs font-mono text-neutral-400 mb-5">
-                    $40 / Yard • 18oz Waxed Duck • Weathered Olive
+                <div class="flex items-center justify-between text-xs font-mono text-neutral-300 mb-3">
+                    <span class="font-bold text-white text-base">$24</span>
+                    <span class="text-[11px] text-neutral-300">Adjustable Clasp</span>
                 </div>
-                <div class="flex items-center gap-3">
-                    <button type="button" onclick="openOrderModal('Deadstock Military Duck Canvas', '40', 'fabrics', '18oz waxed archival canvas material, per yard')" class="bg-[#0071e3] hover:bg-[#0077ed] text-white text-xs sm:text-sm font-medium px-5 py-2.5 rounded-full flex items-center gap-2 transition cursor-pointer">
-                        <i class="fa-brands fa-whatsapp text-white"></i>
+                <div class="flex items-center gap-2 pt-1">
+                    <button type="button" onclick="event.stopPropagation(); openOrderModal('Enzyme Washed Archival Cap', '24', 'accessories', 'Custom embroidered enzyme washed cap')" class="flex-1 py-2.5 px-3 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white text-xs font-semibold flex items-center justify-center gap-1.5 shadow-sm transition">
+                        <i class="fa-brands fa-whatsapp text-sm"></i>
                         <span>Order on WhatsApp</span>
                     </button>
-                    <button type="button" onclick="quickView('Deadstock Military Duck Canvas', '40', 'https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?w=900&auto=format&fit=crop&q=80', 'Heavy 18oz cotton canvas with heritage paraffin wax treatment. Develops incredible crease marks and patina over time.', 'Width: 54\" (Sold per yard)', '10/10 Deadstock Condition')" class="text-[#2997ff] border border-[#2997ff]/40 hover:border-[#2997ff] text-xs sm:text-sm font-medium px-5 py-2.5 rounded-full transition cursor-pointer">
-                        Quick View
+                    <button type="button" onclick="event.stopPropagation(); quickView('Enzyme Washed Archival Cap', '24', 'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=900&auto=format&fit=crop&q=80', '100% heavy cotton twill treated with stone enzyme wash. Soft crown, curved brim, antique brass buckle enclosure.', 'One Size Fits All (Adjustable)', 'New / Vintage Washed')" class="py-2.5 px-3.5 rounded-full bg-white/20 hover:bg-white text-white hover:text-black backdrop-blur-md border border-white/30 text-xs font-semibold transition" title="Quick View">
+                        <i class="fa-solid fa-expand text-xs"></i>
                     </button>
                 </div>
-            </div>
-            <div class="w-full h-[320px] sm:h-[360px] overflow-hidden rounded-2xl mt-6 relative">
-                <img src="https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?w=900&auto=format&fit=crop&q=80" alt="Deadstock Military Duck Canvas" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
             </div>
         </div>
 
-        <!-- CARD 10: LIGHT CARD (Enzyme Washed Archival Cap) -->
-        <div class="vintage-item group relative rounded-3xl overflow-hidden bg-[#f5f5f7] text-[#1d1d1f] p-8 sm:p-12 flex flex-col justify-between min-h-[580px] sm:min-h-[640px] shadow-sm hover:shadow-2xl transition-all duration-300" data-cat="accessories">
-            <div class="z-10 text-center flex flex-col items-center">
-                <span class="text-[11px] font-bold uppercase tracking-widest text-[#86868b] mb-1">
-                    CUSTOM HEADWEAR
-                </span>
-                <h3 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#1d1d1f] mb-2">
-                    Enzyme Washed Archival Cap
+        <!-- 11: 1988 Seventh Son Graphic Tour Tee -->
+        <div class="vintage-item group relative h-[470px] sm:h-[510px] lg:h-[540px] rounded-3xl overflow-hidden bg-white border border-black/15 shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer" data-cat="tees" onclick="quickView('1988 Seventh Son Graphic Tee', '85', 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=900&auto=format&fit=crop&q=80', 'True 1988 European tour vintage. Double-sided graphic print, authentic cracked screenprint, buttery soft worn cotton.', 'L (Pit to Pit: 21.5\", Length: 28.5\")', '9.6/10 Pristine Vintage')">
+            <span class="absolute top-4 left-4 z-20 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[10px] font-bold tracking-widest uppercase border border-white/20">
+                1 of 1 Drop
+            </span>
+            <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=900&auto=format&fit=crop&q=80" alt="1988 Seventh Son Graphic Tee" class="w-full h-full object-cover grayscale contrast-105 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500">
+            <div class="absolute inset-x-0 bottom-0 z-10 p-5 sm:p-6 bg-gradient-to-t from-black/90 via-black/55 to-transparent flex flex-col justify-end text-white">
+                <h3 class="text-xl sm:text-2xl font-black font-['Plus_Jakarta_Sans'] tracking-tight text-white mb-1 drop-shadow-sm leading-snug">
+                    1988 Seventh Son Tee
                 </h3>
-                <p class="text-sm sm:text-base text-[#515154] max-w-md font-normal leading-relaxed mb-2">
-                    Unstructured 6-panel dad cap with antique brass clasp and bespoke tonal 3D embroidery.
+                <p class="text-xs text-neutral-300 line-clamp-1 mb-2 font-normal">
+                    Original 1988 European tour graphic tee with true single-stitch seams.
                 </p>
-                <div class="text-xs font-mono text-[#86868b] mb-5">
-                    $24 • Adjustable Brass Clasp • Washed Charcoal
+                <div class="flex items-center justify-between text-xs font-mono text-neutral-300 mb-3">
+                    <span class="font-bold text-white text-base">$85</span>
+                    <span class="text-[11px] text-neutral-300">Size L • Single Stitch</span>
                 </div>
-                <div class="flex items-center gap-3">
-                    <button type="button" onclick="openOrderModal('Enzyme Washed Archival Cap', '24', 'accessories', 'Custom embroidered enzyme washed cap')" class="bg-[#0071e3] hover:bg-[#0077ed] text-white text-xs sm:text-sm font-medium px-5 py-2.5 rounded-full flex items-center gap-2 transition cursor-pointer">
-                        <i class="fa-brands fa-whatsapp text-white"></i>
+                <div class="flex items-center gap-2 pt-1">
+                    <button type="button" onclick="event.stopPropagation(); openOrderModal('1988 Seventh Son Graphic Tee', '85', 'tees', '1988 single stitch tour tee, Size L')" class="flex-1 py-2.5 px-3 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white text-xs font-semibold flex items-center justify-center gap-1.5 shadow-sm transition">
+                        <i class="fa-brands fa-whatsapp text-sm"></i>
                         <span>Order on WhatsApp</span>
                     </button>
-                    <button type="button" onclick="quickView('Enzyme Washed Archival Cap', '24', 'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=900&auto=format&fit=crop&q=80', '100% heavy cotton twill treated with stone enzyme wash. Soft crown, curved brim, antique brass buckle enclosure.', 'One Size Fits All (Adjustable)', 'New / Vintage Washed')" class="text-[#0071e3] border border-[#0071e3]/40 hover:border-[#0071e3] text-xs sm:text-sm font-medium px-5 py-2.5 rounded-full transition cursor-pointer">
-                        Quick View
+                    <button type="button" onclick="event.stopPropagation(); quickView('1988 Seventh Son Graphic Tee', '85', 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=900&auto=format&fit=crop&q=80', 'True 1988 European tour vintage. Double-sided graphic print, authentic cracked screenprint, buttery soft worn cotton.', 'L (Pit to Pit: 21.5\", Length: 28.5\")', '9.6/10 Pristine Vintage')" class="py-2.5 px-3.5 rounded-full bg-white/20 hover:bg-white text-white hover:text-black backdrop-blur-md border border-white/30 text-xs font-semibold transition" title="Quick View">
+                        <i class="fa-solid fa-expand text-xs"></i>
                     </button>
                 </div>
-            </div>
-            <div class="w-full h-[320px] sm:h-[360px] overflow-hidden rounded-2xl mt-6 relative">
-                <img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=900&auto=format&fit=crop&q=80" alt="Enzyme Washed Archival Cap" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
             </div>
         </div>
 
-        <!-- CARD 11: DARK CARD (1988 Iron Maiden Archival Tee) -->
-        <div class="vintage-item group relative rounded-3xl overflow-hidden bg-[#000000] text-[#f5f5f7] p-8 sm:p-12 flex flex-col justify-between min-h-[580px] sm:min-h-[640px] shadow-sm hover:shadow-2xl transition-all duration-300" data-cat="tees">
-            <div class="z-10 text-center flex flex-col items-center">
-                <span class="text-[11px] font-bold uppercase tracking-widest text-neutral-400 mb-1">
-                    RARE 80S HEAVY METAL ARCHIVE
-                </span>
-                <h3 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white mb-2">
-                    1988 Seventh Son Graphic Tee
+        <!-- 12: Heavyweight Washed Canvas Studio Tote -->
+        <div class="vintage-item group relative h-[470px] sm:h-[510px] lg:h-[540px] rounded-3xl overflow-hidden bg-white border border-black/15 shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer" data-cat="accessories" onclick="quickView('Heavyweight Washed Canvas Tote', '26', 'https://images.unsplash.com/photo-1544816155-12df9643f363?w=900&auto=format&fit=crop&q=80', 'Heavy 20oz cotton canvas with reinforced box-X handles, brass snap enclosure, and internal pocket for essentials.', '16\" x 15\" x 5\" (Handle drop: 11\")', 'New / Studio Built')">
+            <span class="absolute top-4 left-4 z-20 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[10px] font-bold tracking-widest uppercase border border-white/20">
+                Carry Goods
+            </span>
+            <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?w=900&auto=format&fit=crop&q=80" alt="Heavyweight Washed Canvas Tote" class="w-full h-full object-cover grayscale contrast-105 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500">
+            <div class="absolute inset-x-0 bottom-0 z-10 p-5 sm:p-6 bg-gradient-to-t from-black/90 via-black/55 to-transparent flex flex-col justify-end text-white">
+                <h3 class="text-xl sm:text-2xl font-black font-['Plus_Jakarta_Sans'] tracking-tight text-white mb-1 drop-shadow-sm leading-snug">
+                    Heavy Canvas Tote
                 </h3>
-                <p class="text-sm sm:text-base text-neutral-300 max-w-md font-normal leading-relaxed mb-2">
-                    Authentic 1988 world tour graphic tee. True single-stitch construction with museum-grade fade.
+                <p class="text-xs text-neutral-300 line-clamp-1 mb-2 font-normal">
+                    20oz heavy canvas tote with utility pocket and cross-stitched handles.
                 </p>
-                <div class="text-xs font-mono text-neutral-400 mb-5">
-                    $85 • Size L • Single Stitch Collar & Sleeves
+                <div class="flex items-center justify-between text-xs font-mono text-neutral-300 mb-3">
+                    <span class="font-bold text-white text-base">$26</span>
+                    <span class="text-[11px] text-neutral-300">20oz Cotton Canvas</span>
                 </div>
-                <div class="flex items-center gap-3">
-                    <button type="button" onclick="openOrderModal('1988 Seventh Son Graphic Tee', '85', 'tees', '1988 single stitch tour tee, Size L')" class="bg-[#0071e3] hover:bg-[#0077ed] text-white text-xs sm:text-sm font-medium px-5 py-2.5 rounded-full flex items-center gap-2 transition cursor-pointer">
-                        <i class="fa-brands fa-whatsapp text-white"></i>
+                <div class="flex items-center gap-2 pt-1">
+                    <button type="button" onclick="event.stopPropagation(); openOrderModal('Heavyweight Washed Canvas Tote', '26', 'accessories', '20oz canvas studio tote bag')" class="flex-1 py-2.5 px-3 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white text-xs font-semibold flex items-center justify-center gap-1.5 shadow-sm transition">
+                        <i class="fa-brands fa-whatsapp text-sm"></i>
                         <span>Order on WhatsApp</span>
                     </button>
-                    <button type="button" onclick="quickView('1988 Seventh Son Graphic Tee', '85', 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=900&auto=format&fit=crop&q=80', 'True 1988 European tour vintage. Double-sided graphic print, authentic cracked screenprint, buttery soft worn cotton.', 'L (Pit to Pit: 21.5\", Length: 28.5\")', '9.6/10 Pristine Vintage')" class="text-[#2997ff] border border-[#2997ff]/40 hover:border-[#2997ff] text-xs sm:text-sm font-medium px-5 py-2.5 rounded-full transition cursor-pointer">
-                        Quick View
+                    <button type="button" onclick="event.stopPropagation(); quickView('Heavyweight Washed Canvas Tote', '26', 'https://images.unsplash.com/photo-1544816155-12df9643f363?w=900&auto=format&fit=crop&q=80', 'Heavy 20oz cotton canvas with reinforced box-X handles, brass snap enclosure, and internal pocket for essentials.', '16\" x 15\" x 5\" (Handle drop: 11\")', 'New / Studio Built')" class="py-2.5 px-3.5 rounded-full bg-white/20 hover:bg-white text-white hover:text-black backdrop-blur-md border border-white/30 text-xs font-semibold transition" title="Quick View">
+                        <i class="fa-solid fa-expand text-xs"></i>
                     </button>
                 </div>
-            </div>
-            <div class="w-full h-[320px] sm:h-[360px] overflow-hidden rounded-2xl mt-6 relative">
-                <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=900&auto=format&fit=crop&q=80" alt="1988 Seventh Son Graphic Tee" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
             </div>
         </div>
 
-        <!-- CARD 12: LIGHT CARD (Archival Washed Canvas Studio Tote) -->
-        <div class="vintage-item group relative rounded-3xl overflow-hidden bg-[#f5f5f7] text-[#1d1d1f] p-8 sm:p-12 flex flex-col justify-between min-h-[580px] sm:min-h-[640px] shadow-sm hover:shadow-2xl transition-all duration-300" data-cat="accessories">
-            <div class="z-10 text-center flex flex-col items-center">
-                <span class="text-[11px] font-bold uppercase tracking-widest text-[#86868b] mb-1">
-                    STUDIO CARRY GOODS
-                </span>
-                <h3 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#1d1d1f] mb-2">
-                    Heavyweight Washed Canvas Tote
+        <!-- 13: Archival Heavyweight Piqué Polo -->
+        <div class="vintage-item group relative h-[470px] sm:h-[510px] lg:h-[540px] rounded-3xl overflow-hidden bg-white border border-black/15 shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer" data-cat="custom" onclick="quickView('Archival Heavyweight Piqué Polo', '35', 'https://images.unsplash.com/photo-1586363104862-3a5e2ab60d99?w=900&auto=format&fit=crop&q=80', '280GSM combed heavy cotton piqué polo. Mother of pearl buttons, custom tonal embroidery, tailored collar structure.', 'Sizes S to XXL', '10/10 Atelier Custom Made')">
+            <span class="absolute top-4 left-4 z-20 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[10px] font-bold tracking-widest uppercase border border-white/20">
+                Archival Polo
+            </span>
+            <img src="https://images.unsplash.com/photo-1586363104862-3a5e2ab60d99?w=900&auto=format&fit=crop&q=80" alt="Archival Heavyweight Piqué Polo" class="w-full h-full object-cover grayscale contrast-105 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500">
+            <div class="absolute inset-x-0 bottom-0 z-10 p-5 sm:p-6 bg-gradient-to-t from-black/90 via-black/55 to-transparent flex flex-col justify-end text-white">
+                <h3 class="text-xl sm:text-2xl font-black font-['Plus_Jakarta_Sans'] tracking-tight text-white mb-1 drop-shadow-sm leading-snug">
+                    Heavyweight Piqué Polo
                 </h3>
-                <p class="text-sm sm:text-base text-[#515154] max-w-md font-normal leading-relaxed mb-2">
-                    20oz heavy canvas tote with interior utility pocket, reinforced cross-stitching, and vintage branding.
+                <p class="text-xs text-neutral-300 line-clamp-1 mb-2 font-normal">
+                    280GSM heavy combed cotton with mother-of-pearl buttons.
                 </p>
-                <div class="text-xs font-mono text-[#86868b] mb-5">
-                    $26 • Heavy 20oz Cotton Canvas • Natural Ecru
+                <div class="flex items-center justify-between text-xs font-mono text-neutral-300 mb-3">
+                    <span class="font-bold text-white text-base">$35</span>
+                    <span class="text-[11px] text-neutral-300">Sizes S - XXL</span>
                 </div>
-                <div class="flex items-center gap-3">
-                    <button type="button" onclick="openOrderModal('Heavyweight Washed Canvas Tote', '26', 'accessories', '20oz canvas studio tote bag')" class="bg-[#0071e3] hover:bg-[#0077ed] text-white text-xs sm:text-sm font-medium px-5 py-2.5 rounded-full flex items-center gap-2 transition cursor-pointer">
-                        <i class="fa-brands fa-whatsapp text-white"></i>
+                <div class="flex items-center gap-2 pt-1">
+                    <button type="button" onclick="event.stopPropagation(); openOrderModal('Archival Heavyweight Piqué Polo', '35', 'custom', 'Bespoke custom polo shirt in combed piqué cotton')" class="flex-1 py-2.5 px-3 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white text-xs font-semibold flex items-center justify-center gap-1.5 shadow-sm transition">
+                        <i class="fa-brands fa-whatsapp text-sm"></i>
                         <span>Order on WhatsApp</span>
                     </button>
-                    <button type="button" onclick="quickView('Heavyweight Washed Canvas Tote', '26', 'https://images.unsplash.com/photo-1544816155-12df9643f363?w=900&auto=format&fit=crop&q=80', 'Heavy 20oz cotton canvas with reinforced box-X handles, brass snap enclosure, and internal pocket for essentials.', '16\" x 15\" x 5\" (Handle drop: 11\")', 'New / Studio Built')" class="text-[#0071e3] border border-[#0071e3]/40 hover:border-[#0071e3] text-xs sm:text-sm font-medium px-5 py-2.5 rounded-full transition cursor-pointer">
-                        Quick View
+                    <a href="{{ url_for('order') }}" onclick="event.stopPropagation();" class="py-2.5 px-3.5 rounded-full bg-white/20 hover:bg-white text-white hover:text-black backdrop-blur-md border border-white/30 text-xs font-semibold transition" title="Customise">
+                        <i class="fa-solid fa-paintbrush text-xs"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 14: 1993 Daytona 500 Racing Tee -->
+        <div class="vintage-item group relative h-[470px] sm:h-[510px] lg:h-[540px] rounded-3xl overflow-hidden bg-white border border-black/15 shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer" data-cat="tees" onclick="quickView('1993 Daytona 500 Racing Tee', '78', 'https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?w=900&auto=format&fit=crop&q=80', 'Original 1993 all-over print racing vintage tee. Single-stitch sleeves, natural fade, heavy 90s graphic screenprint.', 'XL (Pit to Pit: 23\", Length: 29.5\")', '9.5/10 Prime Archival')">
+            <span class="absolute top-4 left-4 z-20 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[10px] font-bold tracking-widest uppercase border border-white/20">
+                1 of 1 Drop
+            </span>
+            <img src="https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?w=900&auto=format&fit=crop&q=80" alt="1993 Daytona 500 Racing Tee" class="w-full h-full object-cover grayscale contrast-105 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500">
+            <div class="absolute inset-x-0 bottom-0 z-10 p-5 sm:p-6 bg-gradient-to-t from-black/90 via-black/55 to-transparent flex flex-col justify-end text-white">
+                <h3 class="text-xl sm:text-2xl font-black font-['Plus_Jakarta_Sans'] tracking-tight text-white mb-1 drop-shadow-sm leading-snug">
+                    1993 Daytona 500 Tee
+                </h3>
+                <p class="text-xs text-neutral-300 line-clamp-1 mb-2 font-normal">
+                    Vintage all-over graphic print racing tee with authentic single-stitch seams.
+                </p>
+                <div class="flex items-center justify-between text-xs font-mono text-neutral-300 mb-3">
+                    <span class="font-bold text-white text-base">$78</span>
+                    <span class="text-[11px] text-neutral-300">Size XL • All-Over Print</span>
+                </div>
+                <div class="flex items-center gap-2 pt-1">
+                    <button type="button" onclick="event.stopPropagation(); openOrderModal('1993 Daytona 500 Racing Tee', '78', 'tees', '1993 vintage racing tee, Size XL')" class="flex-1 py-2.5 px-3 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white text-xs font-semibold flex items-center justify-center gap-1.5 shadow-sm transition">
+                        <i class="fa-brands fa-whatsapp text-sm"></i>
+                        <span>Order on WhatsApp</span>
+                    </button>
+                    <button type="button" onclick="event.stopPropagation(); quickView('1993 Daytona 500 Racing Tee', '78', 'https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?w=900&auto=format&fit=crop&q=80', 'Original 1993 all-over print racing vintage tee. Single-stitch sleeves, natural fade, heavy 90s graphic screenprint.', 'XL (Pit to Pit: 23\", Length: 29.5\")', '9.5/10 Prime Archival')" class="py-2.5 px-3.5 rounded-full bg-white/20 hover:bg-white text-white hover:text-black backdrop-blur-md border border-white/30 text-xs font-semibold transition" title="Quick View">
+                        <i class="fa-solid fa-expand text-xs"></i>
                     </button>
                 </div>
             </div>
-            <div class="w-full h-[320px] sm:h-[360px] overflow-hidden rounded-2xl mt-6 relative">
-                <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?w=900&auto=format&fit=crop&q=80" alt="Heavyweight Washed Canvas Tote" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+        </div>
+
+        <!-- 15: Vintage Washed Worker Overalls -->
+        <div class="vintage-item group relative h-[470px] sm:h-[510px] lg:h-[540px] rounded-3xl overflow-hidden bg-white border border-black/15 shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer" data-cat="denim" onclick="quickView('Vintage Washed Worker Overalls', '98', 'https://images.unsplash.com/photo-1576995853123-5a10305d93c0?w=900&auto=format&fit=crop&q=80', 'Classic 90s carpenter bib overalls. Heavy vintage denim, brass buckle fasteners, tool loops, hand-worn patina.', 'W34 x L30', '9.2/10 Heritage Patina')">
+            <span class="absolute top-4 left-4 z-20 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[10px] font-bold tracking-widest uppercase border border-white/20">
+                Archival Denim
+            </span>
+            <img src="https://images.unsplash.com/photo-1576995853123-5a10305d93c0?w=900&auto=format&fit=crop&q=80" alt="Vintage Washed Worker Overalls" class="w-full h-full object-cover grayscale contrast-105 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500">
+            <div class="absolute inset-x-0 bottom-0 z-10 p-5 sm:p-6 bg-gradient-to-t from-black/90 via-black/55 to-transparent flex flex-col justify-end text-white">
+                <h3 class="text-xl sm:text-2xl font-black font-['Plus_Jakarta_Sans'] tracking-tight text-white mb-1 drop-shadow-sm leading-snug">
+                    Worker Bib Overalls
+                </h3>
+                <p class="text-xs text-neutral-300 line-clamp-1 mb-2 font-normal">
+                    Archival heavy denim with brass buckle fasteners and natural distress.
+                </p>
+                <div class="flex items-center justify-between text-xs font-mono text-neutral-300 mb-3">
+                    <span class="font-bold text-white text-base">$98</span>
+                    <span class="text-[11px] text-neutral-300">W34 • L30</span>
+                </div>
+                <div class="flex items-center gap-2 pt-1">
+                    <button type="button" onclick="event.stopPropagation(); openOrderModal('Vintage Washed Worker Overalls', '98', 'denim', 'Authentic 90s worker overalls, W34 L30')" class="flex-1 py-2.5 px-3 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white text-xs font-semibold flex items-center justify-center gap-1.5 shadow-sm transition">
+                        <i class="fa-brands fa-whatsapp text-sm"></i>
+                        <span>Order on WhatsApp</span>
+                    </button>
+                    <button type="button" onclick="event.stopPropagation(); quickView('Vintage Washed Worker Overalls', '98', 'https://images.unsplash.com/photo-1576995853123-5a10305d93c0?w=900&auto=format&fit=crop&q=80', 'Classic 90s carpenter bib overalls. Heavy vintage denim, brass buckle fasteners, tool loops, hand-worn patina.', 'W34 x L30', '9.2/10 Heritage Patina')" class="py-2.5 px-3.5 rounded-full bg-white/20 hover:bg-white text-white hover:text-black backdrop-blur-md border border-white/30 text-xs font-semibold transition" title="Quick View">
+                        <i class="fa-solid fa-expand text-xs"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 16: Oversized Washed Acid Fleece Zip Hoodie -->
+        <div class="vintage-item group relative h-[470px] sm:h-[510px] lg:h-[540px] rounded-3xl overflow-hidden bg-white border border-black/15 shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer" data-cat="hoodies" onclick="quickView('Oversized Acid Wash Zip Hoodie', '64', 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=900&auto=format&fit=crop&q=80', '480GSM heavyweight loopback fleece. Acid stone-washed charcoal, chunky two-way metal zipper, oversized hood.', 'Sizes S to XXL', '10/10 Custom Atelier Piece')">
+            <span class="absolute top-4 left-4 z-20 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[10px] font-bold tracking-widest uppercase border border-white/20">
+                Heavy Fleece
+            </span>
+            <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=900&auto=format&fit=crop&q=80" alt="Oversized Acid Wash Zip Hoodie" class="w-full h-full object-cover grayscale contrast-105 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500">
+            <div class="absolute inset-x-0 bottom-0 z-10 p-5 sm:p-6 bg-gradient-to-t from-black/90 via-black/55 to-transparent flex flex-col justify-end text-white">
+                <h3 class="text-xl sm:text-2xl font-black font-['Plus_Jakarta_Sans'] tracking-tight text-white mb-1 drop-shadow-sm leading-snug">
+                    Acid Wash Zip Hoodie
+                </h3>
+                <p class="text-xs text-neutral-300 line-clamp-1 mb-2 font-normal">
+                    480GSM loopback fleece with chunky two-way zipper and acid patina.
+                </p>
+                <div class="flex items-center justify-between text-xs font-mono text-neutral-300 mb-3">
+                    <span class="font-bold text-white text-base">From $64</span>
+                    <span class="text-[11px] text-neutral-300">Sizes S - XXL</span>
+                </div>
+                <div class="flex items-center gap-2 pt-1">
+                    <button type="button" onclick="event.stopPropagation(); openOrderModal('Oversized Acid Wash Zip Hoodie', '64', 'hoodies', 'Custom acid wash zip hoodie in 480GSM fleece')" class="flex-1 py-2.5 px-3 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white text-xs font-semibold flex items-center justify-center gap-1.5 shadow-sm transition">
+                        <i class="fa-brands fa-whatsapp text-sm"></i>
+                        <span>Order on WhatsApp</span>
+                    </button>
+                    <a href="{{ url_for('order') }}" onclick="event.stopPropagation();" class="py-2.5 px-3.5 rounded-full bg-white/20 hover:bg-white text-white hover:text-black backdrop-blur-md border border-white/30 text-xs font-semibold transition" title="Customise">
+                        <i class="fa-solid fa-paintbrush text-xs"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 17: Deadstock Japanese Indigo Chambray Fabric -->
+        <div class="vintage-item group relative h-[470px] sm:h-[510px] lg:h-[540px] rounded-3xl overflow-hidden bg-white border border-black/15 shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer" data-cat="fabrics" onclick="quickView('Japanese Indigo Chambray Fabric', '32', 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=900&auto=format&fit=crop&q=80', 'Lightweight 6.5oz shuttle-woven selvedge chambray. Woven on vintage looms with nep texture and pure indigo yarn.', 'Width: 32\" (Sold per yard)', '10/10 Deadstock Condition')">
+            <span class="absolute top-4 left-4 z-20 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[10px] font-bold tracking-widest uppercase border border-white/20">
+                Sourced Materials
+            </span>
+            <img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=900&auto=format&fit=crop&q=80" alt="Japanese Indigo Chambray Fabric" class="w-full h-full object-cover grayscale contrast-105 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500">
+            <div class="absolute inset-x-0 bottom-0 z-10 p-5 sm:p-6 bg-gradient-to-t from-black/90 via-black/55 to-transparent flex flex-col justify-end text-white">
+                <h3 class="text-xl sm:text-2xl font-black font-['Plus_Jakarta_Sans'] tracking-tight text-white mb-1 drop-shadow-sm leading-snug">
+                    Indigo Chambray Fabric
+                </h3>
+                <p class="text-xs text-neutral-300 line-clamp-1 mb-2 font-normal">
+                    6.5oz shuttle-woven deadstock chambray with nep texture and indigo dye.
+                </p>
+                <div class="flex items-center justify-between text-xs font-mono text-neutral-300 mb-3">
+                    <span class="font-bold text-white text-base">$32 / Yd</span>
+                    <span class="text-[11px] text-neutral-300">6.5oz Indigo Chambray</span>
+                </div>
+                <div class="flex items-center gap-2 pt-1">
+                    <button type="button" onclick="event.stopPropagation(); openOrderModal('Japanese Indigo Chambray Fabric', '32', 'fabrics', 'Archival chambray deadstock fabric, per yard')" class="flex-1 py-2.5 px-3 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white text-xs font-semibold flex items-center justify-center gap-1.5 shadow-sm transition">
+                        <i class="fa-brands fa-whatsapp text-sm"></i>
+                        <span>Order on WhatsApp</span>
+                    </button>
+                    <button type="button" onclick="event.stopPropagation(); quickView('Japanese Indigo Chambray Fabric', '32', 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=900&auto=format&fit=crop&q=80', 'Lightweight 6.5oz shuttle-woven selvedge chambray. Woven on vintage looms with nep texture and pure indigo yarn.', 'Width: 32\" (Sold per yard)', '10/10 Deadstock Condition')" class="py-2.5 px-3.5 rounded-full bg-white/20 hover:bg-white text-white hover:text-black backdrop-blur-md border border-white/30 text-xs font-semibold transition" title="Quick View">
+                        <i class="fa-solid fa-expand text-xs"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 18: Vintage Foam Trucker Snapback -->
+        <div class="vintage-item group relative h-[470px] sm:h-[510px] lg:h-[540px] rounded-3xl overflow-hidden bg-white border border-black/15 shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer" data-cat="accessories" onclick="quickView('Vintage Foam Trucker Snapback', '22', 'https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=900&auto=format&fit=crop&q=80', 'High-profile foam front trucker hat with breathable mesh back and custom embroidered Vent Atelier logo patch.', 'One Size Fits All (Snapback)', 'New / Vintage Silhouette')">
+            <span class="absolute top-4 left-4 z-20 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[10px] font-bold tracking-widest uppercase border border-white/20">
+                Custom Headwear
+            </span>
+            <img src="https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=900&auto=format&fit=crop&q=80" alt="Vintage Foam Trucker Snapback" class="w-full h-full object-cover grayscale contrast-105 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500">
+            <div class="absolute inset-x-0 bottom-0 z-10 p-5 sm:p-6 bg-gradient-to-t from-black/90 via-black/55 to-transparent flex flex-col justify-end text-white">
+                <h3 class="text-xl sm:text-2xl font-black font-['Plus_Jakarta_Sans'] tracking-tight text-white mb-1 drop-shadow-sm leading-snug">
+                    Foam Trucker Snapback
+                </h3>
+                <p class="text-xs text-neutral-300 line-clamp-1 mb-2 font-normal">
+                    High-profile foam front cap with breathable mesh back and embroidered patch.
+                </p>
+                <div class="flex items-center justify-between text-xs font-mono text-neutral-300 mb-3">
+                    <span class="font-bold text-white text-base">$22</span>
+                    <span class="text-[11px] text-neutral-300">Snapback Closure</span>
+                </div>
+                <div class="flex items-center gap-2 pt-1">
+                    <button type="button" onclick="event.stopPropagation(); openOrderModal('Vintage Foam Trucker Snapback', '22', 'accessories', 'Custom embroidered trucker snapback cap')" class="flex-1 py-2.5 px-3 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white text-xs font-semibold flex items-center justify-center gap-1.5 shadow-sm transition">
+                        <i class="fa-brands fa-whatsapp text-sm"></i>
+                        <span>Order on WhatsApp</span>
+                    </button>
+                    <button type="button" onclick="event.stopPropagation(); quickView('Vintage Foam Trucker Snapback', '22', 'https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=900&auto=format&fit=crop&q=80', 'High-profile foam front trucker hat with breathable mesh back and custom embroidered Vent Atelier logo patch.', 'One Size Fits All (Snapback)', 'New / Vintage Silhouette')" class="py-2.5 px-3.5 rounded-full bg-white/20 hover:bg-white text-white hover:text-black backdrop-blur-md border border-white/30 text-xs font-semibold transition" title="Quick View">
+                        <i class="fa-solid fa-expand text-xs"></i>
+                    </button>
+                </div>
             </div>
         </div>
 
@@ -492,7 +653,7 @@
         document.querySelectorAll('.cat-pill').forEach(btn => {
             if ((cat === 'all' && btn.textContent.includes('All')) || 
                 (cat === 'tees' && btn.textContent.includes('Vintage Tees')) ||
-                (cat === 'custom' && btn.textContent.includes('Custom T-Shirts')) ||
+                (cat === 'custom' && btn.textContent.includes('Custom Apparel')) ||
                 (cat === 'denim' && btn.textContent.includes('Denim')) ||
                 (cat === 'hoodies' && btn.textContent.includes('Hoodies')) ||
                 (cat === 'fabrics' && btn.textContent.includes('Fabrics')) ||
@@ -524,14 +685,14 @@
     });
 
     function openOrderModal(itemName, price, cat, notes) {
-        const phone = "15558392041"; // Studio WhatsApp number
-        const msg = encodeURIComponent(`Hi Vent Collection! I want to order:\n\n• Piece: ${itemName}\n• Price: $${price}\n• Category: ${cat}\n• Details: ${notes}\n\nIs this piece available for 24-hour studio dispatch?`);
+        const phone = "2348000000000"; // Studio WhatsApp number
+        const msg = encodeURIComponent(`Hello Vent Collection! I want to order this piece from the Vintage Drops:\n\n• Piece: ${itemName}\n• Price: $${price}\n• Category: ${cat}\n• Details: ${notes}\n\nPlease confirm availability and dispatch details.`);
         window.open(`https://wa.me/${phone}?text=${msg}`, '_blank');
     }
 
     function quickView(title, price, img, desc, measurements, grade) {
         document.getElementById('modalTitle').textContent = title;
-        document.getElementById('modalPrice').textContent = `$${price}`;
+        document.getElementById('modalPrice').textContent = price.startsWith('$') ? price : `$${price}`;
         document.getElementById('modalImg').src = img;
         document.getElementById('modalDesc').textContent = desc;
         document.getElementById('modalMeasurements').textContent = measurements;
